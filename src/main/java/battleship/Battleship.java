@@ -14,7 +14,7 @@ public class Battleship extends Application {
 		
 		BorderPane container = new BorderPane();
 		container.setCenter(sea);
-
+		
 		Scene s = new Scene(container);
 		
 		primaryStage.setScene(s);

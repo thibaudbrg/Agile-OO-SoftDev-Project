@@ -91,45 +91,23 @@ public class Display {
 
 
             for (int coll = 0; coll < board.getSizeCol(); coll++) {
-                switch (board.getCell(coll, row).getCharacter()) {
-                    case 'O':
+                switch (board.getCell(coll, row).getCellStatus()) {
+                    case OCEAN:
                         System.out.print(ANSI_BLUE_BACKGROUND + "  " + ANSI_RESET + " ");
                         break;
-                    case 'H':
+                    case HIT:
                         System.out.print(ANSI_RED_BACKGROUND + "  " + ANSI_RESET + " ");
                         break;
-                    case 'S':
+                    case SHIP:
                         System.out.print(ANSI_YELLOW_BACKGROUND + "  " + ANSI_RESET + " ");
                         break;
-                    case 'M':
+                    case MISSED:
                         System.out.print(ANSI_BLACK_BACKGROUND + "  " + ANSI_RESET + " ");
                         break;
-                    case 'E':
-                        System.out.println(ANSI_CYAN_BACKGROUND + "  " + ANSI_RESET + " ");
-                        break;
-                }
-            }
-            /*
-                switch (board.getCell(coll, row).getCharacter()) {
-                    case 'O':
-                        System.out.print(" 0 ");
-                        break;
-                    case 'H':
-                        System.out.print(" H ");
-                        break;
-                    case 'S':
-                        System.out.print(" S ");
-                        break;
-                    case 'M':
-                        System.out.print(" M ");
-                        break;
-                    case 'E':
-                        System.out.print(" E ");
-                        break;
+
                 }
             }
 
-             */
             System.out.println();
         }
     }

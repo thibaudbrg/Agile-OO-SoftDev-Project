@@ -14,6 +14,4 @@ public enum Orientation {
                 "extendedName='" + extendedName + '\'' +
                 '}';
     }
-
-
 }

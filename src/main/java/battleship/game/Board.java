@@ -71,7 +71,7 @@ public class Board {
             for (Cell cellToAdd : cellsToAdd) {
                 //cellToAdd.setCellStatus(CellStatus.SHIP);
                 ship.add(cellToAdd);
-                boardArray[cellToAdd.getRow()][cellToAdd.getCol()] = cell;
+                boardArray[cellToAdd.getRow()][cellToAdd.getCol()] = cellToAdd;
             }
             return true;
         }

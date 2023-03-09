@@ -28,10 +28,8 @@ public class Cell {
         this.cellStatus = cellStatus;
     }
 
-    public char getCharacter() {
+    /*public char getCharacter() {
         switch (cellStatus) {
-            case EMPTY:
-                return 'E';
             case HIT:
                 return 'H';
             case SHIP:
@@ -43,5 +41,5 @@ public class Cell {
             default:
                 throw new RuntimeException();
         }
-    }
+    }*/
 }
