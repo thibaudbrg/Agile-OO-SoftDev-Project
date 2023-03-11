@@ -23,10 +23,7 @@ public class Display {
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
 
-    public Display() {
-    }
-
-    public void printMenu() {
+    public static void printMenu() {
         System.out.println("Battleship is starting ........");
         System.out.println("\n" + "                  ~.\n" +
                 "           Ya...___|__..aab     .   .\n" +
@@ -41,22 +38,22 @@ public class Display {
                 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
-    public void printMessages(String message) {
+    public static void printMessages(String message) {
         System.out.println(message);
     }
 
-    public void printMainMenuOptions() {
+    public static void printMainMenuOptions() {
         System.out.println("Press:\n" +
                 "\t 0 - Play\n" +
                 "\t 1 - Print game rules\n" +
                 "\t 2 - Exit game\n");
     }
 
-    public void printExitMessage() {
+    public static void printExitMessage() {
         System.out.println("Seen you soon sailor !\n");
     }
 
-    public void gameRules() {
+    public static void gameRules() {
         System.out.println("You and your opponent sit facing each other and neighter can see the other's ocean grid.\n" +
                 "Place your fleet of 5 ships on the ocean grid.\n\n" +
                 "Rules for placing ships:\n" +
@@ -72,7 +69,7 @@ public class Display {
                 "Once all the holes in any one ship are hit, the ship will sink. The owner of that ship must announce which ship was sunk.\n\n");
     }
 
-    public void printBoard(Board board) {
+    public static void printBoard(Board board) {
         System.out.print("   ");
         for (int col = 0; col < board.getSizeCol(); col++) {
             if (col < 10) {

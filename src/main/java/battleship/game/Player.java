@@ -1,6 +1,8 @@
 package battleship.game;
 import java.util.List;
 
+import static battleship.game.Display.printBoard;
+
 
 public class Player {
     private List<Ship> remainingShips;
@@ -9,6 +11,7 @@ public class Player {
     public Player(List<Ship> ships, Board board) {
         this.remainingShips = ships;
         this.board = board;
+
     }
 
     public List<Ship> getShips() {
@@ -37,21 +40,23 @@ public class Player {
         return num;
     }
 
-     public boolean handleShot(int col , int row ,Player otherPlayer){
+
+
+     public static void handleShot(int col , int row ,Player otherPlayer){
          if(otherPlayer.getBoard().getCell(col,row).getCellStatus()==CellStatus.HIT){
              System.out.println("already Hit");
-             return false;
+             printBoard(otherPlayer.getBoard());
          } else if (otherPlayer.getBoard().getCell(col,row).getCellStatus()==CellStatus.OCEAN) {
              System.out.println("miss !");
              otherPlayer.getBoard().getCell(col,row).setCellStatus(CellStatus.MISSED);
-             return false;
+             printBoard(otherPlayer.getBoard());
          } else if (otherPlayer.getBoard().getCell(col,row).getCellStatus()==CellStatus.MISSED) {
              System.out.println("already missed !");
-             return false;
+             printBoard(otherPlayer.getBoard());
          } else {
              otherPlayer.getBoard().getCell(col,row).setCellStatus(CellStatus.HIT);
              System.out.println("HIT !");
-             return true;
+             printBoard(otherPlayer.getBoard());
          }
      }
 

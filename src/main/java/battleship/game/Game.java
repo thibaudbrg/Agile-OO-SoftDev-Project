@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import static battleship.game.Display.*;
+import static battleship.game.Player.*;
+
 public class Game {
     public static Scanner scanner = new Scanner(System.in);
     Map<PlayerId, Player> playerMap = new HashMap<>();
@@ -17,72 +20,47 @@ public class Game {
         final List<Ship> shipsPlayer1 = new ArrayList<>();
         final List<Ship> shipsPlayer2 = new ArrayList<>();
         List<Board> boards = generateBoards();
-        Board boardPlayer1 = boards.get(0);
-        Board boardPlayer2 = boards.get(1);
-        Display display = new Display();
-
-       createShips(0,shipsPlayer1,display,boardPlayer1,boards);
-       createShips(1,shipsPlayer2,display,boardPlayer2,boards);
 
 
-        Player player1 = new Player(shipsPlayer1, boardPlayer1);
-        Player player2 = new Player(shipsPlayer1, boardPlayer1);
+       createShips(0,shipsPlayer1,boards);
+       createShips(1,shipsPlayer2,boards);
+
+
+        Player player1 = new Player(shipsPlayer1, boards.get(0));
+        Player player2 = new Player(shipsPlayer2, boards.get(1));
         playerMap.put(PlayerId.PLAYER_1,player1);
         playerMap.put(PlayerId.PLAYER_2,player2);
 
         System.out.println("//===========Player 1 Board===========\\\\");
-        display.printBoard(boardPlayer1);
+        printBoard(boards.get(0));
         System.out.println("----------------------------------------");
         System.out.println("//===========Player2 Board============\\\\");
-        display.printBoard(boardPlayer2);
+        printBoard(boards.get(1));
 
-
-        int numberOfShipsPlayer1 = player1.numberOfCells0fShips();
-        int numberOfShipsPlayer2 = player2.numberOfCells0fShips();
+        int next = 0;
 
         while (true) {
             int[] ShootCoordinates;
-            ShootCoordinates = shoot(0);
+            ShootCoordinates = shoot(next);
+            PlayerId thisPlayerID = next == 0 ? PlayerId.PLAYER_1 : PlayerId.PLAYER_2;
+            PlayerId theOtherPlayerID = next == 0 ? PlayerId.PLAYER_2 : PlayerId.PLAYER_1;
 
-            if (player2.handleShot(ShootCoordinates[0], ShootCoordinates[1],player1)) {
-                display.printBoard(player2.getBoard());
-                --numberOfShipsPlayer2;
-            } else {
-                display.printBoard(player2.getBoard());
-            }
+            handleShot(ShootCoordinates[0], ShootCoordinates[1],playerMap.get(theOtherPlayerID));
 
-            if (numberOfShipsPlayer2 == 0) {
-                display.printBoard(player2.getBoard());
-                System.out.println("Player 1 wins!");
+            if (playerMap.get(theOtherPlayerID).numberOfCells0fShips() == 0) {
+                printBoard(playerMap.get(theOtherPlayerID).getBoard());
+                System.out.println(thisPlayerID + " wins!");
                 break;
             }
 
-            if (player1.handleShot(ShootCoordinates[0], ShootCoordinates[1],player2)) {
-                display.printBoard(player1.getBoard());
-                --numberOfShipsPlayer1;
-            } else {
-                display.printBoard(player1.getBoard());
-            }
-
-            if (numberOfShipsPlayer1 == 0) {
-                display.printBoard(player1.getBoard());
-                System.out.println("Player 2 wins!");
-                break;
-            }
+            next = (next == 0 ? 1 : 0);
         }
     }
 
-
-
-
-    public void createShips(int j, List<Ship> shipsPlayer, Display display, Board boardPlayer, List<Board> boards){
-        for (int i = 0; i < 5; ++i) {
-            Ship one = createShip(j,boards,i);
-            shipsPlayer.add(one);
-            System.out.println("//===========Player "+ j+1 +" Board===========\\\\");
-            display.printBoard(boardPlayer);
-        }
-
+    public int getIntegerMenuOption() {
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        return choice;
     }
     public List<Board> generateBoards() {
         List<Board> boards = new ArrayList<>();
@@ -114,12 +92,34 @@ public class Game {
         return boards;
     }
 
-    public int getIntegerMenuOption() {
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        return choice;
-    }
+    public void createShips(int j, List<Ship> shipsPlayer, List<Board> boards){
+        for (int i = 0; i < 5; ++i) {
+            Ship one = createShip(j,boards,i);
+            shipsPlayer.add(one);
+            int k = j+1;
+            System.out.println("//===========Player "+ k  +" Board===========\\\\");
+            printBoard(boards.get(j));
+        }
 
+    }
+    public Ship createShip(int player, List<Board> boards,int shipType) {
+        int GamePlayer = player +1;
+        Cell shipPart;
+        List<Integer> shipInfos;
+        Ship ship;
+        System.out.println("Player " + GamePlayer + " place ship");
+        boolean worked = false;
+        do {
+            shipInfos = askShipInfos(boards,shipType);
+            ship = new Ship(new ArrayList<>(), ShipType.values()[shipInfos.get(2)]);
+            shipPart = new Cell(shipInfos.get(0), shipInfos.get(1), CellStatus.SHIP);
+            worked = boards.get(player).addShip(shipPart, ship, Orientation.values()[shipInfos.get(3)-1]);
+            //if (!worked) System.out.println("The ship is out of the board! Try again.");
+        } while (!worked);
+        System.out.println("Good placement!");
+
+        return ship;
+    }
     private List<Integer> askShipInfos(List<Board> boards,int shipType) {
         int col, row;
         System.out.println("now you are going to place the ship: "+ ShipType.values()[shipType]);
@@ -172,24 +172,8 @@ public class Game {
         shipInfos.add(orientation);
         return shipInfos;
     }
-    public Ship createShip(int player, List<Board> boards,int shipType) {
-        int GamePlayer = player + 1;
-        Cell shipPart;
-        List<Integer> shipInfos;
-        Ship ship;
-        System.out.println("Player " + GamePlayer + " place ship");
-        boolean worked = false;
-        do {
-            shipInfos = askShipInfos(boards,shipType);
-            ship = new Ship(new ArrayList<>(), ShipType.values()[shipInfos.get(2)]);
-            shipPart = new Cell(shipInfos.get(0), shipInfos.get(1), CellStatus.SHIP);
-            worked = boards.get(player).addShip(shipPart, ship, Orientation.values()[shipInfos.get(3)-1]);
-            //if (!worked) System.out.println("The ship is out of the board! Try again.");
-        } while (!worked);
-        System.out.println("Good placement!");
 
-        return ship;
-    }
+
 
     public int[] shoot(int player) {
         int GamePlayer = player + 1;
