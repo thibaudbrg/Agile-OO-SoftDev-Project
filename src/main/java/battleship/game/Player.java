@@ -1,20 +1,20 @@
 package battleship.game;
+import java.util.Iterator;
 import java.util.List;
 
 import static battleship.game.Display.printBoard;
-
 
 public class Player {
     private List<Ship> remainingShips;
     private Board board;
 
-    public Player(List<Ship> ships, Board board) {
-        this.remainingShips = ships;
+    public Player(List<Ship> remainingShips, Board board) {
+        this.remainingShips = remainingShips;
         this.board = board;
 
     }
 
-    public List<Ship> getShips() {
+    public List<Ship> getRemainingShips() {
         return remainingShips;
     }
 
@@ -28,21 +28,7 @@ public class Player {
         return remainingShips.size();
     }
 
-    public int numberOfCells0fShips() {
-        int num = 0 ;
-        for (int i = 0; i < board.getSizeCol(); i++) {
-            for (int j = 0; j < board.getSizeRow(); j++) {
-                if(board.getCell(i,j).getCellStatus().equals(CellStatus.SHIP)){
-                    num++;
-                }
-            }
-        }
-        return num;
-    }
-
-
-
-     public static void handleShot(int col , int row ,Player otherPlayer){
+     public void handleShot(int col , int row ,Player otherPlayer){
          if(otherPlayer.getBoard().getCell(col,row).getCellStatus()==CellStatus.HIT){
              System.out.println("already Hit");
              printBoard(otherPlayer.getBoard());
@@ -54,8 +40,18 @@ public class Player {
              System.out.println("already missed !");
              printBoard(otherPlayer.getBoard());
          } else {
-             otherPlayer.getBoard().getCell(col,row).setCellStatus(CellStatus.HIT);
              System.out.println("HIT !");
+             otherPlayer.getBoard().getCell(col,row).setCellStatus(CellStatus.HIT);
+             Iterator<Ship> iterator = otherPlayer.remainingShips.iterator();
+             while(iterator.hasNext()) {
+                 Ship ship = iterator.next();
+                 if(ship.HasSinked()){
+                     System.out.println("one ship has sunk ");
+                     iterator.remove();
+                     System.out.println("there is still "+ otherPlayer.getNumberOfRemainingShips() +" remaining " );
+                 }
+             }
+
              printBoard(otherPlayer.getBoard());
          }
      }

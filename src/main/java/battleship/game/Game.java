@@ -22,8 +22,8 @@ public class Game {
         List<Board> boards = generateBoards();
 
 
-       createShips(0,shipsPlayer1,boards);
-       createShips(1,shipsPlayer2,boards);
+       createShips(PlayerId.PLAYER_1,shipsPlayer1,boards);
+       createShips(PlayerId.PLAYER_2,shipsPlayer2,boards);
 
 
         Player player1 = new Player(shipsPlayer1, boards.get(0));
@@ -37,23 +37,18 @@ public class Game {
         System.out.println("//===========Player2 Board============\\\\");
         printBoard(boards.get(1));
 
-        int next = 0;
+        PlayerId currentPlayerId = PlayerId.PLAYER_1;
 
         while (true) {
             int[] ShootCoordinates;
-            ShootCoordinates = shoot(next);
-            PlayerId thisPlayerID = next == 0 ? PlayerId.PLAYER_1 : PlayerId.PLAYER_2;
-            PlayerId theOtherPlayerID = next == 0 ? PlayerId.PLAYER_2 : PlayerId.PLAYER_1;
-
-            handleShot(ShootCoordinates[0], ShootCoordinates[1],playerMap.get(theOtherPlayerID));
-
-            if (playerMap.get(theOtherPlayerID).numberOfCells0fShips() == 0) {
-                printBoard(playerMap.get(theOtherPlayerID).getBoard());
-                System.out.println(thisPlayerID + " wins!");
+            ShootCoordinates = shoot(currentPlayerId);
+            playerMap.get(currentPlayerId).handleShot(ShootCoordinates[0], ShootCoordinates[1],playerMap.get(currentPlayerId.next()));
+            if (playerMap.get(currentPlayerId.next()).getRemainingShips().isEmpty()) {
+                printBoard(playerMap.get(currentPlayerId.next()).getBoard());
+                System.out.println(currentPlayerId + " wins!");
                 break;
             }
-
-            next = (next == 0 ? 1 : 0);
+            currentPlayerId=currentPlayerId.next();
         }
     }
 
@@ -92,28 +87,28 @@ public class Game {
         return boards;
     }
 
-    public void createShips(int j, List<Ship> shipsPlayer, List<Board> boards){
+    public void createShips(PlayerId playerId, List<Ship> shipsPlayer, List<Board> boards){
         for (int i = 0; i < 5; ++i) {
-            Ship one = createShip(j,boards,i);
+            Ship one = createShip(playerId,boards,i);
             shipsPlayer.add(one);
-            int k = j+1;
-            System.out.println("//===========Player "+ k  +" Board===========\\\\");
+            int j = playerId==PlayerId.PLAYER_1 ? 0 : 1;
+            System.out.println("//===========Player "+ j+1  +" Board===========\\\\");
             printBoard(boards.get(j));
         }
 
     }
-    public Ship createShip(int player, List<Board> boards,int shipType) {
-        int GamePlayer = player +1;
+    public Ship createShip(PlayerId playerId, List<Board> boards,int shipType) {
+        int j = playerId==PlayerId.PLAYER_1 ? 1 : 2;
         Cell shipPart;
         List<Integer> shipInfos;
         Ship ship;
-        System.out.println("Player " + GamePlayer + " place ship");
+        System.out.println("Player " + j + " place ship");
         boolean worked = false;
         do {
             shipInfos = askShipInfos(boards,shipType);
             ship = new Ship(new ArrayList<>(), ShipType.values()[shipInfos.get(2)]);
             shipPart = new Cell(shipInfos.get(0), shipInfos.get(1), CellStatus.SHIP);
-            worked = boards.get(player).addShip(shipPart, ship, Orientation.values()[shipInfos.get(3)-1]);
+            worked = boards.get(j-1).addShip(shipPart, ship, Orientation.values()[shipInfos.get(3)-1]);
             //if (!worked) System.out.println("The ship is out of the board! Try again.");
         } while (!worked);
         System.out.println("Good placement!");
@@ -175,14 +170,13 @@ public class Game {
 
 
 
-    public int[] shoot(int player) {
-        int GamePlayer = player + 1;
-        System.out.println("Player " + GamePlayer + " shoot");
-        System.out.println("select row: ");
-        int row = scanner.nextInt();
+    public int[] shoot(PlayerId playerId) {
+        System.out.println("Player " + (playerId==PlayerId.PLAYER_1 ? 1 : 2) + " shoot");
         System.out.println("select col: ");
         int col = scanner.nextInt();
-        return new int[]{row, col};
+        System.out.println("select row: ");
+        int row = scanner.nextInt();
+        return new int[]{col, row};
     }
 
 
