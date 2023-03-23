@@ -70,7 +70,7 @@ public class ShipTest {
 
     @When("I add a new cell to the list of cells")
     public void i_add_a_new_cell_to_the_list_of_cells() {
-        newCell = new Cell(0, 0, CellStatus.SHIP);
+        newCell = new Cell(new Coordinates(0, 0), CellStatus.SHIP);
         ship.add(newCell);
     }
 

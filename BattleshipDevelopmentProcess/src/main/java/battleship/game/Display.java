@@ -88,7 +88,7 @@ public class Display {
 
 
             for (int coll = 0; coll < board.getSizeCol(); coll++) {
-                switch (board.getCell(coll, row).getCellStatus()) {
+                switch (board.getCell(new Coordinates(coll, row)).getCellStatus()) {
                     case OCEAN:
                         System.out.print(ANSI_BLUE_BACKGROUND + "  " + ANSI_RESET + " ");
                         break;

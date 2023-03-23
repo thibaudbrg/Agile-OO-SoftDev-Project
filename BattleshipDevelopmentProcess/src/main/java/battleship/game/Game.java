@@ -41,7 +41,7 @@ public class Game {
 
         while (true) {
             Coordinates shootCoords = shoot(currentPlayerId);
-            playerMap.get(currentPlayerId).handleShot(shootCoords.getCol(), shootCoords.getRow(), playerMap.get(currentPlayerId.next()));
+            playerMap.get(currentPlayerId).handleShot(shootCoords, playerMap.get(currentPlayerId.next()));
 
             if (playerMap.get(currentPlayerId.next()).getRemainingShips().isEmpty()) {
                 printBoard(playerMap.get(currentPlayerId.next()).getBoard());
@@ -130,7 +130,7 @@ public class Game {
 
 
             Coordinates coords = new Coordinates(col, row);
-            Cell firstCell = new Cell(coords, CellStatus.SHIP);
+            Cell firstCell = board.getCell(coords);
             result = board.addShip(firstCell, ship, Orientation.values()[orientation - 1]);
 
         } while (!result);

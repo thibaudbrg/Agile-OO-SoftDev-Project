@@ -17,17 +17,17 @@ public class CellTest {
 
     @When("a cell is created with these parameters")
     public void a_cell_is_created_with_these_parameters() {
-        cell = new Cell(column, row, status);
+        cell = new Cell(new Coordinates(column, row), status);
     }
 
     @Then("the cell's column value should be {int}")
     public void the_cell_s_column_value_should_be(Integer int1) {
-        assertEquals(int1.intValue(), cell.getCol());
+        assertEquals(int1.intValue(), cell.getCoords().getCol());
     }
 
     @Then("the cell's row value should be {int}")
     public void the_cell_s_row_value_should_be(Integer int1) {
-        assertEquals(int1.intValue(), cell.getRow());
+        assertEquals(int1.intValue(), cell.getCoords().getRow());
     }
 
     @Then("the cell's status should be OCEAN")
@@ -37,7 +37,7 @@ public class CellTest {
 
     @Given("a cell with status of OCEAN")
     public void a_cell_with_status_of_ocean() {
-        cell = new Cell(1, 1, CellStatus.OCEAN);
+        cell = new Cell(new Coordinates(1, 1), CellStatus.OCEAN);
     }
 
     @When("the cell's status is changed to SHIP")
@@ -52,7 +52,7 @@ public class CellTest {
 
     @Given("a cell with column value of {int} and row value of {int}")
     public void a_cell_with_column_value_of_and_row_value_of(Integer int1, Integer int2) {
-        cell = new Cell(int1, int2, CellStatus.OCEAN);
+        cell = new Cell(new Coordinates(int1, int2), CellStatus.OCEAN);
     }
 
     @When("the cell's column and row value is retrieved")
@@ -73,7 +73,7 @@ public class CellTest {
 
     @Given("a cell with status of SHIP")
     public void a_cell_with_status_of_ship() {
-        cell = new Cell(1, 1, CellStatus.SHIP);
+        cell = new Cell(new Coordinates(1, 1), CellStatus.SHIP);
     }
 
     @When("the cell's status is retrieved")

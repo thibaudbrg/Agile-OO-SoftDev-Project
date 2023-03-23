@@ -28,20 +28,20 @@ public class Player {
         return remainingShips.size();
     }
 
-    public void handleShot(int col , int row ,Player otherPlayer){
-        if(otherPlayer.getBoard().getCell(col,row).getCellStatus()==CellStatus.HIT){
+    public void handleShot(Coordinates coords, Player otherPlayer){
+        if(otherPlayer.getBoard().getCell(coords).getCellStatus()==CellStatus.HIT){
             System.out.println("already Hit");
             printBoard(otherPlayer.getBoard());
-        } else if (otherPlayer.getBoard().getCell(col,row).getCellStatus()==CellStatus.OCEAN) {
+        } else if (otherPlayer.getBoard().getCell(coords).getCellStatus()==CellStatus.OCEAN) {
             System.out.println("miss !");
-            otherPlayer.getBoard().getCell(col,row).setCellStatus(CellStatus.MISSED);
+            otherPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.MISSED);
             printBoard(otherPlayer.getBoard());
-        } else if (otherPlayer.getBoard().getCell(col,row).getCellStatus()==CellStatus.MISSED) {
+        } else if (otherPlayer.getBoard().getCell(coords).getCellStatus()==CellStatus.MISSED) {
             System.out.println("already missed !");
             printBoard(otherPlayer.getBoard());
         } else {
             System.out.println("HIT !");
-            otherPlayer.getBoard().getCell(col,row).setCellStatus(CellStatus.HIT);
+            otherPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.HIT);
             Iterator<Ship> iterator = otherPlayer.remainingShips.iterator();
             while(iterator.hasNext()) {
                 Ship ship = iterator.next();
