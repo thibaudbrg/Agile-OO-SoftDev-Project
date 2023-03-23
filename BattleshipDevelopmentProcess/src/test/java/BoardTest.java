@@ -72,8 +72,8 @@ public class BoardTest {
 
     @Then("the returned cell should have coordinates \\({int};{int})")
     public void the_returned_cell_should_have_coordinates(int col, int row) {
-        assertEquals(col, accessedCell.getCol());
-        assertEquals(row, accessedCell.getRow());
+        assertEquals(col, accessedCell.getCoords().getCol());
+        assertEquals(row, accessedCell.getCoords().getRow());
     }
 
     @When("the size of the board is requested")

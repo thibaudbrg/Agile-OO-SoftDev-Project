@@ -11,7 +11,7 @@ public class CellStatusTest {
 
     @Given("I have a cell at position \\({int};{int})")
     public void i_have_a_cell_at_position(Integer int1, Integer int2) {
-        cell = new Cell(int1, int2, CellStatus.OCEAN);
+        cell = new Cell(new Coordinates(int1, int2), CellStatus.OCEAN);
     }
 
     @When("I check the possible statuses for a cell")

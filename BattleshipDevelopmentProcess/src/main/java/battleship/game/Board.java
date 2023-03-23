@@ -29,17 +29,17 @@ public class Board {
 
     public Cell[][] fillBoard(int sizeRow, int sizeCol) {
         boardArray = new Cell[this.sizeRow][this.sizeCol];
-        for (int i = 0; i < sizeRow; i++) {
-            for (int j = 0; j < sizeCol; j++) {
-                boardArray[i][j] = new Cell(i, j, CellStatus.OCEAN);
+        for (int col = 0; col < sizeRow; col++) {
+            for (int row = 0; row < sizeCol; row++) {
+                boardArray[col][row] = new Cell(new Coordinates(col, row), CellStatus.OCEAN);
             }
         }
         return boardArray;
     }
 
     public boolean addShip(Cell cell, Ship ship, Orientation orientation) {
-        int col = cell.getCol();
-        int row = cell.getRow();
+        int col = cell.getCoords().getCol();
+        int row = cell.getCoords().getRow();
         int size = ship.getShipType().label;
 
         List<Cell> cellsToAdd = new ArrayList<>();
@@ -72,7 +72,7 @@ public class Board {
             for (Cell cellToAdd : cellsToAdd) {
                 cellToAdd.setCellStatus(CellStatus.SHIP);
                 ship.add(cellToAdd);
-                boardArray[cellToAdd.getRow()][cellToAdd.getCol()] = cellToAdd;
+                boardArray[cellToAdd.getCoords().getRow()][cellToAdd.getCoords().getCol()] = cellToAdd;
             }
             return true;
         }

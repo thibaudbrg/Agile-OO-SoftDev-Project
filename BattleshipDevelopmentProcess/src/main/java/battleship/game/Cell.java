@@ -1,22 +1,16 @@
 package battleship.game;
 
 public class Cell {
-    private final int col;
-    private final int row;
+    private final Coordinates coords;
     private CellStatus cellStatus;
 
-    public Cell(int col, int row, CellStatus cellStatus) {
-        this.col = col;
-        this.row = row;
+    public Cell(Coordinates coords, CellStatus cellStatus) {
+        this.coords = coords;
         this.cellStatus = cellStatus;
     }
 
-    public int getCol() {
-        return col;
-    }
-
-    public int getRow() {
-        return row;
+    public Coordinates getCoords() {
+        return coords;
     }
 
     public CellStatus getCellStatus() {

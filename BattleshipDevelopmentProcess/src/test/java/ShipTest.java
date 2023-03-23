@@ -53,7 +53,7 @@ public class ShipTest {
                 .map(CellStatus::valueOf)
                 .collect(Collectors.toList());
         initialCells = cellStatuses.stream()
-                .map(status -> new Cell(0, 0, status))
+                .map(status -> new Cell(new Coordinates(0, 0), status))
                 .collect(Collectors.toList());
         ship = new Ship(initialCells, ShipType.CARRIER);
     }
