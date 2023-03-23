@@ -10,6 +10,6 @@ public enum Orientation {
 
     @Override
     public String toString() {
-        return extendedName ;
+        return extendedName;
     }
 }

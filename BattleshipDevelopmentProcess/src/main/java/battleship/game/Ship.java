@@ -6,19 +6,16 @@ public class Ship {
     private final List<Cell> shipCells;
     private final ShipType shipType;
 
-    //private boolean hasSunk ;
-
     public Ship(List<Cell> shipCells, ShipType shipType) {
         this.shipCells = shipCells;
         this.shipType = shipType;
-        //this.hasSunk = false ;
     }
 
     public List<Cell> getFields() {
         return shipCells;
     }
 
-    public boolean hasSunk(){
+    public boolean hasSunk() {
         for (Cell cell : shipCells) {
             if (!cell.getCellStatus().equals(CellStatus.HIT)) {
                 return false;

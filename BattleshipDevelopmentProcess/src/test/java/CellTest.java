@@ -57,8 +57,8 @@ public class CellTest {
 
     @When("the cell's column and row value is retrieved")
     public void the_cell_s_column_and_row_value_is_retrieved() {
-        column = cell.getCol();
-        row = cell.getRow();
+        column = cell.getCoords().getCol();
+        row = cell.getCoords().getRow();
     }
 
     @Then("the column value should be {int}")

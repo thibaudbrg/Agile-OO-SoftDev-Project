@@ -71,7 +71,7 @@ public class Display {
 
     public static void printBoard(Board board) {
         System.out.print("   ");
-        for (int col = 0; col < board.getSizeCol(); col++) {
+        for (int col = 0; col < board.getSizeRow(); col++) {
             if (col < 10) {
                 System.out.print(col + "  ");
             } else {
@@ -79,7 +79,7 @@ public class Display {
             }
         }
         System.out.println();
-        for (int row = 0; row < board.getSizeRow(); row++) {
+        for (int row = 0; row < board.getSizeCol(); row++) {
             if (row < 10) {
                 System.out.print(row + "  ");
             } else {
@@ -87,7 +87,7 @@ public class Display {
             }
 
 
-            for (int coll = 0; coll < board.getSizeCol(); coll++) {
+            for (int coll = 0; coll < board.getSizeRow(); coll++) {
                 switch (board.getCell(new Coordinates(coll, row)).getCellStatus()) {
                     case OCEAN:
                         System.out.print(ANSI_BLUE_BACKGROUND + "  " + ANSI_RESET + " ");

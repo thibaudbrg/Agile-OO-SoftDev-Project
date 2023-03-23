@@ -32,21 +32,21 @@ public class BoardTest {
                 break;
             }
         }
-        shipAdded = board.addShip(board.getCell(col, row), ship, o);
+        shipAdded = board.addShip(board.getCell(new Coordinates(col, row)), ship, o);
     }
 
     @Then("the cells \\({int};{int}), \\({int};{int}) and \\({int};{int}) should have status SHIP")
     public void the_cells_and_should_have_status_ship(Integer col1, Integer row1, Integer col2, Integer row2, Integer col3, Integer row3) {
-        assertEquals(CellStatus.SHIP, board.getCell(col1, row1).getCellStatus());
-        assertEquals(CellStatus.SHIP, board.getCell(col2, row2).getCellStatus());
-        assertEquals(CellStatus.SHIP, board.getCell(col3, row3).getCellStatus());
+        assertEquals(CellStatus.SHIP, board.getCell(new Coordinates(col1, row1)).getCellStatus());
+        assertEquals(CellStatus.SHIP, board.getCell(new Coordinates(col2, row2)).getCellStatus());
+        assertEquals(CellStatus.SHIP, board.getCell(new Coordinates(col3, row3)).getCellStatus());
     }
 
 
     @Given("a ship already placed at \\({int};{int}) to \\({int};{int})")
     public void a_ship_already_placed_at_to(Integer startCol, Integer startRow, Integer endCol, Integer endRow) {
         Ship ship = new Ship(new ArrayList<>(), ShipType.DESTROYER);
-        Cell cell = board.getCell(startCol, startRow);
+        Cell cell = board.getCell(new Coordinates(startCol, startRow));
         Orientation shipOrient;
         if (startCol.equals(endCol)) {
             shipOrient = startRow < endRow ? Orientation.S : Orientation.N;
@@ -67,7 +67,7 @@ public class BoardTest {
 
     @When("the cell at position \\({int};{int}) is accessed")
     public void the_cell_at_position_is_accessed(Integer col, Integer row) {
-        accessedCell = board.getCell(col, row);
+        accessedCell = board.getCell(new Coordinates(col, row));
     }
 
     @Then("the returned cell should have coordinates \\({int};{int})")
@@ -98,7 +98,7 @@ public class BoardTest {
         int cellCount = 0;
         for (int col = 0; col < sizeRow; col++) {
             for (int row = 0; row < sizeCol; row++) {
-                if (board.getCell(col, row) != null) {
+                if (board.getCell(new Coordinates(col, row)) != null) {
                     ++cellCount;
                 }
             }
@@ -110,14 +110,13 @@ public class BoardTest {
     public void all_cells_on_the_board_should_have_status_ocean() {
         for (int row = 0; row < sizeRow; row++) {
             for (int col = 0; col < sizeCol; col++) {
-                assertEquals(CellStatus.OCEAN, board.getCell(col, row).getCellStatus());
+                assertEquals(CellStatus.OCEAN, board.getCell(new Coordinates(col, row)).getCellStatus());
             }
         }
     }
 
     @Then("the cell at position \\({int};{int}) should have status OCEAN")
     public void the_cell_at_position_should_have_status_ocean(Integer col, Integer row) {
-        assertEquals(CellStatus.OCEAN, board.getCell(col, row).getCellStatus());
+        assertEquals(CellStatus.OCEAN, board.getCell(new Coordinates(col, row)).getCellStatus());
     }
-
 }

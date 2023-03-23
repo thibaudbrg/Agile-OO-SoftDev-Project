@@ -1,4 +1,5 @@
 package battleship.game;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -19,7 +20,6 @@ public class Player {
     }
 
 
-
     public Board getBoard() {
         return board;
     }
@@ -28,27 +28,27 @@ public class Player {
         return remainingShips.size();
     }
 
-    public void handleShot(Coordinates coords, Player otherPlayer){
-        if(otherPlayer.getBoard().getCell(coords).getCellStatus()==CellStatus.HIT){
-            System.out.println("already Hit");
+    public void handleShot(Coordinates coords, Player otherPlayer) {
+        if (otherPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.HIT) {
+            System.out.println("Already Hit");
             printBoard(otherPlayer.getBoard());
-        } else if (otherPlayer.getBoard().getCell(coords).getCellStatus()==CellStatus.OCEAN) {
-            System.out.println("miss !");
+        } else if (otherPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.OCEAN) {
+            System.out.println("Miss !");
             otherPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.MISSED);
             printBoard(otherPlayer.getBoard());
-        } else if (otherPlayer.getBoard().getCell(coords).getCellStatus()==CellStatus.MISSED) {
-            System.out.println("already missed !");
+        } else if (otherPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.MISSED) {
+            System.out.println("Already missed !");
             printBoard(otherPlayer.getBoard());
         } else {
             System.out.println("HIT !");
             otherPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.HIT);
             Iterator<Ship> iterator = otherPlayer.remainingShips.iterator();
-            while(iterator.hasNext()) {
+            while (iterator.hasNext()) {
                 Ship ship = iterator.next();
-                if(ship.hasSunk()){
-                    System.out.println("one ship has sunk ");
+                if (ship.hasSunk()) {
+                    System.out.println("One ship sank ");
                     iterator.remove();
-                    System.out.println("there is still "+ otherPlayer.getNumberOfRemainingShips() +" remaining " );
+                    System.out.println("There are still " + otherPlayer.getNumberOfRemainingShips() + " remaining ");
                 }
             }
 
@@ -58,4 +58,3 @@ public class Player {
 
 }
 
-// remainingShips to handle

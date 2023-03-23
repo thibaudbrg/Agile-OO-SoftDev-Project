@@ -13,7 +13,7 @@ public class ShipTypeTest {
 
     @When("I retrieve the label of the ship type")
     public void i_retrieve_the_label_of_the_ship_type() {
-        shipLabel = shipType.label;
+        shipLabel = shipType.getLabel();
     }
 
     @Then("the label should be {string}")

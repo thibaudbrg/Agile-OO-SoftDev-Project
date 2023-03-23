@@ -7,7 +7,7 @@ import java.util.List;
 public class Board {
     private final int sizeCol;
     private final int sizeRow;
-    Cell[][] boardArray;
+    private Cell[][] boardArray;
 
     public Board(int sizeCol, int sizeRow) {
         this.sizeRow = sizeRow;
@@ -27,20 +27,10 @@ public class Board {
         return boardArray[coords.getRow()][coords.getCol()];
     }
 
-    public Cell[][] fillBoard(int sizeCol, int sizeRow) {
-        boardArray = new Cell[this.sizeRow][this.sizeCol];
-        for (int col = 0; col < sizeRow; col++) {
-            for (int row = 0; row < sizeCol; row++) {
-                boardArray[col][row] = new Cell(new Coordinates(col, row), CellStatus.OCEAN);
-            }
-        }
-        return boardArray;
-    }
-
     public boolean addShip(Cell cell, Ship ship, Orientation orientation) {
         int col = cell.getCoords().getCol();
         int row = cell.getCoords().getRow();
-        int sizeShip = ship.getShipType().label;
+        int sizeShip = ship.getShipType().getLabel();
 
         List<Cell> cellsToAdd = new ArrayList<>();
         cellsToAdd.add(cell);
@@ -66,6 +56,15 @@ public class Board {
         }
 
         return true;
+    }
+    private Cell[][] fillBoard(int sizeCol, int sizeRow) {
+        boardArray = new Cell[this.sizeRow][this.sizeCol];
+        for (int col = 0; col < sizeRow; col++) {
+            for (int row = 0; row < sizeCol; row++) {
+                boardArray[row][col] = new Cell(new Coordinates(col, row), CellStatus.OCEAN);
+            }
+        }
+        return boardArray;
     }
 
     private boolean isInsideBoard(int col, int row) {

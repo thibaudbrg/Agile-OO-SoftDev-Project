@@ -11,7 +11,8 @@ public class Game {
     private static final Scanner scanner = new Scanner(System.in);
     private static final Map<PlayerId, Player> playerMap = new HashMap<>();
 
-    private Game() {}
+    private Game() {
+    }
 
     public static void play() {
         final List<Ship> shipsPlayer1 = new ArrayList<>();
@@ -31,10 +32,10 @@ public class Game {
         playerMap.put(PlayerId.PLAYER_1, player1);
         playerMap.put(PlayerId.PLAYER_2, player2);
 
-        System.out.println("//===========Player 1 Board===========\\\\");
+        System.out.println("//===========" + PlayerId.PLAYER_1 + " Board===========\\\\");
         printBoard(board1);
         System.out.println("----------------------------------------");
-        System.out.println("//===========Player2 Board============\\\\");
+        System.out.println("//===========" + PlayerId.PLAYER_1 + " Board===========\\\\");
         printBoard(board2);
 
         PlayerId currentPlayerId = PlayerId.PLAYER_1;
@@ -86,16 +87,16 @@ public class Game {
         for (ShipType shipType : ShipType.values()) {
             Ship ship = createShip(playerId, board, shipType);
             shipsPlayer.add(ship);
-            System.out.println("//===========Player " + playerId.ordinal() + 1 + " Board===========\\\\");
+            System.out.println("//===========" + playerId + " Board===========\\\\");
             printBoard(board);
         }
 
     }
 
     private static Ship createShip(PlayerId playerId, Board board, ShipType shipType) {
-        System.out.println("Player " + playerId.ordinal() + 1 + " places ship");
+        System.out.println(playerId + " places ship");
         System.out.println("You are going to place the ship: " + shipType);
-        System.out.println("It has a length of " + shipType.label);
+        System.out.println("It has a length of " + shipType.getLabel());
 
         Ship ship = new Ship(new ArrayList<>(), shipType);
         int col, row;
@@ -140,7 +141,7 @@ public class Game {
     }
 
     private static Coordinates shoot(PlayerId playerId) {
-        System.out.println("Player " + playerId.ordinal() + 1 + " shoots");
+        System.out.println(playerId + " shoots");
 
         System.out.println("select col: ");
         int col = scanner.nextInt();
