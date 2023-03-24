@@ -14,8 +14,8 @@ Feature: Board
     Then the ship should not be added
 
   Scenario: Add a ship that is out of the board
-    Given a board with size 5 x 5
-    When a ship of size 3 is added at cell (3;3) with orientation North
+    Given a board with size 10 x 10
+    When a ship of size 3 is added at cell (0;0) with orientation North
     Then the ship should not be added
 
 # Accessing cells on the board

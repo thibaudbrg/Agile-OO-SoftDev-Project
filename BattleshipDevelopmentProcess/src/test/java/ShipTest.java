@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ShipTest {
     private Ship ship;
@@ -49,9 +50,9 @@ public class ShipTest {
 
     @Given("a ship with a list of cells with cell statuses {string}")
     public void a_ship_with_a_list_of_cells_with_cell_statuses(String string) {
-        List<CellStatus> cellStatuses = List.of(string.split(",")).stream()
+        List<CellStatus> cellStatuses = Stream.of(string.split(","))
                 .map(CellStatus::valueOf)
-                .collect(Collectors.toList());
+                .toList();
         initialCells = cellStatuses.stream()
                 .map(status -> new Cell(new Coordinates(0, 0), status))
                 .collect(Collectors.toList());

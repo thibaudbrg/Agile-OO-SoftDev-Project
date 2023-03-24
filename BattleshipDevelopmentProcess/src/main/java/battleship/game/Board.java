@@ -28,6 +28,11 @@ public class Board {
     }
 
     public boolean addShip(Cell cell, Ship ship, Orientation orientation) {
+        if(cell.getCellStatus()==CellStatus.SHIP){
+            System.out.println("The ship collides with another ship or is out of the board! Try again.");
+            return false;
+        }
+
         int col = cell.getCoords().getCol();
         int row = cell.getCoords().getRow();
         int sizeShip = ship.getShipType().getLabel();
@@ -59,8 +64,8 @@ public class Board {
     }
     private Cell[][] fillBoard(int sizeCol, int sizeRow) {
         boardArray = new Cell[this.sizeRow][this.sizeCol];
-        for (int col = 0; col < sizeRow; col++) {
-            for (int row = 0; row < sizeCol; row++) {
+        for (int col = 0; col < sizeCol; col++) {
+            for (int row = 0; row < sizeRow; row++) {
                 boardArray[row][col] = new Cell(new Coordinates(col, row), CellStatus.OCEAN);
             }
         }

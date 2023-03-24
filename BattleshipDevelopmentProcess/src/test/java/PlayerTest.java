@@ -8,35 +8,43 @@ import static org.junit.Assert.*;
 
 
 public class PlayerTest{
-    /*
+
     private Player player;
     private List<Ship> remainingShips;
+    private int numberOfRemainingShips;
     private Board board;
-    private Player attacker;
-    private Player defender;
+    private Player player1;
+    private Player player2;
 
     @Given("a player with {string} remaining ships")
     public void a_player_with_remaining_ships(String string) {
         List<Ship> remainingShips = new ArrayList<>(Integer.parseInt(string));
+        for (int i = 0; i < Integer.parseInt(string); i++) {
+            remainingShips.add(new Ship(new ArrayList<>(),ShipType.BATTLESHIP));
+        }
         board = new Board(10, 10);
         this.player = new Player(remainingShips, board);
     }
 
     @When("I retrieve the number of remaining ships")
     public void i_retrieve_the_number_of_remaining_ships() {
-        remainingShips = player.getRemainingShips();
+        numberOfRemainingShips = player.getNumberOfRemainingShips();
     }
 
     @Then("the number of remaining ships should be {string}")
     public void the_number_of_remaining_ships_should_be(String string) {
         int expectedRemainingShips = Integer.parseInt(string);
-        assertEquals(expectedRemainingShips, remainingShips);
+        assertEquals(expectedRemainingShips, numberOfRemainingShips);
     }
 
     @Given("a player with a board")
     public void a_player_with_a_board() {
-        this.player = new Player(5);
-        this.player.setBoard(new Board());
+        List<Ship> remainingShips = new ArrayList<>(5);
+        for (int i = 0; i < 5; i++) {
+            remainingShips.add(new Ship(new ArrayList<>(),ShipType.BATTLESHIP));
+        }
+        board = new Board(10, 10);
+        this.player = new Player(remainingShips,board);
     }
 
     @When("I retrieve the player's board")
@@ -49,6 +57,136 @@ public class PlayerTest{
         assertNotNull(board);
     }
 
+    @Given("two players")
+    public void twoPlayers() {
+        Board board1 = new Board(10,10);
+        List<Ship> remainingShips1 = new ArrayList<>();
+        for (int i = 0; i < 3 ; i++) {
+            remainingShips.add(new Ship(new ArrayList<>(),ShipType.BATTLESHIP));
+        }
+        player1 = new Player(remainingShips1,board1);
+
+        Board board2 = new Board(10,10);
+        List<Ship> remainingShips2 = new ArrayList<>();
+        for (int i = 0; i < 3 ; i++) {
+            remainingShips.add(new Ship(new ArrayList<>(),ShipType.BATTLESHIP));
+        }
+        player2 = new Player(remainingShips2,board1);
+
+    }
+
+    @And("the first Player has a cell at {string}, {string} with a cell status of {string}")
+    public void theFirstPlayerHasACellAtWithACellStatusOf(String col, String row, String status) {
+
+        player1.getBoard().getCell(new Coordinates(Integer.parseInt(col),Integer.parseInt(row))).setCellStatus(CellStatus.valueOf(status));
+
+    }
+
+    @When("the second Player shoots at {string}, {string}")
+    public void theSecondPlayerShootsAt(String arg0, String arg1) {
+        player2.handleShot(new Coordinates(Integer.parseInt(arg0),Integer.parseInt(arg1)), player1);
+    }
+
+    @Then("the cell status at {string}, {string} should be {string}")
+    public void theCellStatusAtShouldBe(String col, String row, String arg2) {
+        CellStatus status = player1.getBoard().getCell(new Coordinates(Integer.parseInt(col),Integer.parseInt(row))).getCellStatus();
+        assertEquals(status,CellStatus.valueOf(arg2));
+    }
+//TODO finish here
+
+    @Then("the displayed message should be {string}")
+    public void the_displayed_message_should_be(String string) {
+       
+    }
+
+    @Given("the Player_{int} has a ship at {string}, {string} with a cell status of {string}")
+    public void the_player_has_a_ship_at_with_a_cell_status_of(Integer int1, String string, String string2, String string3) {
+        
+    }
+
+    @Given("the ship has {string} remaining hit point")
+    public void the_ship_has_remaining_hit_point(String string) {
+       
+    }
+
+
+    @Then("the displayed message should contain {string}")
+    public void the_displayed_message_should_contain(String string) {
+        
+    }
+
+    @Then("the number of Defender's remaining ships should decrease by {string}")
+    public void the_number_of_defender_s_remaining_ships_should_decrease_by(String string) {
+        
+    }
+
+     
+
+    @Given("Player_{int} has a ship at {string}, {string} with a cell status of {string}")
+    public void player_has_a_ship_at_with_a_cell_status_of(Integer int1, String string, String string2, String string3) {
+       
+    }
+
+    @Given("the ship has {string} remaining hit points")
+    public void the_ship_has_remaining_hit_points(String string) {
+        
+    }
+
+    @When("Player_{int}  shoots at {string}, {string}")
+    public void player_shoots_at(Integer int1, String string, String string2) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("the displayed message should not contain {string}")
+    public void the_displayed_message_should_not_contain(String string) {
+       
+    }
+
+    @Given("the player has a ship at {string}, {string} with an orientation of {string}")
+    public void the_player_has_a_ship_at_with_an_orientation_of(String string, String string2, String string3) {
+       
+    }
+
+    @Then("the board should contain the ship at {string}, {string} with an orientation of {string}")
+    public void the_board_should_contain_the_ship_at_with_an_orientation_of(String string, String string2, String string3) {
+        
+    }
+
+    @When("the player attempts to place a ship at {string}, {string} with an orientation of {string}")
+    public void the_player_attempts_to_place_a_ship_at_with_an_orientation_of(String string, String string2, String string3) {
+        
+    }
+
+    @Then("the placement should fail")
+    public void the_placement_should_fail() {
+        
+    }
+
+    @Then("the board should not be modified")
+    public void the_board_should_not_be_modified() {
+       
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+    /*
     @Given("two players, {string} and {string}")
     public void two_players_and(String attackerName, String defenderName) {
         this.attacker = new Player(attackerName, 5);
@@ -156,7 +294,6 @@ public class PlayerTest{
         assertEquals(1, player.getBoard().getShipsCount());
     }
 
-
-     */
+*/
 
 }

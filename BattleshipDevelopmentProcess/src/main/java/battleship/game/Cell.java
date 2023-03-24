@@ -12,7 +12,6 @@ public class Cell {
     public Coordinates getCoords() {
         return coords;
     }
-
     public CellStatus getCellStatus() {
         return cellStatus;
     }

@@ -1,5 +1,6 @@
 import io.cucumber.java.en.*;
 import battleship.game.*;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 
@@ -10,21 +11,18 @@ public class BoardTest {
     private Board board;
 
     private Ship ship;
-    private int sizeRow;
-    private int sizeCol;
     private Cell accessedCell;
     private boolean shipAdded;
 
+
     @Given("a board with size {int} x {int}")
     public void a_board_with_size_x(Integer sizeRow, Integer sizeCol) {
-        this.sizeRow = sizeRow;
-        sizeCol = sizeCol;
         board = new Board(sizeCol, sizeRow);
     }
 
     @When("a ship of size {int} is added at cell \\({int};{int}) with orientation {word}")
     public void a_ship_of_size_is_added_at_cell_with_orientation(Integer shipSize, Integer col, Integer row, String orientation) {
-        ship = new Ship(new ArrayList<>(shipSize), ShipType.SUBMARINE);
+        ship = new Ship(new ArrayList<>(shipSize), ShipType.getShipTypeFromLabel(shipSize));
         Orientation o = null;
         for (Orientation orient : Orientation.values()) {
             if (orient.toString().equals(orientation)) {
@@ -33,6 +31,8 @@ public class BoardTest {
             }
         }
         shipAdded = board.addShip(board.getCell(new Coordinates(col, row)), ship, o);
+
+
     }
 
     @Then("the cells \\({int};{int}), \\({int};{int}) and \\({int};{int}) should have status SHIP")
@@ -45,28 +45,27 @@ public class BoardTest {
 
     @Given("a ship already placed at \\({int};{int}) to \\({int};{int})")
     public void a_ship_already_placed_at_to(Integer startCol, Integer startRow, Integer endCol, Integer endRow) {
-        Ship ship = new Ship(new ArrayList<>(), ShipType.DESTROYER);
-        Cell cell = board.getCell(new Coordinates(startCol, startRow));
+        int shipSize = Math.abs(startCol-endCol)+Math.abs(startRow-endRow)+1;
+        ship = new Ship(new ArrayList<>(shipSize), ShipType.getShipTypeFromLabel(shipSize));
         Orientation shipOrient;
         if (startCol.equals(endCol)) {
             shipOrient = startRow < endRow ? Orientation.S : Orientation.N;
         } else {
-            shipOrient = startCol < endCol ? Orientation.W : Orientation.E;
+            shipOrient = startCol < endCol ? Orientation.E : Orientation.W;
         }
-        Boolean shipAddedFirst = board.addShip(cell, ship, shipOrient);
+        boolean added = board.addShip(board.getCell(new Coordinates(startCol, startRow)), ship, shipOrient);
+        assertTrue(added);
 
-        Ship ship2 = new Ship(new ArrayList<>(), ShipType.DESTROYER);
-        shipAdded = board.addShip(cell, ship2, shipOrient);
     }
 
 
     @Then("the ship should not be added")
-    public void the_ship_should_not_be_added() {
+    public void the_ship_should_not_be_added(){
         assertFalse(shipAdded);
     }
 
     @When("the cell at position \\({int};{int}) is accessed")
-    public void the_cell_at_position_is_accessed(Integer col, Integer row) {
+    public void the_cell_at_position_is_accessed(int col, int row) {
         accessedCell = board.getCell(new Coordinates(col, row));
     }
 
@@ -84,32 +83,33 @@ public class BoardTest {
 
     @Then("the returned size should be {int} x {int}")
     public void the_returned_size_should_be_x(Integer expectedSizeRow, Integer expectedSizeCol) {
-        assertEquals(expectedSizeRow, Integer.valueOf(sizeRow));
-        assertEquals(expectedSizeCol, Integer.valueOf(sizeCol));
+        assertEquals(expectedSizeRow, Integer.valueOf(board.getSizeRow()));
+        assertEquals(expectedSizeCol, Integer.valueOf(board.getSizeCol()));
     }
 
     @When("the board is filled with cells")
     public void the_board_is_filled_with_cells() {
-        board.fillBoard(board.getSizeRow(), board.getSizeCol());
+        assertNotNull(board);
     }
 
     @Then("the number of cells on the board should be {int}")
     public void the_number_of_cells_on_the_board_should_be(int expectedCellCount) {
         int cellCount = 0;
-        for (int col = 0; col < sizeRow; col++) {
-            for (int row = 0; row < sizeCol; row++) {
+        for (int col = 0; col < board.getSizeCol(); col++) {
+            for (int row = 0; row < board.getSizeRow(); row++) {
                 if (board.getCell(new Coordinates(col, row)) != null) {
-                    ++cellCount;
+                    cellCount++;
                 }
             }
         }
+
         assertEquals(expectedCellCount, cellCount);
     }
 
     @Then("all cells on the board should have status OCEAN")
     public void all_cells_on_the_board_should_have_status_ocean() {
-        for (int row = 0; row < sizeRow; row++) {
-            for (int col = 0; col < sizeCol; col++) {
+        for (int row = 0; row < board.getSizeRow(); row++) {
+            for (int col = 0; col < board.getSizeCol(); col++) {
                 assertEquals(CellStatus.OCEAN, board.getCell(new Coordinates(col, row)).getCellStatus());
             }
         }

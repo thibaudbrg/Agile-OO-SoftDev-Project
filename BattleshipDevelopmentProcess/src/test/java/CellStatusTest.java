@@ -6,12 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CellStatusTest {
-    private Cell cell;
     private List<CellStatus> statuses;
 
-    @Given("I have a cell at position \\({int};{int})")
-    public void i_have_a_cell_at_position(Integer int1, Integer int2) {
-        cell = new Cell(new Coordinates(int1, int2), CellStatus.OCEAN);
+    @Given("the cellStatus enum")
+    public void theCellStatusEnum() {
+        // No action required, as the enum is already defined.
     }
 
     @When("I check the possible statuses for a cell")
@@ -26,4 +25,6 @@ public class CellStatusTest {
         assertTrue(statuses.contains(CellStatus.HIT));
         assertTrue(statuses.contains(CellStatus.MISSED));
     }
+
+
 }

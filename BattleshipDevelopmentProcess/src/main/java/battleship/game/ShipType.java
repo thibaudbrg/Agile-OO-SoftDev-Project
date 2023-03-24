@@ -12,4 +12,13 @@ public enum ShipType {
     public Integer getLabel() {
         return label;
     }
+
+    public static ShipType getShipTypeFromLabel(Integer label) {
+        for (ShipType shipType : ShipType.values()) {
+            if (shipType.getLabel().equals(label)) {
+                return shipType;
+            }
+        }
+        return null; // return null if no matching ShipType is found
+    }
 }
