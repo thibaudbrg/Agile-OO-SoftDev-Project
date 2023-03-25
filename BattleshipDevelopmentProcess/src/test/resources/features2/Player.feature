@@ -23,49 +23,45 @@ Feature: Player functionality
     Given two players
     And the first Player has a cell at "<col>", "<row>" with a cell status of "<initial_cell_status>"
     When the second Player shoots at "<col>", "<row>"
-    Then the cell status at "<col>", "<row>" should be "<final_cell_status>"
-    And the displayed message should be "<message>"
+    Then the cell status of first player at "<col>", "<row>" should be "<final_cell_status>"
 
     Examples:
-      | col | row | initial_cell_status | final_cell_status | message          |
-      | 2   | 3   | OCEAN               | MISSED            | miss !           |
-      | 2   | 3   | SHIP                | HIT               | HIT !            |
-      | 2   | 3   | HIT                 | HIT               | already Hit      |
-      | 2   | 3   | MISSED              | MISSED            | already missed ! |
-
-  Scenario: Player sinks a ship
-    Given two players, Player_1 and Player_2
-    And the Player 1 has a ship at "4", "5" with a cell status of "SHIP"
-    And the ship has "1" remaining hit point
-    When Player_2 shoots at "4", "5"
-    Then the cell status should be "HIT"
-    And the displayed message should contain "one ship has sunk"
-    And the number of Defender's remaining ships should decrease by "1"
-
+      | col | row | initial_cell_status | final_cell_status |
+      | 2   | 3   | OCEAN               | MISSED            |
+      | 2   | 3   | SHIP                | HIT               |
+      | 2   | 3   | HIT                 | HIT               |
+      | 2   | 3   | MISSED              | MISSED            |
 
   Scenario: Player does not sink a ship
-    Given two players , Player_1 and Player_2
-    And Player 1 has a ship at "6", "7" with a cell status of "SHIP"
-    And the ship has "2" remaining hit points
-    When Player 2  shoots at "6", "7"
-    Then the cell status should be "HIT"
-    And the displayed message should not contain "one ship has sunk"
+    Given two players
+    And the first player has a ship at 4, 5 with an orientation of "N" and a type "DESTROYER"
+    When the second Player shoots at "4", "5"
+    Then the cell status of first player at "4", "5" should be "HIT"
+    And the number of first player's remaining ships should stay the same
+
+
+  Scenario: Player sinks a ship
+    Given two players
+    And the first player has a ship at 4, 5 with an orientation of "N" and a type "DESTROYER"
+    And the the second Player shoots at "4", "5"
+    When the second Player shoots at "4", "4"
+    Then the number of first player's remaining ships should decrease by 1
 
   Scenario Outline: Player has a ship on board
     Given a player with a board
-    And the player has a ship at "<col>", "<row>" with an orientation of "<orientation>"
+    And the player has a ship at "<col1>", "<row1>" with an orientation of "<orientation>" and a type "DESTROYER"
     When I retrieve the player's board
-    Then the board should contain the ship at "<col>", "<row>" with an orientation of "<orientation>"
+    Then the cell status of player at "<col2>", "<row2>" should be "SHIP"
+    And the cell status of player at "<col3>", "<row3>" should be "SHIP"
 
     Examples:
-      | col | row | orientation |
-      | 2   | 3   | N           |
-      | 4   | 6   | E           |
-      | 9   | 1   | S           |
+      | col1 | row1 | orientation  | col2  | row2   | col3 | row3 |
+      | 2    | 3    | N            | 2     | 3      | 2    | 2    |
+      | 4    | 6    | E            | 4     | 6      | 5    | 6    |
+      | 9    | 1    | S            | 9     | 1      | 9    | 2    |
 
   Scenario: Player cannot place overlapping ships
     Given a player with a board
-    And the player has a ship at "2", "3" with an orientation of "N"
+    And the player has a ship at "2", "3" with an orientation of "N" and a type "DESTROYER"
     When the player attempts to place a ship at "2", "2" with an orientation of "E"
     Then the placement should fail
-    And the board should not be modified
