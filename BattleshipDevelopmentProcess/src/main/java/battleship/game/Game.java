@@ -21,9 +21,10 @@ public class Game {
         Board board1 = boards.get(0);
         Board board2 = boards.get(1);
 
+        List<Player> players = generatePlayers(shipsPlayer1, shipsPlayer2, board1, board2);
+        Player player1 = players.get(0);
+        Player player2 = players.get(1);
 
-        RealPlayer player1  = new RealPlayer(shipsPlayer1, board1,PlayerId.PLAYER_1);
-        RealPlayer player2 = new RealPlayer(shipsPlayer2, board2, PlayerId.PLAYER_2);
         player1.createShips(shipsPlayer1);
         player2.createShips(shipsPlayer2);
 
@@ -71,6 +72,8 @@ public class Game {
                 System.out.println("ERROR: You need to enter a value between 0 and 25");
             }
         } while (sizeRow < 0 || 25 < sizeRow);
+        scanner.nextLine();
+
 
         Board board1 = new Board(sizeCol, sizeRow);
         Board board2 = new Board(sizeCol, sizeRow);
@@ -79,8 +82,26 @@ public class Game {
         return boards;
     }
 
+    private static List<Player> generatePlayers(List<Ship> ships1, List<Ship> ships2, Board board1, Board board2){
+        List<Player> players = new ArrayList<>();
+        System.out.println("Select the mode: 1. SOLO, 2. MULTIPLAYER ");
 
+        int mode;
+        do {
+            mode = scanner.nextInt();
+            if (mode != 1 && mode != 2) {
+                System.out.println("ERROR: You need to enter either 1 or 2");
+            }
+        } while (mode != 1 && mode != 2);
 
+        Player player1  = new RealPlayer(ships1, board1,PlayerId.PLAYER_1);
+        Player player2;
 
+        player2 = mode==1 ? new AIPlayer(ships2, board2, PlayerId.PLAYER_2) : new RealPlayer(ships2, board2, PlayerId.PLAYER_2);
 
+        players.add(player1);
+        players.add(player2);
+
+        return players;
+    }
 }
