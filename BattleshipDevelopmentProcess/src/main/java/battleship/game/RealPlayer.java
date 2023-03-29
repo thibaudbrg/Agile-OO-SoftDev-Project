@@ -1,12 +1,8 @@
 package battleship.game;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-
-import static battleship.game.Display.printBoard;
-import static battleship.game.Game.scanner;
 
 public class RealPlayer extends Player {
     private static final Scanner scanner = new Scanner(System.in);
@@ -31,7 +27,7 @@ public class RealPlayer extends Player {
     public Ship createShip(ShipType shipType) {
         System.out.println(getPlayerId() + " places ship");
         System.out.println("You are going to place the ship: " + shipType);
-        System.out.println("It has a length of " + shipType.getLabel());
+        System.out.println("It has a length of " + shipType.getSize());
 
         Ship ship = new Ship(new ArrayList<>(), shipType);
         int col, row;

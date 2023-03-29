@@ -36,7 +36,7 @@ public class Board {
         }
 
 
-        int sizeShip = ship.getShipType().getLabel();
+        int sizeShip = ship.getShipType().getSize();
 
         List<Cell> cellsToAdd = new ArrayList<>();
         cellsToAdd.add(boardArray[row][col]);
