@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import static battleship.game.Display.*;
 
 public class Game {
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final Map<PlayerId, Player> playerMap = new HashMap<>();
+    static final Scanner scanner = new Scanner(System.in);
 
     private Game() {
     }
@@ -22,35 +21,32 @@ public class Game {
         Board board1 = boards.get(0);
         Board board2 = boards.get(1);
 
-        createShips(PlayerId.PLAYER_1, shipsPlayer1, board1);
-        createShips(PlayerId.PLAYER_2, shipsPlayer2, board2);
 
-
-        Player player1 = new Player(shipsPlayer1, board1);
-        Player player2 = new Player(shipsPlayer2, board2);
-
-        playerMap.put(PlayerId.PLAYER_1, player1);
-        playerMap.put(PlayerId.PLAYER_2, player2);
+        RealPlayer player1  = new RealPlayer(shipsPlayer1, board1,PlayerId.PLAYER_1);
+        RealPlayer player2 = new RealPlayer(shipsPlayer2, board2, PlayerId.PLAYER_2);
+        player1.createShips(shipsPlayer1);
+        player2.createShips(shipsPlayer2);
 
         System.out.println("//===========" + PlayerId.PLAYER_1 + " Board===========\\\\");
-        printBoard(board1);
+        printBoard(player1.getBoard());
         System.out.println("----------------------------------------");
-        System.out.println("//===========" + PlayerId.PLAYER_1 + " Board===========\\\\");
-        printBoard(board2);
+        System.out.println("//===========" + PlayerId.PLAYER_2 + " Board===========\\\\");
+        printBoard(player2.getBoard());
 
-        PlayerId currentPlayerId = PlayerId.PLAYER_1;
+        Player currentPlayer = player1;
 
         while (true) {
-            Coordinates shootCoords = shoot(currentPlayerId);
-            playerMap.get(currentPlayerId).handleShot(shootCoords, playerMap.get(currentPlayerId.next()));
+            Player otherPlayer = currentPlayer == player2 ? player1 : player2 ;
+            Coordinates shootCoords = currentPlayer.shoot();
+            currentPlayer.handleShot(shootCoords,otherPlayer);
 
-            if (playerMap.get(currentPlayerId.next()).getRemainingShips().isEmpty()) {
-                printBoard(playerMap.get(currentPlayerId.next()).getBoard());
+            if (otherPlayer.getRemainingShips().isEmpty()) {
+                printBoard(otherPlayer.getBoard());
 
-                System.out.println(currentPlayerId + " Wins!");
+                System.out.println(currentPlayer.getPlayerId() + " Wins!");
                 break;
             }
-            currentPlayerId = currentPlayerId.next();
+            currentPlayer = currentPlayer == player2 ? player1 : player2 ;
         }
     }
 
@@ -83,72 +79,8 @@ public class Game {
         return boards;
     }
 
-    private static void createShips(PlayerId playerId, List<Ship> shipsPlayer, Board board) {
-        for (ShipType shipType : ShipType.values()) {
-            Ship ship = createShip(playerId, board, shipType);
-            shipsPlayer.add(ship);
-            System.out.println("//===========" + playerId + " Board===========\\\\");
-            printBoard(board);
-        }
-
-    }
-
-    private static Ship createShip(PlayerId playerId, Board board, ShipType shipType) {
-        System.out.println(playerId + " places ship");
-        System.out.println("You are going to place the ship: " + shipType);
-        System.out.println("It has a length of " + shipType.getLabel());
-
-        Ship ship = new Ship(new ArrayList<>(), shipType);
-        int col, row;
-        boolean result;
-        do {
-            do {
-                System.out.println("Select a column: ");
-                col = scanner.nextInt();
-                if (col < 0 || board.getSizeCol() <= col) {
-                    System.out.println("The size of the board is: n°Col = " + board.getSizeCol() + " n°Row = " + board.getSizeRow());
-                }
-            } while (col < 0 || board.getSizeCol() <= col);
-            scanner.nextLine();
-
-            do {
-                System.out.println("Select a row: ");
-                row = scanner.nextInt();
-                if (row < 0 || board.getSizeRow() <= row) {
-                    System.out.println("The size of the board is: n°Col = " + board.getSizeCol() + " n°Row = " + board.getSizeRow());
-                }
-            } while (row < 0 || board.getSizeRow() <= row);
-            scanner.nextLine();
-
-            int orientation;
-            do {
-                System.out.println("select orientation: \n" + "1. NORTH \n" + "2. SOUTH \n" + "3. EAST \n" + "4. WEST \n");
-                orientation = scanner.nextInt();
-                if (orientation < 1 || Orientation.values().length < orientation) {
-                    System.out.println("There are " + Orientation.values().length + " available");
-                }
-            } while (orientation < 1 || Orientation.values().length < orientation);
 
 
-            Coordinates coords = new Coordinates(col, row);
-            Cell firstCell = board.getCell(coords);
-            result = board.addShip(firstCell, ship, Orientation.values()[orientation - 1]);
 
-        } while (!result);
 
-        System.out.println("Good placement!");
-        return ship;
-    }
-
-    private static Coordinates shoot(PlayerId playerId) {
-        System.out.println(playerId + " shoots");
-
-        System.out.println("select col: ");
-        int col = scanner.nextInt();
-
-        System.out.println("select row: ");
-        int row = scanner.nextInt();
-
-        return new Coordinates(col, row);
-    }
 }

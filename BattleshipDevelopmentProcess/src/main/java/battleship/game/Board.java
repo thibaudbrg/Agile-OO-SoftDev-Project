@@ -27,18 +27,19 @@ public class Board {
         return boardArray[coords.getRow()][coords.getCol()];
     }
 
-    public boolean addShip(Cell cell, Ship ship, Orientation orientation) {
-        if(cell.getCellStatus()==CellStatus.SHIP){
+    public boolean addShip(Coordinates coordinates, Ship ship, Orientation orientation) {
+        int col = coordinates.getCol();
+        int row = coordinates.getRow();
+        if(boardArray[row][col].getCellStatus()==CellStatus.SHIP){
             System.out.println("The ship collides with another ship or is out of the board! Try again.");
             return false;
         }
 
-        int col = cell.getCoords().getCol();
-        int row = cell.getCoords().getRow();
+
         int sizeShip = ship.getShipType().getLabel();
 
         List<Cell> cellsToAdd = new ArrayList<>();
-        cellsToAdd.add(cell);
+        cellsToAdd.add(boardArray[row][col]);
 
         int[][] orientationChanges = {{0, -1}, {0, 1}, {1, 0}, {-1, 0}};
         int[] changes = orientationChanges[orientation.ordinal()];

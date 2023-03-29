@@ -9,13 +9,13 @@ import static org.junit.Assert.*;
 
 public class PlayerTest {
 
-    private Player player;
+    private RealPlayer realPlayer;
     private List<Ship> remainingShips;
     private int numberOfRemainingShips;
     private int beforeActionPlayer1RemainingShip;
     private Board board;
-    private Player player1;
-    private Player player2;
+    private RealPlayer realPlayer1;
+    private RealPlayer realPlayer2;
 
     private boolean playerPlacesWorked;
 
@@ -26,12 +26,12 @@ public class PlayerTest {
             remainingShips.add(new Ship(new ArrayList<>(), ShipType.BATTLESHIP));
         }
         board = new Board(10, 10);
-        this.player = new Player(remainingShips, board);
+        this.realPlayer = new RealPlayer(remainingShips, board,PlayerId.PLAYER_2);
     }
 
     @When("I retrieve the number of remaining ships")
     public void i_retrieve_the_number_of_remaining_ships() {
-        numberOfRemainingShips = player.getNumberOfRemainingShips();
+        numberOfRemainingShips = realPlayer.getNumberOfRemainingShips();
     }
 
     @Then("the number of remaining ships should be {string}")
@@ -47,12 +47,12 @@ public class PlayerTest {
             remainingShips.add(new Ship(new ArrayList<>(), ShipType.BATTLESHIP));
         }
         board = new Board(10, 10);
-        this.player = new Player(remainingShips, board);
+        this.realPlayer = new RealPlayer(remainingShips, board,PlayerId.PLAYER_1);
     }
 
     @When("I retrieve the player's board")
     public void i_retrieve_the_player_s_board() {
-        this.board = player.getBoard();
+        this.board = realPlayer.getBoard();
     }
 
     @Then("the board should not be null")
@@ -70,37 +70,37 @@ public class PlayerTest {
 
         remainingShips1.add(new Ship(cells, ShipType.DESTROYER));
 
-        player1 = new Player(remainingShips1, board1);
+        realPlayer1 = new RealPlayer(remainingShips1, board1,PlayerId.PLAYER_1);
 
         Board board2 = new Board(10, 10);
         List<Ship> remainingShips2 = new ArrayList<>();
 
         remainingShips2.add(new Ship(cells, ShipType.DESTROYER));
 
-        player2 = new Player(remainingShips2, board2);
+        realPlayer2 = new RealPlayer(remainingShips2, board2,PlayerId.PLAYER_1);
 
     }
 
     @And("the first Player has a cell at {string}, {string} with a cell status of {string}")
     public void theFirstPlayerHasACellAtWithACellStatusOf(String col, String row, String status) {
-        player1.getBoard().getCell(new Coordinates(Integer.parseInt(col), Integer.parseInt(row))).setCellStatus(CellStatus.valueOf(status));
+        realPlayer1.getBoard().getCell(new Coordinates(Integer.parseInt(col), Integer.parseInt(row))).setCellStatus(CellStatus.valueOf(status));
 
     }
 
     @When("the second Player shoots at {string}, {string}")
     public void theSecondPlayerShootsAt(String arg0, String arg1) {
-        player2.handleShot(new Coordinates(Integer.parseInt(arg0), Integer.parseInt(arg1)), player1);
+        realPlayer2.handleShot(new Coordinates(Integer.parseInt(arg0), Integer.parseInt(arg1)), realPlayer1);
     }
 
     @Then("the cell status of first player at {string}, {string} should be {string}")
     public void theCellStatusOfFirstPlayerAtShouldBe(String col, String row, String arg2) {
-        CellStatus status = player1.getBoard().getCell(new Coordinates(Integer.parseInt(col), Integer.parseInt(row))).getCellStatus();
+        CellStatus status = realPlayer1.getBoard().getCell(new Coordinates(Integer.parseInt(col), Integer.parseInt(row))).getCellStatus();
         assertEquals(status, CellStatus.valueOf(arg2));
     }
 
     @Then("the cell status of player at {string}, {string} should be {string}")
     public void theCellStatusOfPlayerAtShouldBe(String col, String row, String arg2) {
-        CellStatus status = player.getBoard().getCell(new Coordinates(Integer.parseInt(col), Integer.parseInt(row))).getCellStatus();
+        CellStatus status = realPlayer.getBoard().getCell(new Coordinates(Integer.parseInt(col), Integer.parseInt(row))).getCellStatus();
         assertEquals(status, CellStatus.valueOf(arg2));
     }
 
@@ -108,39 +108,39 @@ public class PlayerTest {
     @And("the first player has a ship at {int}, {int} with an orientation of {string} and a type {string}")
     public void theFirstPlayerHasAShipAtWithAnOrientationOfAndAType(int i1, int i2, String o, String st) {
         Ship ship = new Ship(new ArrayList<>(), ShipType.valueOf(st));
-        player1.getBoard().addShip(player1.getBoard().getCell(new Coordinates(i1, i2)), ship, Orientation.valueOf(o));
-        player1.getRemainingShips().add(ship);
-        beforeActionPlayer1RemainingShip = player1.getNumberOfRemainingShips();
+        realPlayer1.getBoard().addShip(new Coordinates(i1, i2), ship, Orientation.valueOf(o));
+        realPlayer1.getRemainingShips().add(ship);
+        beforeActionPlayer1RemainingShip = realPlayer1.getNumberOfRemainingShips();
     }
 
 
     @Then("the number of first player's remaining ships should stay the same")
     public void the_number_of_first_player_s_remaining_ships_should_stay_the_same() {
-        assertEquals(beforeActionPlayer1RemainingShip, player1.getNumberOfRemainingShips());
+        assertEquals(beforeActionPlayer1RemainingShip, realPlayer1.getNumberOfRemainingShips());
     }
 
     @And("the the second Player shoots at {string}, {string}")
     public void theTheSecondPlayerShootsAt(String arg0, String arg1) {
-        player2.handleShot(new Coordinates(Integer.parseInt(arg0), Integer.parseInt(arg1)), player1);
+        realPlayer2.handleShot(new Coordinates(Integer.parseInt(arg0), Integer.parseInt(arg1)), realPlayer1);
 
     }
 
     @Then("the number of first player's remaining ships should decrease by {int}")
     public void the_number_of_first_player_s_remaining_ships_should_decrease_by(Integer int1) {
-        assertEquals(beforeActionPlayer1RemainingShip - int1, player1.getNumberOfRemainingShips());
+        assertEquals(beforeActionPlayer1RemainingShip - int1, realPlayer1.getNumberOfRemainingShips());
     }
 
     @Given("the player has a ship at {string}, {string} with an orientation of {string} and a type {string}")
     public void the_player_has_a_ship_at_with_an_orientation_of_and_a_type(String i1, String i2, String o, String st) {
         Ship ship = new Ship(new ArrayList<>(), ShipType.valueOf(st));
-        player.getBoard().addShip(player.getBoard().getCell(new Coordinates(Integer.parseInt(i1), Integer.parseInt(i2))), ship, Orientation.valueOf(o));
-        player.getRemainingShips().add(ship);
+        realPlayer.getBoard().addShip(new Coordinates(Integer.parseInt(i1), Integer.parseInt(i2)), ship, Orientation.valueOf(o));
+        realPlayer.getRemainingShips().add(ship);
     }
 
     @When("the player attempts to place a ship at {string}, {string} with an orientation of {string}")
     public void the_player_attempts_to_place_a_ship_at_with_an_orientation_of(String i1, String i2, String o) {
         Ship ship = new Ship(new ArrayList<>(), ShipType.CARRIER);
-        playerPlacesWorked = player.getBoard().addShip(player.getBoard().getCell(new Coordinates(Integer.parseInt(i1), Integer.parseInt(i2))), ship, Orientation.valueOf(o));
+        playerPlacesWorked = realPlayer.getBoard().addShip(new Coordinates(Integer.parseInt(i1), Integer.parseInt(i2)), ship, Orientation.valueOf(o));
 
     }
 

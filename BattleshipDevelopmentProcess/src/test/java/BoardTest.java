@@ -30,7 +30,7 @@ public class BoardTest {
                 break;
             }
         }
-        shipAdded = board.addShip(board.getCell(new Coordinates(col, row)), ship, o);
+        shipAdded = board.addShip(new Coordinates(col, row), ship, o);
 
 
     }
@@ -53,7 +53,7 @@ public class BoardTest {
         } else {
             shipOrient = startCol < endCol ? Orientation.E : Orientation.W;
         }
-        boolean added = board.addShip(board.getCell(new Coordinates(startCol, startRow)), ship, shipOrient);
+        boolean added = board.addShip(new Coordinates(startCol, startRow), ship, shipOrient);
         assertTrue(added);
 
     }
