@@ -4,7 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e966bfe-1cc7-4509-aa1b-dd5e4134d603" name="Changes" comment="" />
+    <list default="true" id="1e966bfe-1cc7-4509-aa1b-dd5e4134d603" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/BattleshipDevelopmentProcess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/BattleshipDevelopmentProcess.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/CellStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/CellStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Constants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Coordinates.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Coordinates.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Display$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Display$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Display.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Display.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Orientation.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Orientation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/PlayerId.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/PlayerId.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Ship.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/Ship.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/ShipType.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/production/BattleshipDevelopmentProcess/battleship/game/ShipType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/BoardTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/BoardTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/CellStatusTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/CellStatusTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/CellTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/CellTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/CucumberTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/CucumberTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/OrientationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/OrientationTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/PlayerIdTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/PlayerIdTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/PlayerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/PlayerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/ShipTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/ShipTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/ShipTypeTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/out/test/BattleshipDevelopmentProcess/ShipTypeTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipDevelopmentProcess/src/test/java/ShipTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BattleshipDevelopmentProcess/src/test/java/ShipTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,6 +65,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/sahbiabderrazak/Desktop/tout/DTU/agile OO software dev/Agile-OO-SoftDev-Project",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -54,6 +82,7 @@
       <option name="presentableId" value="Default" />
       <updated>1679750809498</updated>
       <workItem from="1679750813429" duration="248000" />
+      <workItem from="1680004706294" duration="11000" />
     </task>
     <servers />
   </component>

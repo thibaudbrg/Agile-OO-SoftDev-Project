@@ -52,7 +52,7 @@ public class ShipTest {
     public void a_ship_with_a_list_of_cells_with_cell_statuses(String string) {
         List<CellStatus> cellStatuses = Stream.of(string.split(","))
                 .map(CellStatus::valueOf)
-                .toList();
+                .collect(Collectors.toList());
         initialCells = cellStatuses.stream()
                 .map(status -> new Cell(new Coordinates(0, 0), status))
                 .collect(Collectors.toList());
