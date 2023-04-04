@@ -1,78 +1,107 @@
 package battleship.game;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+import static battleship.game.Display.*;
 
 public class Game {
+    static final Scanner scanner = new Scanner(System.in);
 
-    private final List<Ship> shipsPlayer1 = new ArrayList<>();
-    private final List<Ship> shipsPlayer2 = new ArrayList<>();
-    List<Board> boards;
+    private Game() {
+    }
 
-    public void gameLogic() {
-        Input input = new Input();
-        boards = input.getBoards();
-        Board boardPlayer1 = boards.get(0);
-        Board boardPlayer2 = boards.get(1);
-        Display display = new Display();
+    public static void play() {
+        final List<Ship> shipsPlayer1 = new ArrayList<>();
+        final List<Ship> shipsPlayer2 = new ArrayList<>();
 
-        for (int i = 0; i < 5; ++i) {
-            Ship one = input.createShip(0);
-            shipsPlayer1.add(one);
-            System.out.println("//===========Player 1 Board===========\\\\");
-            display.printBoard(boardPlayer1);
+        List<Board> boards = generateBoards();
+        Board board1 = boards.get(0);
+        Board board2 = boards.get(1);
 
-        }
+        List<Player> players = generatePlayers(shipsPlayer1, shipsPlayer2, board1, board2);
+        Player player1 = players.get(0);
+        Player player2 = players.get(1);
 
-        for (int i = 0; i < 5; ++i) {
-            Ship one = input.createShip(1);
-            shipsPlayer2.add(one);
-            System.out.println("//===========Player 2 Board===========\\\\");
-            display.printBoard(boardPlayer2);
+        player1.createShips(shipsPlayer1);
+        player2.createShips(shipsPlayer2);
 
-        }
-
-        Player player1 = new Player(shipsPlayer1, boardPlayer1);
-        Player player2 = new Player(shipsPlayer1, boardPlayer1);
-
-        System.out.println("//===========Player 1 Board===========\\\\");
-        display.printBoard(boardPlayer1);
+        System.out.println("//===========" + PlayerId.PLAYER_1 + " Board===========\\\\");
+        printBoard(player1.getBoard());
         System.out.println("----------------------------------------");
-        System.out.println("//===========Player2 Board============\\\\");
-        display.printBoard(boardPlayer2);
+        System.out.println("//===========" + PlayerId.PLAYER_2 + " Board===========\\\\");
+        printBoard(player2.getBoard());
 
-        int numberOfShipsPlayer1 = player1.numberOfCells0fShips(shipsPlayer1);
-        int numberOfShipsPlayer2 = player1.numberOfCells0fShips(shipsPlayer2);
+        Player currentPlayer = player1;
 
         while (true) {
-            int[] ShootCoordinates;
-            ShootCoordinates = input.shoot(0);
+            Player otherPlayer = currentPlayer == player2 ? player1 : player2 ;
+            Coordinates shootCoords = currentPlayer.shoot();
+            currentPlayer.handleShot(shootCoords,otherPlayer);
 
-            if (player2.handleShot(ShootCoordinates[0], ShootCoordinates[1])) {
-                display.printBoard(player2.getBoard());
-                --numberOfShipsPlayer2;
-            } else {
-                display.printBoard(player2.getBoard());
-            }
+            if (otherPlayer.getRemainingShips().isEmpty()) {
+                printBoard(otherPlayer.getBoard());
 
-            if (numberOfShipsPlayer2 == 0) {
-                display.printBoard(player2.getBoard());
-                System.out.println("Player 1 wins!");
+                System.out.println(currentPlayer.getPlayerId() + " Wins!");
                 break;
             }
-
-            if (player1.handleShot(ShootCoordinates[0], ShootCoordinates[1])) {
-                display.printBoard(player1.getBoard());
-                --numberOfShipsPlayer1;
-            } else {
-                display.printBoard(player1.getBoard());
-            }
-
-            if (numberOfShipsPlayer1 == 0) {
-                display.printBoard(player1.getBoard());
-                System.out.println("Player 2 wins!");
-                break;
-            }
+            currentPlayer = currentPlayer == player2 ? player1 : player2 ;
         }
+    }
+
+    private static List<Board> generateBoards() {
+        List<Board> boards = new ArrayList<>();
+        int sizeCol, sizeRow;
+
+        System.out.println("Select the number of columns of the board: ");
+        do {
+            sizeCol = scanner.nextInt();
+            if (sizeCol < 0 || 25 < sizeCol) {
+                System.out.println("ERROR: You need to enter a value between 0 and 25");
+            }
+        } while (sizeCol < 0 || 25 < sizeCol);
+        scanner.nextLine();
+
+
+        System.out.println("Select the number of lines of the board: ");
+        do {
+            sizeRow = scanner.nextInt();
+            if (sizeRow < 0 || 25 < sizeRow) {
+                System.out.println("ERROR: You need to enter a value between 0 and 25");
+            }
+        } while (sizeRow < 0 || 25 < sizeRow);
+        scanner.nextLine();
+
+
+        Board board1 = new Board(sizeCol, sizeRow);
+        Board board2 = new Board(sizeCol, sizeRow);
+        boards.add(board1);
+        boards.add(board2);
+        return boards;
+    }
+
+    private static List<Player> generatePlayers(List<Ship> ships1, List<Ship> ships2, Board board1, Board board2){
+        List<Player> players = new ArrayList<>();
+        System.out.println("Select the mode: 1. SOLO, 2. MULTIPLAYER ");
+
+        int mode;
+        do {
+            mode = scanner.nextInt();
+            if (mode != 1 && mode != 2) {
+                System.out.println("ERROR: You need to enter either 1 or 2");
+            }
+        } while (mode != 1 && mode != 2);
+
+        Player player1  = new RealPlayer(ships1, board1,PlayerId.PLAYER_1);
+        Player player2;
+
+        player2 = mode==1 ? new AIPlayer(ships2, board2, PlayerId.PLAYER_2) : new RealPlayer(ships2, board2, PlayerId.PLAYER_2);
+
+        players.add(player1);
+        players.add(player2);
+
+        return players;
     }
 }

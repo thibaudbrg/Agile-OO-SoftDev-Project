@@ -23,10 +23,7 @@ public class Display {
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
 
-    public Display() {
-    }
-
-    public void printMenu() {
+    public static void printMenu() {
         System.out.println("Battleship is starting ........");
         System.out.println("\n" + "                  ~.\n" +
                 "           Ya...___|__..aab     .   .\n" +
@@ -41,22 +38,22 @@ public class Display {
                 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
-    public void printMessages(String message) {
+    public static void printMessages(String message) {
         System.out.println(message);
     }
 
-    public void printMainMenuOptions() {
+    public static void printMainMenuOptions() {
         System.out.println("Press:\n" +
                 "\t 0 - Play\n" +
                 "\t 1 - Print game rules\n" +
                 "\t 2 - Exit game\n");
     }
 
-    public void printExitMessage() {
+    public static void printExitMessage() {
         System.out.println("Seen you soon sailor !\n");
     }
 
-    public void gameRules() {
+    public static void gameRules() {
         System.out.println("You and your opponent sit facing each other and neighter can see the other's ocean grid.\n" +
                 "Place your fleet of 5 ships on the ocean grid.\n\n" +
                 "Rules for placing ships:\n" +
@@ -72,9 +69,9 @@ public class Display {
                 "Once all the holes in any one ship are hit, the ship will sink. The owner of that ship must announce which ship was sunk.\n\n");
     }
 
-    public void printBoard(Board board) {
+    public static void printBoard(Board board) {
         System.out.print("   ");
-        for (int col = 0; col < board.getSizeCol(); col++) {
+        for (int col = 0; col < board.getSizeRow(); col++) {
             if (col < 10) {
                 System.out.print(col + "  ");
             } else {
@@ -82,7 +79,7 @@ public class Display {
             }
         }
         System.out.println();
-        for (int row = 0; row < board.getSizeRow(); row++) {
+        for (int row = 0; row < board.getSizeCol(); row++) {
             if (row < 10) {
                 System.out.print(row + "  ");
             } else {
@@ -90,46 +87,24 @@ public class Display {
             }
 
 
-            for (int coll = 0; coll < board.getSizeCol(); coll++) {
-                switch (board.getCell(coll, row).getCharacter()) {
-                    case 'O':
+            for (int coll = 0; coll < board.getSizeRow(); coll++) {
+                switch (board.getCell(new Coordinates(coll, row)).getCellStatus()) {
+                    case OCEAN:
                         System.out.print(ANSI_BLUE_BACKGROUND + "  " + ANSI_RESET + " ");
                         break;
-                    case 'H':
+                    case HIT:
                         System.out.print(ANSI_RED_BACKGROUND + "  " + ANSI_RESET + " ");
                         break;
-                    case 'S':
+                    case SHIP:
                         System.out.print(ANSI_YELLOW_BACKGROUND + "  " + ANSI_RESET + " ");
                         break;
-                    case 'M':
+                    case MISSED:
                         System.out.print(ANSI_BLACK_BACKGROUND + "  " + ANSI_RESET + " ");
                         break;
-                    case 'E':
-                        System.out.println(ANSI_CYAN_BACKGROUND + "  " + ANSI_RESET + " ");
-                        break;
-                }
-            }
-            /*
-                switch (board.getCell(coll, row).getCharacter()) {
-                    case 'O':
-                        System.out.print(" 0 ");
-                        break;
-                    case 'H':
-                        System.out.print(" H ");
-                        break;
-                    case 'S':
-                        System.out.print(" S ");
-                        break;
-                    case 'M':
-                        System.out.print(" M ");
-                        break;
-                    case 'E':
-                        System.out.print(" E ");
-                        break;
+
                 }
             }
 
-             */
             System.out.println();
         }
     }

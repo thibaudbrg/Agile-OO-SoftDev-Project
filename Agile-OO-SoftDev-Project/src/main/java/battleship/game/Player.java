@@ -1,55 +1,86 @@
 package battleship.game;
+
+import java.util.Iterator;
 import java.util.List;
 
+import static battleship.game.Display.printBoard;
 
-public class Player {
-    private List<Ship> ships;
+public abstract class Player {
+    private PlayerId playerId;
+    private List<Ship> remainingShips;
     private Board board;
-    private int remainingShips = 0 ;
-
-    public Player(List<Ship> ships, Board board) {
-        this.ships = ships;
+    private Board memory;
+    public Player(List<Ship> remainingShips, Board board , PlayerId playerId) {
+        this.remainingShips = remainingShips;
         this.board = board;
+        this.playerId = playerId;
+        this.memory = new Board(board.getSizeCol(), board.getSizeRow());
     }
 
-    public List<Ship> getShips() {
-        return ships;
+    public List<Ship> getRemainingShips() {
+        return remainingShips;
     }
+
 
     public Board getBoard() {
         return board;
     }
 
-    public int getRemainingShips() {
-        return remainingShips;
+    public int getNumberOfRemainingShips() {
+        return remainingShips.size();
     }
 
-    public int numberOfCells0fShips(List<Ship> ships) {
-        int sumOfAllCells = 0;
-        for (Ship ship : ships) {
-            sumOfAllCells += ship.getShipType().label;
-    }
-        return sumOfAllCells;
-}
-    public boolean handleShot(int x , int y){
-        for (Ship ship : ships){
-            for (Cell cell : ship.getFields()) {
-                if (cell.getRow() == y && cell.getCol() == x && cell.getCellStatus().equals(CellStatus.SHIP)){
-                    cell.setCellStatus(CellStatus.HIT);
-                    board.getCell(x,y).setCellStatus(CellStatus.HIT);
-                    return true;
-                } else if (cell.getRow() == y && cell.getCol() == x && cell.getCellStatus().equals(CellStatus.HIT)){
-                    cell.setCellStatus(CellStatus.HIT);
-                    System.out.println("Already Hit");
-                    return false;
+    public void handleShot(Coordinates coords, Player otherRealPlayer) {
+        CellStatus newStatus = CellStatus.OCEAN;
+        if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.HIT) {
+            newStatus = CellStatus.HIT;
+            System.out.println("Already Hit");
+            printBoard(otherRealPlayer.getBoard());
+        } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.OCEAN) {
+            newStatus = CellStatus.MISSED;
+            System.out.println("Miss !");
+            otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.MISSED);
+            printBoard(otherRealPlayer.getBoard());
+        } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.MISSED) {
+            newStatus = CellStatus.MISSED;
+            System.out.println("Already missed !");
+            printBoard(otherRealPlayer.getBoard());
+        } else {
+            newStatus = CellStatus.HIT;
+            System.out.println("HIT !");
+            otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.HIT);
+            Iterator<Ship> iterator = otherRealPlayer.remainingShips.iterator();
+            while (iterator.hasNext()) {
+                Ship ship = iterator.next();
+                if (ship.hasSunk()) {
+                    System.out.println("One ship sank ");
+                    iterator.remove();
+                    System.out.println("There are still " + otherRealPlayer.getNumberOfRemainingShips() + " remaining ");
                 }
             }
-        }
 
-        board.getCell(x,y).setCellStatus(CellStatus.MISSED);
-        System.out.println("Miss!");
-        return false;
+            memory.getCell(coords).setCellStatus(newStatus);
+            printBoard(otherRealPlayer.getBoard());
+        }
     }
 
+    public abstract  Coordinates shoot() ;
+
+    public abstract Ship createShip(ShipType shipType);
+
+    public void createShips(List<Ship> shipsPlayer) {
+        for (ShipType shipType : ShipType.values()) {
+            Ship ship = createShip(shipType);
+            shipsPlayer.add(ship);
+            System.out.println("//===========" + playerId + " Board===========\\\\");
+            printBoard(board);
+        }
 }
 
+    public PlayerId getPlayerId() {
+        return playerId;
+    }
+
+    public Board getMemory(){ return memory; }
+
+}

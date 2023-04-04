@@ -3,16 +3,25 @@ package battleship.game;
 import java.util.List;
 
 public class Ship {
-    private final List<Cell> NewShip;
+    private final List<Cell> shipCells;
     private final ShipType shipType;
 
-    public Ship(List<Cell> newShip, ShipType shipType) {
-        NewShip = newShip;
+    public Ship(List<Cell> shipCells, ShipType shipType) {
+        this.shipCells = shipCells;
         this.shipType = shipType;
     }
 
     public List<Cell> getFields() {
-        return NewShip;
+        return shipCells;
+    }
+
+    public boolean hasSunk() {
+        for (Cell cell : shipCells) {
+            if (!cell.getCellStatus().equals(CellStatus.HIT)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public ShipType getShipType() {
@@ -20,28 +29,6 @@ public class Ship {
     }
 
     public void add(Cell cell) {
-        NewShip.add(cell);
-    }
-
-    public boolean isPlacementOK(Ship ship1, List<Ship> allShips, Board board) {
-        int count = 0;
-
-        for (int i = 0; i < ship1.getFields().size(); i++) {
-            if (ship1.getFields().get(i).getRow() > board.getSizeCol() ||
-                    ship1.getFields().get(i).getCol() > board.getSizeRow()) {
-                ++count;
-            }
-
-            for (int j = 0; j < allShips.size(); j++) {
-                for (int k = 0; k < allShips.get(j).getFields().size(); k++) {
-                    if (ship1.getFields().get(i).getCol() == allShips.get(j).getFields().get(k).getCol() &&
-                            ship1.getFields().get(i).getRow() == allShips.get(j).getFields().get(k).getRow()) {
-                        ++count;
-                    }
-                }
-            }
-        }
-
-        return count == 0;
+        shipCells.add(cell);
     }
 }
