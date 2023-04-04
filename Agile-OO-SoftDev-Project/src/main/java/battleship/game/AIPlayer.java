@@ -9,6 +9,7 @@ public class AIPlayer extends Player {
     private Random rn = new Random();
     private int lastRow;
     private int lastColumn;
+
     public AIPlayer(List<Ship> ships, Board board, PlayerId playerId) {
         super(ships, board, playerId);
         this.lastRow = -1;
@@ -16,9 +17,9 @@ public class AIPlayer extends Player {
 
     }
 
-    public void updateMemory(int col, int row, CellStatus status){
+    public void updateMemory(int col, int row, CellStatus status) {
         getMemory().getCell(new Coordinates(col, row)).setCellStatus(status);
-        if (status == CellStatus.HIT){
+        if (status == CellStatus.HIT) {
             this.lastColumn = col;
             this.lastRow = row;
         }
@@ -26,13 +27,18 @@ public class AIPlayer extends Player {
     }
 
     @Override
-    public Ship createShip(ShipType shipType) {
+    public Ship createShip(ShipType shipType, Coordinates coords, Orientation orient) {
+
         System.out.println(getPlayerId() + " places ship");
         System.out.println("You are going to place the ship: " + shipType);
         System.out.println("It has a length of " + shipType.getSize());
 
         Ship ship = new Ship(new ArrayList<>(), shipType);
+
+        /*
         int col, row;
+
+
         boolean result;
         int orientation;
 
@@ -42,14 +48,18 @@ public class AIPlayer extends Player {
 
             orientation = Orientation.ALL.get(rn.nextInt(4)).ordinal() + 1;
 
-            Coordinates coords = new Coordinates(col, row);
+            //Coordinates coords = new Coordinates(col, row);
             result = getBoard().addShip(coords, ship, Orientation.values()[orientation - 1]);
 
-        }while(!result);
+        } while (!result);
 
 
         System.out.println("Good placement!");
+
+        */
         return ship;
+
+
     }
 
     public Coordinates randomShoot() {
@@ -58,13 +68,14 @@ public class AIPlayer extends Player {
         do {
             col = rn.nextInt(getBoard().getSizeCol());
             row = rn.nextInt(getBoard().getSizeRow());
-        } while(getMemory().getCell(new Coordinates(col, row)).getCellStatus() != CellStatus.OCEAN);
+        } while (getMemory().getCell(new Coordinates(col, row)).getCellStatus() != CellStatus.OCEAN);
 
 
         return new Coordinates(col, row);
 
     }
 
+    /*
     @Override
     public Coordinates shoot() {
         int col = 0;
@@ -74,7 +85,7 @@ public class AIPlayer extends Player {
             return randomShoot();
         } else {
             do {
-                if (lastRow < getBoard().getSizeRow()-1 && lastRow > 0) {
+                if (lastRow < getBoard().getSizeRow() - 1 && lastRow > 0) {
                     if (lastColumn < getBoard().getSizeCol() - 1 && lastColumn > 0) {
                         int choice = rn.nextInt(4);
                         switch (choice) {
@@ -128,14 +139,13 @@ public class AIPlayer extends Player {
                                 break;
                         }
                     }
-                }
-                else if(lastRow ==0){
-                    if (lastColumn == 0){
+                } else if (lastRow == 0) {
+                    if (lastColumn == 0) {
                         int choice = rn.nextInt(2);
                         switch (choice) {
                             case 0:
                                 row = lastRow;
-                                col = lastColumn +1;
+                                col = lastColumn + 1;
                                 break;
                             case 1:
                                 row = lastRow + 1;
@@ -143,7 +153,7 @@ public class AIPlayer extends Player {
                                 break;
 
                         }
-                    } else if (lastColumn ==  getBoard().getSizeCol() - 1){
+                    } else if (lastColumn == getBoard().getSizeCol() - 1) {
                         int choice = rn.nextInt(2);
                         switch (choice) {
                             case 0:
@@ -165,22 +175,22 @@ public class AIPlayer extends Player {
                                 break;
                             case 1:
                                 row = lastRow;
-                                col = lastColumn+1;
+                                col = lastColumn + 1;
                                 break;
                             case 2:
-                                row = lastRow+1;
+                                row = lastRow + 1;
                                 col = lastColumn;
                                 break;
                         }
                     }
 
                 } else {
-                    if (lastColumn == 0){
+                    if (lastColumn == 0) {
                         int choice = rn.nextInt(2);
                         switch (choice) {
                             case 0:
                                 row = lastRow;
-                                col = lastColumn +1;
+                                col = lastColumn + 1;
                                 break;
                             case 1:
                                 row = lastRow - 1;
@@ -188,7 +198,7 @@ public class AIPlayer extends Player {
                                 break;
 
                         }
-                    } else if (lastColumn ==  getBoard().getSizeCol() - 1){
+                    } else if (lastColumn == getBoard().getSizeCol() - 1) {
                         int choice = rn.nextInt(2);
                         switch (choice) {
                             case 0:
@@ -210,10 +220,10 @@ public class AIPlayer extends Player {
                                 break;
                             case 1:
                                 row = lastRow;
-                                col = lastColumn+1;
+                                col = lastColumn + 1;
                                 break;
                             case 2:
-                                row = lastRow-1;
+                                row = lastRow - 1;
                                 col = lastColumn;
                                 break;
                         }
@@ -221,7 +231,7 @@ public class AIPlayer extends Player {
 
                 }
 
-            }while(getMemory().getCell(new Coordinates(col,row)).getCellStatus() != CellStatus.OCEAN);
+            } while (getMemory().getCell(new Coordinates(col, row)).getCellStatus() != CellStatus.OCEAN);
 
 
         }
@@ -229,4 +239,6 @@ public class AIPlayer extends Player {
 
     }
 
+
+     */
 }

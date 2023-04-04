@@ -2,6 +2,8 @@ package battleship.gui.widgets;
 
 import java.util.Objects;
 
+import battleship.game.Cell;
+import battleship.gui.CellObserver;
 import battleship.game.Coordinates;
 import battleship.gui.IdGenerator;
 import javafx.event.Event;
@@ -10,20 +12,22 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Tile extends Canvas {
+public class GraphicalCell extends Canvas implements CellObserver {
 
-    public static final int SIZE = 50;
+    public static final int SIZE = 40;
 
     private int id;
     private boolean mouseOver;
-    private Coordinates position;
+    private Cell cell;
+    private final boolean isItMine;
 
-    public Tile(Coordinates position) {
+    public GraphicalCell(Cell cell, boolean isItMine) {
         super(SIZE, SIZE);
         this.id = IdGenerator.get();
-        this.position = position;
         this.mouseOver = false;
-
+        this.cell = cell;
+        this.isItMine = isItMine;
+        cell.addObserver(this);
         redraw();
 
         setOnMouseEntered(new EventHandler<Event>() {
@@ -38,6 +42,7 @@ public class Tile extends Canvas {
                 setMouseOver(false);
             }
         });
+
     }
 
     public void setMouseOver(boolean mouseOver) {
@@ -46,7 +51,7 @@ public class Tile extends Canvas {
     }
 
     public Coordinates getCoordinates() {
-        return position;
+        return cell.getCoords();
     }
 
     public void redraw() {
@@ -62,6 +67,37 @@ public class Tile extends Canvas {
             gc.setLineWidth(3);
             gc.strokeRoundRect(3, 3, SIZE - 6, SIZE - 6, 10, 10);
         }
+
+        switch (cell.getCellStatus()) {
+            case HIT:
+                gc.setFill(Color.RED.deriveColor(0, 1, 1, 0.5));
+                break;
+            case MISSED:
+                gc.setFill(Color.BLACK.deriveColor(0, 1, 1, 0.5));
+                break;
+            case SHIP:
+                if (isItMine) {
+                    gc.setFill(Color.GRAY.deriveColor(0, 1, 1, 0.5));
+                } else {
+                    gc.setFill(Color.BLUE.deriveColor(0, 1, 1, 0.5));
+                }
+                break;
+            case OCEAN:
+                    gc.setFill(Color.BLUE.deriveColor(0, 1, 1, 0.5));
+                break;
+        }
+        gc.fillRect(0, 0, SIZE, SIZE);
+
+    }
+
+
+    public void cellUpdated(Cell cell){
+        redraw();
+    }
+
+
+    public boolean isMine() {
+        return isItMine;
     }
 
     @Override
@@ -71,9 +107,11 @@ public class Tile extends Canvas {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Tile) {
-            return this.id == ((Tile) obj).id;
+        if (obj instanceof GraphicalCell) {
+            return this.id == ((GraphicalCell) obj).id;
         }
         return false;
     }
+
+
 }

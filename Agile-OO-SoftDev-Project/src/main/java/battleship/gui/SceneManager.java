@@ -1,5 +1,6 @@
 package battleship.gui;
 
+import battleship.game.Game;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,7 +15,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class SceneManager {
@@ -191,7 +191,7 @@ public class SceneManager {
             @Override
             public void handle(ActionEvent event) {
                 mainStage.hide();
-                GraphicalGame graphicalGame = new GraphicalGame(GameMode.MULTIPLAYER);
+                Game.play(GameMode.MULTIPLAYER);
                 //GameViewManager gameViewManagger = new GameViewManager();
                 //gameViewManagger.createNewGame(mainStage, chosenShip);
             }
@@ -207,10 +207,9 @@ public class SceneManager {
             @Override
             public void handle(ActionEvent event) {
                 mainStage.hide();
-                GraphicalGame graphicalGame = new GraphicalGame(GameMode.EASY);
-                // TODO: Go to the Solo mode with easy AI
-                //GameViewManager gameViewManagger = new GameViewManager();
-                //gameViewManagger.createNewGame(mainStage, chosenShip);
+                //GraphicalGame graphicalGame = new GraphicalGame(GameMode.EASY);
+                Game.play(GameMode.EASY);
+                // TODO
             }
         });
         return easyModeButton;
@@ -224,7 +223,8 @@ public class SceneManager {
             @Override
             public void handle(ActionEvent event) {
                 mainStage.hide();
-                GraphicalGame graphicalGame = new GraphicalGame(GameMode.HARD);
+                Game.play(GameMode.HARD);
+                //GraphicalGame graphicalGame = new GraphicalGame(GameMode.HARD);
                 // TODO: Go to the Solo mode with easy AI
                 //GameViewManager gameViewManagger = new GameViewManager();
                 //gameViewManagger.createNewGame(mainStage, chosenShip);

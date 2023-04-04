@@ -1,5 +1,6 @@
 package battleship.game;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,7 +11,8 @@ public abstract class Player {
     private List<Ship> remainingShips;
     private Board board;
     private Board memory;
-    public Player(List<Ship> remainingShips, Board board , PlayerId playerId) {
+    private boolean amICurrentPlayer;
+    public Player(List<Ship> remainingShips, Board board, PlayerId playerId) {
         this.remainingShips = remainingShips;
         this.board = board;
         this.playerId = playerId;
@@ -64,23 +66,81 @@ public abstract class Player {
         }
     }
 
-    public abstract  Coordinates shoot() ;
+    //public abstract Coordinates shoot();
 
-    public abstract Ship createShip(ShipType shipType);
+    public abstract Ship createShip(ShipType shipType, Coordinates coords, Orientation orient);
 
-    public void createShips(List<Ship> shipsPlayer) {
+    public void createShips(List<Ship> shipsPlayer) { // TODO NO NEED TO THIS METHOD ANYMORE
         for (ShipType shipType : ShipType.values()) {
-            Ship ship = createShip(shipType);
-            shipsPlayer.add(ship);
+            //Ship ship = createShip(shipType);
+            //shipsPlayer.add(ship);
             System.out.println("//===========" + playerId + " Board===========\\\\");
             printBoard(board);
         }
-}
+    }
 
     public PlayerId getPlayerId() {
         return playerId;
     }
 
-    public Board getMemory(){ return memory; }
+    public Board getMemory() {
+        return memory;
+    }
+
+    public boolean amICurrentPlayer() {
+        return amICurrentPlayer;
+    }
+
+    public void setAmICurrentPlayer(boolean amICurrentPlayer) {
+        this.amICurrentPlayer = amICurrentPlayer;
+    }
+
+    public boolean addShip(ShipType shipType, Coordinates coordinates, Orientation orientation) {
+        int col = coordinates.getCol();
+        int row = coordinates.getRow();
+
+        Ship ship = new Ship(new ArrayList<>(), shipType);
+
+        //System.out.println(getPlayerId() + " places ship");
+        System.out.println("You are going to place the ship: " + shipType);
+        System.out.println("It has a length of " + shipType.getSize());
+
+        if(board.getCell(new Coordinates(col,row)).getCellStatus()==CellStatus.SHIP){
+            System.out.println("The ship collides with another ship or is out of the board! Try again.");
+            return false;
+        }
+
+
+        int sizeShip = ship.getShipType().getSize();
+
+        List<Cell> cellsToAdd = new ArrayList<>();
+        cellsToAdd.add(board.getCell(new Coordinates(col,row)));
+
+        int[][] orientationChanges = {{0, -1}, {0, 1}, {1, 0}, {-1, 0}};
+        int[] changes = orientationChanges[orientation.ordinal()];
+
+        for (int i = 1; i < sizeShip; i++) {
+            col += changes[0];
+            row += changes[1];
+
+            if (!isInsideBoard(col, row) || board.getCell(new Coordinates(col,row)).getCellStatus() == CellStatus.SHIP) {
+                System.out.println("The ship collides with another ship or is out of the board! Try again.");
+                return false;
+            }
+
+            cellsToAdd.add(board.getCell(new Coordinates(col,row)));
+        }
+
+        for (Cell cellToAdd : cellsToAdd) {
+            cellToAdd.setCellStatus(CellStatus.SHIP);
+            ship.add(cellToAdd);
+        }
+        remainingShips.add(ship);
+        return true;
+    }
+
+    private boolean isInsideBoard(int col, int row) {
+        return col >= 0 && col < board.getSizeRow() && row >= 0 && row < board.getSizeCol();
+    }
 
 }

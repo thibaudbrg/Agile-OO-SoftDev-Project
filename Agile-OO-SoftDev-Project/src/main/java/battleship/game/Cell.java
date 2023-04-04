@@ -1,8 +1,14 @@
 package battleship.game;
 
+import battleship.gui.CellObserver;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cell {
     private final Coordinates coords;
     private CellStatus cellStatus;
+    private List<CellObserver> observers = new ArrayList<>();
 
     public Cell(Coordinates coords, CellStatus cellStatus) {
         this.coords = coords;
@@ -18,5 +24,18 @@ public class Cell {
 
     public void setCellStatus(CellStatus cellStatus) {
         this.cellStatus = cellStatus;
+        notifyObservers();
+    }
+
+    public void addObserver(CellObserver observer) {
+        observers.add(observer);
+    }
+
+    private void notifyObservers() {
+        for (CellObserver observer : observers) {
+            observer.cellUpdated(this);
+        }
     }
 }
+
+

@@ -1,6 +1,6 @@
 package battleship.game;
 
-import battleship.gui.widgets.Sea;
+import battleship.gui.widgets.PlayerPane;
 
 public class Coordinates {
     private final int col;
@@ -29,11 +29,12 @@ public class Coordinates {
                 '}';
     }
 
-    public static Coordinates at(int x, int y) {
+    /*public static Coordinates at(int x, int y) {
         return new Coordinates(clamp(x), clamp(y));
     } // TODO CHANGE THIS
 
     public static int clamp(int i) {
-        return Math.max(0, Math.min(i, Sea.SIZE));
+        return Math.max(0, Math.min(i, PlayerPane.getSizeBoard()));
     } // TODO CHANGE THIS
+          */
 }

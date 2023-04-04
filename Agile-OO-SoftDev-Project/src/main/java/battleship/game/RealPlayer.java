@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class RealPlayer extends Player {
+public class RealPlayer extends Player{
     private static final Scanner scanner = new Scanner(System.in);
 
     public RealPlayer(List<Ship> remainingShips, Board board , PlayerId playerId) {
         super(remainingShips, board,playerId);
     }
-    public  Coordinates shoot() {
+
+    /*
+    public Coordinates shoot() {
+
+
         System.out.println(getPlayerId() + " shoots");
 
         System.out.println("select col: ");
@@ -20,18 +24,23 @@ public class RealPlayer extends Player {
         int row = scanner.nextInt();
 
         return new Coordinates(col, row);
+
+
     }
 
 
+     */
 
-    public Ship createShip(ShipType shipType) {
+
+    public Ship createShip(ShipType shipType, Coordinates coords, Orientation orient) {
         System.out.println(getPlayerId() + " places ship");
         System.out.println("You are going to place the ship: " + shipType);
         System.out.println("It has a length of " + shipType.getSize());
 
         Ship ship = new Ship(new ArrayList<>(), shipType);
-        int col, row;
+        //int col, row;
         boolean result;
+        /*
         do {
             do {
                 System.out.println("Select a column: ");
@@ -51,6 +60,8 @@ public class RealPlayer extends Player {
             } while (row < 0 || getBoard().getSizeRow() <= row);
             scanner.nextLine();
 
+
+
             int orientation;
             do {
                 System.out.println("select orientation: \n" + "1. NORTH \n" + "2. SOUTH \n" + "3. EAST \n" + "4. WEST \n");
@@ -61,10 +72,12 @@ public class RealPlayer extends Player {
             } while (orientation < 1 || Orientation.values().length < orientation);
 
 
-            Coordinates coords = new Coordinates(col, row);
-            result = getBoard().addShip(coords, ship, Orientation.values()[orientation - 1]);
 
-        } while (!result);
+         */
+        //do {
+            //Coordinates coords = new Coordinates(col, row);
+            //result = getBoard().addShip(coords, ship, orient);
+        //while(!result);
 
         System.out.println("Good placement!");
         return ship;
