@@ -35,10 +35,14 @@ public class GraphicalGame {
                 Scene scene2 = new Scene(container2);
 
                 stage1.setScene(scene1);
+                stage1.setX(300);
+                stage1.setY(0);
                 stage2.setScene(scene2);
+                stage2.setX(800);
+                stage2.setY(0);
 
-                stage1.setTitle("Battleship - " + gameMode.getExtendedName() + " Player 1");
-                stage2.setTitle("Battleship - " + gameMode.getExtendedName() + " Player 2");
+                stage1.setTitle("Battleship - " + gameMode.getExtendedName() + " - Player 1");
+                stage2.setTitle("Battleship - " + gameMode.getExtendedName() + " - Player 2");
 
                 stage1.show();
                 stage2.show();
@@ -51,6 +55,8 @@ public class GraphicalGame {
 
                 Scene scene = new Scene(container);
                 stage.setScene(scene);
+                stage.setX(500);
+                stage.setY(0);
                 stage.setTitle("Battleship - " + gameMode.getExtendedName());
                 stage.show();
             }

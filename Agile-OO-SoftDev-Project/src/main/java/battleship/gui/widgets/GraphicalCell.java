@@ -14,7 +14,7 @@ import javafx.scene.paint.Color;
 
 public class GraphicalCell extends Canvas implements CellObserver {
 
-    public static final int SIZE = 40;
+    public static final int SIZE = 35;
 
     private int id;
     private boolean mouseOver;
@@ -32,9 +32,7 @@ public class GraphicalCell extends Canvas implements CellObserver {
 
         setOnMouseEntered(new EventHandler<Event>() {
             @Override
-            public void handle(Event event) {
-                setMouseOver(true);
-            }
+            public void handle(Event event) { setMouseOver(true); }
         });
         setOnMouseExited(new EventHandler<Event>() {
             @Override

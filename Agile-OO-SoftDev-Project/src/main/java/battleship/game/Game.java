@@ -2,6 +2,7 @@ package battleship.game;
 
 import battleship.gui.GameMode;
 import battleship.gui.GraphicalGame;
+import javafx.stage.Stage;
 
 import java.util.*;
 import java.util.List;
@@ -15,16 +16,16 @@ public class Game {
     private Game() {
     }
 
-    public static void play(GameMode gameMode) {
+    public static void play(GameMode gameMode, int rows , int cols) {
 
         final List<Ship> shipsPlayer1 = new ArrayList<>();
         final List<Ship> shipsPlayer2 = new ArrayList<>();
 
-        List<Board> boards = generateBoards();
+        List<Board> boards = generateBoards(rows,cols);
 
         List<Player> players = generatePlayers(gameMode, shipsPlayer1, shipsPlayer2, boards);
-        Player player1 = players.get(0);
-        Player player2 = players.get(1);
+        //Player player1 = players.get(0);
+        //Player player2 = players.get(1);
 
         GraphicalGame.initial(gameMode, players);
 
@@ -59,10 +60,10 @@ public class Game {
 
     }
 
-    private static List<Board> generateBoards() {
+    private static List<Board> generateBoards(int rows, int cols) {
         List<Board> boards = new ArrayList<>();
-        int sizeCol, sizeRow;
 
+        /*int sizeCol, sizeRow;
 
         System.out.println("Select the number of columns of the board: ");
         do {
@@ -81,11 +82,11 @@ public class Game {
                 System.out.println("ERROR: You need to enter a value between 0 and 25");
             }
         } while (sizeRow < 0 || 25 < sizeRow);
-        scanner.nextLine();
+        scanner.nextLine();*/
 
 
-        Board board1 = new Board(sizeCol, sizeRow);
-        Board board2 = new Board(sizeCol, sizeRow);
+        Board board1 = new Board(cols, rows);
+        Board board2 = new Board(cols, rows);
         boards.add(board1);
         boards.add(board2);
         return boards;

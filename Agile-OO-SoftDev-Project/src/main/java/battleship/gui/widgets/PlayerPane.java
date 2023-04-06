@@ -1,7 +1,10 @@
 package battleship.gui.widgets;
 
+import battleship.Battleship;
 import battleship.game.*;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Background;
@@ -11,13 +14,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.util.Optional;
 
 
 public class PlayerPane extends Pane {
 
     private int sizeCol;
     private int sizeRow;
-    public static final int OFFSET_BETWEEN_SEAS = 50;
+    public static final int OFFSET_BETWEEN_SEAS = 70;
     private int offsetX = GraphicalCell.SIZE / 2;
     private int offsetY = GraphicalCell.SIZE / 2;
 
@@ -29,7 +35,7 @@ public class PlayerPane extends Pane {
     private Player otherPlayer;
 
     private enum GameProgression {
-        SHIP_PLACEMENT, PLAYING_GAME;
+        SHIP_PLACEMENT, PLAYING_GAME, END_GAME;
 
         private static GameProgression whichProgression(int nbrShipPlaced) {
             return (nbrShipPlaced < ShipType.values().length) ? SHIP_PLACEMENT : PLAYING_GAME;
@@ -87,8 +93,17 @@ public class PlayerPane extends Pane {
         });
 
 
+
+
+
+
+
+
         setOnMouseClicked(event -> {
             if (mainPlayer.amICurrentPlayer()) {
+                Alert alert = null;
+                ButtonType buttonType = null;
+                Optional<ButtonType> result = null;
 
                 System.out.println("Just Clicked");
                 if ((event.getButton() == MouseButton.PRIMARY) && (event.getTarget() instanceof GraphicalCell gCell)) {
@@ -96,7 +111,6 @@ public class PlayerPane extends Pane {
                         case SHIP_PLACEMENT:
                             if (gCell.isMine()) { // TODO condition about nonNull orientation
                                 if (mainPlayer.addShip(ShipType.values()[shipPlacedCounter], gCell.getCoordinates(), Orientation.N)) {
-
                                     System.out.println("Good Placement!");
                                     ++shipPlacedCounter;
                                     if (shipPlacedCounter == ShipType.values().length) { // TODO REFACTOR AND PRETTIER
@@ -109,12 +123,38 @@ public class PlayerPane extends Pane {
                             }
                             break;
                         case PLAYING_GAME:
+                            if (mainPlayer.getNumberOfRemainingShips() == 0) {
+                                alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setHeaderText("the other player: " + otherPlayer.getPlayerId() + " Wins!!");
+                                //System.out.println(mainPlayer.getPlayerId() + " Wins!!");
+                                alert.setContentText("The game is over. Click on the button to move back to the game menu.");
+                                buttonType = new ButtonType("OK");
+                                alert.getButtonTypes().setAll(buttonType);
+                                result = alert.showAndWait();
+                                if (result.get() == buttonType) {
+                                    Stage stage = (Stage) this.getScene().getWindow();
+                                    stage.close();
+                                    Main.main(new String[]{});
+                                }
+                            }
                             if (!gCell.isMine()) {
                                 mainPlayer.handleShot(gCell.getCoordinates(), otherPlayer);
                                 if (otherPlayer.getNumberOfRemainingShips() == 0) {
-                                    System.out.println(mainPlayer.getPlayerId() + " Wins!!");
-                                    otherPlayer.setAmICurrentPlayer(false);
-                                    mainPlayer.setAmICurrentPlayer(false);
+                                    alert = new Alert(Alert.AlertType.INFORMATION);
+                                    alert.setHeaderText("YOU, " + mainPlayer.getPlayerId() + " Win!!");
+                                    //System.out.println(mainPlayer.getPlayerId() + " Wins!!");
+                                    alert.setContentText("The game is over. Click on the button to move back to the game menu.");
+                                    buttonType = new ButtonType("OK");
+                                    alert.getButtonTypes().setAll(buttonType);
+                                    result = alert.showAndWait();
+                                    if (result.get() == buttonType) {
+                                        Stage stage = (Stage) this.getScene().getWindow();
+                                        stage.close();
+                                        Main.main(new String[]{});
+
+                                    }
+                                otherPlayer.setAmICurrentPlayer(false);
+                                mainPlayer.setAmICurrentPlayer(false);
                                 }
                                 otherPlayer.setAmICurrentPlayer(true);
                                 mainPlayer.setAmICurrentPlayer(false);
@@ -186,7 +226,7 @@ public class PlayerPane extends Pane {
                     Text text2 = new Text(Character.valueOf((char) (col + 65)).toString());
                     text2.setFill(Color.BLUE);
                     text2.setFont(Font.font(16));
-                    text2.relocate((col + 1) * GraphicalCell.SIZE, 0);
+                    text2.relocate((col + 1) * GraphicalCell.SIZE , OFFSET_BETWEEN_SEAS + (GraphicalCell.SIZE * sizeRow));
                     getChildren().add(text2);
                 }
 

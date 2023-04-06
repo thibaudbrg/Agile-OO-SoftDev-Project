@@ -14,11 +14,12 @@ import javafx.scene.text.Font;
 public class BattleShipButton extends Button {
 
     private final String FONT_PATH = "ImagesFromSpaceRunner/kenvector_future.ttf";
-    private static final String BUTTON_PRESSED_STYLE = "-fx-background-color: transparent;-fx-background-image: url('ImagesFromSpaceRunner/rocketButton.png');";
-    private static final String BUTTON_FREE_STYLE = "-fx-background-color: transparent;-fx-background-image: url('ImagesFromSpaceRunner/rocketButton.png');";
+    private static final String BUTTON_PRESSED_STYLE = "-fx-background-color: transparent;-fx-background-image: url('ImagesFromSpaceRunner/rocketButton.png');-fx-background-size: 100%;";
+    private static final String BUTTON_FREE_STYLE = "-fx-background-color: transparent;-fx-background-image: url('ImagesFromSpaceRunner/rocketButton.png');-fx-background-size: 100%;";
 
     public BattleShipButton(String text) {
         setStyle(BUTTON_FREE_STYLE);
+        setPrefSize(1,1);
         setBackground(getBackground());
         setText(text);
         setButtonFont();
