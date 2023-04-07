@@ -2,8 +2,11 @@ package battleship.game;
 
 import battleship.gui.GameMode;
 import battleship.gui.GraphicalGame;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.*;
 import java.util.List;
 import java.util.Scanner;
@@ -12,11 +15,14 @@ import java.util.ArrayList;
 import static battleship.game.Display.*;
 
 public class Game {
+
+
     static final Scanner scanner = new Scanner(System.in);
     private Game() {
     }
 
     public static void play(GameMode gameMode, int rows , int cols) {
+
 
         final List<Ship> shipsPlayer1 = new ArrayList<>();
         final List<Ship> shipsPlayer2 = new ArrayList<>();

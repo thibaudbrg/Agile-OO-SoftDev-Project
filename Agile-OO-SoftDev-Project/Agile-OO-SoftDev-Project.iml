@@ -17,5 +17,6 @@
     <orderEntry type="library" exported="" name="io.cucumber.junit" level="project" />
     <orderEntry type="library" exported="" name="io.cucumber.java" level="project" />
     <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="lib1" level="project" />
   </component>
 </module>

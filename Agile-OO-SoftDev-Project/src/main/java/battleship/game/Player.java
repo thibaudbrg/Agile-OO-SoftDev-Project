@@ -1,5 +1,9 @@
 package battleship.game;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -7,6 +11,12 @@ import java.util.List;
 import static battleship.game.Display.printBoard;
 
 public abstract class Player {
+    //File missMusic = new File("battleship/gui/sounds/miss.mp3");//////////////////////////////
+    //Media mMusic = new Media(missMusic.toURI().toString());//////////////////////////////
+    //MediaPlayer missMediaPlayer = new MediaPlayer(mMusic);//////////////////////////////
+    //File hitMusic = new File("battleship/gui/sounds/hit.mp3");//////////////////////////////
+    //Media hMusic = new Media(hitMusic.toURI().toString());//////////////////////////////
+    //MediaPlayer hitMediaPlayer = new MediaPlayer(hMusic);//////////////////////////////
     private PlayerId playerId;
     private List<Ship> remainingShips;
     private Board board;
@@ -36,18 +46,26 @@ public abstract class Player {
         CellStatus newStatus = CellStatus.OCEAN;
         if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.HIT) {
             newStatus = CellStatus.HIT;
+            //missMediaPlayer.setAutoPlay(true);//////////////////////////////
+            //missMediaPlayer.play();//////////////////////////////
             System.out.println("Already Hit");
             printBoard(otherRealPlayer.getBoard());
         } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.OCEAN) {
+            //missMediaPlayer.setAutoPlay(true);//////////////////////////////
+            //missMediaPlayer.play();//////////////////////////////
             newStatus = CellStatus.MISSED;
             System.out.println("Miss !");
             otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.MISSED);
             printBoard(otherRealPlayer.getBoard());
         } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.MISSED) {
             newStatus = CellStatus.MISSED;
+            //missMediaPlayer.setAutoPlay(true);//////////////////////////////
+            //missMediaPlayer.play();//////////////////////////////
             System.out.println("Already missed !");
             printBoard(otherRealPlayer.getBoard());
         } else {
+            //hitMediaPlayer.setAutoPlay(true);//////////////////////////////
+            //hitMediaPlayer.play();//////////////////////////////
             newStatus = CellStatus.HIT;
             System.out.println("HIT !");
             otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.HIT);
@@ -60,14 +78,12 @@ public abstract class Player {
                     System.out.println("There are still " + otherRealPlayer.getNumberOfRemainingShips() + " remaining ");
                 }
             }
-
             memory.getCell(coords).setCellStatus(newStatus);
             printBoard(otherRealPlayer.getBoard());
         }
     }
 
     //public abstract Coordinates shoot();
-
     public abstract Ship createShip(ShipType shipType, Coordinates coords, Orientation orient);
 
     public void createShips(List<Ship> shipsPlayer) { // TODO NO NEED TO THIS METHOD ANYMORE
