@@ -29,6 +29,20 @@ public class Coordinates {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof Coordinates)) {
+            return false;
+        }
+
+        Coordinates other = (Coordinates) obj;
+        return this.col == other.col && this.row == other.row;
+    }
+
     public static Coordinates at(int x, int y) {
         return new Coordinates(clamp(x), clamp(y));
     } // TODO CHANGE THIS

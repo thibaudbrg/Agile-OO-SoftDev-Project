@@ -52,6 +52,91 @@ public class AIPlayer extends Player {
         return ship;
     }
 
+    public void randomAI(Player player1, Player player2) {
+        Board memory = this.getMemory();
+        ArrayList<Coordinates> unknown = new ArrayList<>();
+
+        for (int col = 0; col < memory.getSizeCol(); col++) {
+            for (int row = 0; row < memory.getSizeRow(); row++) {
+                if (memory.getCell(new Coordinates(col,row)).getCellStatus() == CellStatus.OCEAN) {
+                    unknown.add(new Coordinates(col,row));
+                }
+            }
+        }
+
+        if (unknown.size() > 0) {
+            int randomIndex = new Random().nextInt(unknown.size());
+            this.makeMove(unknown.get(randomIndex),player1,player2);
+        }
+    }
+
+    public void basicAI(Player currentPlayer, Player player1, Player player2){
+        // setup
+        Board memory = this.getMemory();
+        ArrayList<Coordinates> unknown = new ArrayList<>();
+        ArrayList<Coordinates> hits = new ArrayList<>();
+
+        for (int col = 0; col < memory.getSizeCol(); col++) {
+            for (int row = 0; row < memory.getSizeRow(); row++) {
+                if (memory.getCell(new Coordinates(col,row)).getCellStatus() == CellStatus.OCEAN) {
+                    unknown.add(new Coordinates(col,row));
+                } else if (memory.getCell(new Coordinates(col,row)).getCellStatus() == CellStatus.HIT){
+                    hits.add(new Coordinates(col,row));
+                }
+            }
+        }
+
+        // search in neighborhood of hits
+        ArrayList<Coordinates> unknownNeighboringHits1 = new ArrayList<>();
+        ArrayList<Coordinates> unknownNeighboringHits2 = new ArrayList<>();
+
+        for (Coordinates u : unknown){
+            if(hits.contains(new Coordinates(u.getCol() +1, u.getRow())) || hits.contains(new Coordinates(u.getCol() -1, u.getRow())) || hits.contains(new Coordinates(u.getCol(), u.getRow()-1)) || hits.contains(new Coordinates(u.getCol(), u.getRow()+1))){
+                unknownNeighboringHits1.add(u);
+            }
+
+            if(hits.contains(new Coordinates(u.getCol() +2, u.getRow())) || hits.contains(new Coordinates(u.getCol() -2, u.getRow())) || hits.contains(new Coordinates(u.getCol(), u.getRow()-2)) || hits.contains(new Coordinates(u.getCol(), u.getRow()+2))){
+                unknownNeighboringHits2.add(u);
+            }
+        }
+
+        // pick "OCEAN" square with direct and level-2 neighbor both marked as "HIT"
+        for(Coordinates u : unknown){
+            if(unknownNeighboringHits1.contains(u) && unknownNeighboringHits2.contains(u)){
+                makeMove(u,player1,player2);
+                return;
+            }
+        }
+
+        // pick "OCEAN" square that has a level-1 neighbor marked as "HIT" and a level-2 neighbor marked as "HIT"
+        if(!unknownNeighboringHits1.isEmpty()){
+            Coordinates move = unknownNeighboringHits1.get(new Random().nextInt(unknownNeighboringHits1.size()));
+            makeMove(move,player1,player2);
+            return;
+        }
+
+        // checker board pattern
+        ArrayList<Coordinates> checkerBoard = new ArrayList<>();
+        for(Coordinates u : unknown){
+            if((u.getRow() + u.getCol()) % 2 == 0){
+                checkerBoard.add(u);
+            }
+        }
+
+        if(!checkerBoard.isEmpty()){
+            Coordinates move = checkerBoard.get(new Random().nextInt(checkerBoard.size()));
+            makeMove(move,player1,player2);
+            return;
+        }
+
+        // random move
+        randomAI(player1,player2);
+    }
+
+
+
+
+
     public Coordinates randomShoot() {
         int col;
         int row;

@@ -9,6 +9,10 @@ import static battleship.game.Display.*;
 
 public class Game {
     static final Scanner scanner = new Scanner(System.in);
+    private static Player currentPlayer;
+    private static Player player1;
+    private static Player player2;
+    private boolean over;
 
     private Game() {
     }
@@ -22,8 +26,8 @@ public class Game {
         Board board2 = boards.get(1);
 
         List<Player> players = generatePlayers(shipsPlayer1, shipsPlayer2, board1, board2);
-        Player player1 = players.get(0);
-        Player player2 = players.get(1);
+        player1 = players.get(0);
+        player2 = players.get(1);
 
         player1.createShips(shipsPlayer1);
         player2.createShips(shipsPlayer2);
@@ -34,12 +38,13 @@ public class Game {
         System.out.println("//===========" + PlayerId.PLAYER_2 + " Board===========\\\\");
         printBoard(player2.getBoard());
 
-        Player currentPlayer = player1;
+        currentPlayer = player1;
 
         while (true) {
             Player otherPlayer = currentPlayer == player2 ? player1 : player2 ;
             Coordinates shootCoords = currentPlayer.shoot();
             currentPlayer.handleShot(shootCoords,otherPlayer);
+            currentPlayer.makeMove(shootCoords,player1,player2);
 
             if (otherPlayer.getRemainingShips().isEmpty()) {
                 printBoard(otherPlayer.getBoard());
@@ -104,4 +109,9 @@ public class Game {
 
         return players;
     }
-}
+
+
+
+    }
+
+
