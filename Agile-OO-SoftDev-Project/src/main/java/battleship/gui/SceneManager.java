@@ -2,15 +2,12 @@ package battleship.gui;
 
 import battleship.game.Game;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -26,7 +23,6 @@ public class SceneManager {
     private static final int MENU_BUTTON_START_Y = 325;
 
     private final AnchorPane mainPane;
-    private final Scene mainScene;
     private final Stage mainStage;
 
     private BattleShipSubScene rulesSubScene;
@@ -39,12 +35,10 @@ public class SceneManager {
     ComboBox<Integer> colComboBox;
 
 
-
-
     public SceneManager() {
         menuButtons = new ArrayList<>();
         mainPane = new AnchorPane();
-        mainScene = new Scene(mainPane, WIDTH, HEIGHT);
+        Scene mainScene = new Scene(mainPane, WIDTH, HEIGHT);
         mainScene.getStylesheets().add("battleship/gui/Subscene.css");
         mainStage = new Stage();
         mainStage.setScene(mainScene);
@@ -108,7 +102,7 @@ public class SceneManager {
         difficultySubScene.getPane().getChildren().add(chooseDifficultyLabel);
         chooseDifficultyLabel.setLayoutX(100);
         chooseDifficultyLabel.setLayoutY(45);
-        chooseDifficultyLabel.setPrefSize(400,50);
+        chooseDifficultyLabel.setPrefSize(400, 50);
         chooseDifficultyLabel.setCenterShape(true);
 
         GridPane grid = new GridPane();
@@ -183,19 +177,7 @@ public class SceneManager {
         BattleShipButton rulesButton = new BattleShipButton("Rules");
         rulesButton.setLayoutX(x);
         rulesButton.setLayoutY(y);
-        //addMenuButtons(rulesButton);
-        rulesButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent arg0) {
-                /*try {
-                    SoundEffects.playSound(new URI(BUTTON_SFX));
-                } catch (URISyntaxException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }*/
-                showSubScene(rulesSubScene);
-            }
-        });
+        rulesButton.setOnAction(arg0 -> showSubScene(rulesSubScene));
         return rulesButton;
     }
 
@@ -203,53 +185,20 @@ public class SceneManager {
         BattleShipButton startButton = new BattleShipButton("Start");
         startButton.setLayoutX(x);
         startButton.setLayoutY(y);
-        //addMenuButtons(startButton, );
-        startButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent arg0) {
-                /*try {
-                    SoundEffects.playSound(new URI(BUTTON_SFX));
-                } catch (URISyntaxException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }*/
-                showSubScene(difficultySubScene);
-            }
-        });
+        startButton.setOnAction(arg0 -> showSubScene(difficultySubScene));
         return startButton;
     }
 
-    /*
-    private BattleShipButton createPlayButton(double x, double y) {
-            BattleShipButton playButton = new BattleShipButton("Play");
-        playButton.setLayoutX(x);
-        playButton.setLayoutY(y);
-        playButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                mainStage.hide();
-                //GameViewManager gameViewManager = new GameViewManager();
-                //gameViewManagger.createNewGame(mainStage, chosenShip);
-            }
-        });
-        return playButton;
-    }
 
-     */
     private BattleShipButton createMultiButton(double x, double y) {
         BattleShipButton multiButton = new BattleShipButton("Multiplayer");
         multiButton.setLayoutX(x);
         multiButton.setLayoutY(y);
-        multiButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                int numRows = rowComboBox.getValue();
-                int numCols = colComboBox.getValue();
-                mainStage.hide();
-                Game.play(GameMode.MULTIPLAYER,numRows,numCols);
-                //GameViewManager gameViewManagger = new GameViewManager();
-                //gameViewManagger.createNewGame(mainStage, chosenShip);
-            }
+        multiButton.setOnAction(event -> {
+            int numRows = rowComboBox.getValue();
+            int numCols = colComboBox.getValue();
+            mainStage.hide();
+            Game.play(GameMode.MULTIPLAYER, numRows, numCols);
         });
         return multiButton;
     }
@@ -258,16 +207,11 @@ public class SceneManager {
         BattleShipButton easyModeButton = new BattleShipButton("Easy Bot");
         easyModeButton.setLayoutX(x);
         easyModeButton.setLayoutY(y);
-        easyModeButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                //GraphicalGame graphicalGame = new GraphicalGame(GameMode.EASY);
-                int numRows = rowComboBox.getValue();
-                int numCols = colComboBox.getValue();
-                mainStage.hide();
-                Game.play(GameMode.EASY,numRows,numCols);
-                // TODO
-            }
+        easyModeButton.setOnAction(event -> {
+            int numRows = rowComboBox.getValue();
+            int numCols = colComboBox.getValue();
+            mainStage.hide();
+            Game.play(GameMode.EASY, numRows, numCols);
         });
         return easyModeButton;
     }
@@ -276,18 +220,11 @@ public class SceneManager {
         BattleShipButton HardModeButton = new BattleShipButton("Hard Bot");
         HardModeButton.setLayoutX(x);
         HardModeButton.setLayoutY(y);
-        HardModeButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                //GraphicalGame graphicalGame = new GraphicalGame(GameMode.HARD);
-                // TODO: Go to the Solo mode with easy AI
-                //GameViewManager gameViewManagger = new GameViewManager();
-                //gameViewManagger.createNewGame(mainStage, chosenShip);
-                int numRows = rowComboBox.getValue();
-                int numCols = colComboBox.getValue();
-                mainStage.hide();
-                Game.play(GameMode.HARD,numRows,numCols);
-            }
+        HardModeButton.setOnAction(event -> {
+            int numRows = rowComboBox.getValue();
+            int numCols = colComboBox.getValue();
+            mainStage.hide();
+            Game.play(GameMode.HARD, numRows, numCols);
         });
         return HardModeButton;
     }
@@ -296,13 +233,9 @@ public class SceneManager {
         BattleShipButton exitButton = new BattleShipButton("Exit");
         exitButton.setLayoutX(x);
         exitButton.setLayoutY(y);
-        //addMenuButtons(exitButton, MENU_BUTTON_START_X, MENU_BUTTON_START_Y + menuButtons.size() * 100);
-        exitButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent arg0) {
-                Platform.exit();
-                // mainStage.close();
-            }
+        exitButton.setOnAction(arg0 -> {
+            Platform.exit();
+            // mainStage.close();
         });
 
         return exitButton;
@@ -325,18 +258,8 @@ public class SceneManager {
         mainPane.getChildren().add(logo);
         logo.setLayoutX(400);
         logo.setLayoutY(50);
-        logo.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-                logo.setEffect(new DropShadow(100, Color.YELLOW));
-            }
-        });
-        logo.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-                logo.setEffect(null);
-            }
-        });
+        logo.setOnMouseEntered(e -> logo.setEffect(new DropShadow(100, Color.YELLOW)));
+        logo.setOnMouseExited(e -> logo.setEffect(null));
     }
 
 }

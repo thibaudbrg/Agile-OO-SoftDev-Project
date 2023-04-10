@@ -2,6 +2,8 @@ package battleship.game;
 
 import battleship.gui.GameMode;
 import battleship.gui.GraphicalGame;
+import battleship.gui.widgets.GraphicalCell;
+import battleship.gui.widgets.PlayerPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -11,59 +13,67 @@ import java.util.*;
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
 
 import static battleship.game.Display.*;
 
 public class Game {
+    private static Game.TurnFinishedListener turnFinishedListener;
+    private static Semaphore turnSemaphore;
 
-
-    static final Scanner scanner = new Scanner(System.in);
-    private Game() {
+    public interface TurnFinishedListener {
+        void onTurnFinished();
     }
 
-    public static void play(GameMode gameMode, int rows , int cols) {
+    private Game() {}
+
+    public static Semaphore getTurnSemaphore() {
+        return turnSemaphore;
+    }
+
+    public static void play(GameMode gameMode, int rows, int cols) {
 
 
         final List<Ship> shipsPlayer1 = new ArrayList<>();
         final List<Ship> shipsPlayer2 = new ArrayList<>();
 
-        List<Board> boards = generateBoards(rows,cols);
+        List<Board> boards = generateBoards(rows, cols);
 
         List<Player> players = generatePlayers(gameMode, shipsPlayer1, shipsPlayer2, boards);
-        //Player player1 = players.get(0);
-        //Player player2 = players.get(1);
+        Player player1 = players.get(0);
+        Player player2 = players.get(1);
 
-        GraphicalGame.initial(gameMode, players);
+        GraphicalGame graphicalGame = new GraphicalGame(gameMode, players);
+        turnSemaphore = new Semaphore(0);
+        turnFinishedListener = graphicalGame;
 
 
-        /*
-        player1.createShips(shipsPlayer1);
-        player2.createShips(shipsPlayer2);
+        PlayerId currentPlayer = PlayerId.PLAYER_1;
 
-        System.out.println("//===========" + PlayerId.PLAYER_1 + " Board===========\\\\");
-        printBoard(player1.getBoard());
-        System.out.println("----------------------------------------");
-        System.out.println("//===========" + PlayerId.PLAYER_2 + " Board===========\\\\");
-        printBoard(player2.getBoard());
-
-        Player currentPlayer = player1;
-
+        // You can use an infinite loop with a proper exit condition (e.g., when one player has no remaining ships)
         while (true) {
-            Player otherPlayer = currentPlayer == player2 ? player1 : player2;
-            Coordinates shootCoords = currentPlayer.shoot();
-            currentPlayer.handleShot(shootCoords, otherPlayer);
-
-            if (otherPlayer.getRemainingShips().isEmpty()) {
-                printBoard(otherPlayer.getBoard());
-
-                System.out.println(currentPlayer.getPlayerId() + " Wins!");
-                break;
+            System.out.println("in the loop");
+            if (currentPlayer == PlayerId.PLAYER_1) {
+                handleTurn(graphicalGame, player1, player2);
+            } else {
+                handleTurn(graphicalGame, player2, player1);
             }
-            currentPlayer = currentPlayer == player2 ? player1 : player2;
+
+
+            // Wait for the turn to finish
+            try {
+                turnSemaphore.acquire();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+
+            // Check for exit conditions (e.g., no remaining ships for one player)
+            //...
+            //turnFinishedListener.onTurnFinished();
+            currentPlayer = currentPlayer.next();
+            ;
         }
-
-         */
-
     }
 
     private static List<Board> generateBoards(int rows, int cols) {
@@ -139,5 +149,15 @@ public class Game {
          */
 
         return players;
+    }
+
+    public static void handleTurn(GraphicalGame graphicalGame, Player currentPlayer, Player otherPlayer) {
+        // Make currentPlayerPane non-clickable and otherPlayerPane clickable
+        graphicalGame.setPlayerPaneClickable(currentPlayer, otherPlayer);
+        graphicalGame.setPlayerPaneNonClickable(otherPlayer, currentPlayer);
+
+        // Implement shot and game progress logic
+        // This logic can be implemented either in the click event handler inside setPlayerPaneClickable or as a separate method called from there.
+        //...
     }
 }

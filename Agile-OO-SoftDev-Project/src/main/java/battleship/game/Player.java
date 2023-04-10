@@ -158,5 +158,4 @@ public abstract class Player {
     private boolean isInsideBoard(int col, int row) {
         return col >= 0 && col < board.getSizeRow() && row >= 0 && row < board.getSizeCol();
     }
-
 }

@@ -1,47 +1,34 @@
 package battleship.gui.widgets;
 
-import battleship.Battleship;
 import battleship.game.*;
 import javafx.geometry.Insets;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-
-import java.io.File;
-import java.util.Optional;
 
 
 public class PlayerPane extends Pane {
 
-    private int sizeCol;
-    private int sizeRow;
+    private final int sizeCol;
+    private final int sizeRow;
     public static final int OFFSET_BETWEEN_SEAS = 70;
-    private int offsetX = GraphicalCell.SIZE / 2;
-    private int offsetY = GraphicalCell.SIZE / 2;
+    private final int offsetX = GraphicalCell.SIZE / 2;
+    private final int offsetY = GraphicalCell.SIZE / 2;
 
     private Orientation currentOrientation = Orientation.N;
 
-    private int shipPlacedCounter;
+    private final Player player;
+    private final Player otherPlayer;
 
-    private Player mainPlayer;
-    private Player otherPlayer;
-
-    ProgressBar mainPlayerProgressBar;
-    ProgressBar otherPlayerProgressBar;
-    boolean theOtherPlayerAlreadyWon = false;
+    private ProgressBar progressBar;
+    private ProgressBar otherProgressBar;
 
     ////File winMusic = new File("battleship/gui/sounds/win.mp3");//////////////////////////////
     ////Media wMusic = new Media(winMusic.toURI().toString());//////////////////////////////
@@ -51,45 +38,23 @@ public class PlayerPane extends Pane {
     ////Media sMusic = new Media(shipMusic.toURI().toString());//////////////////////////////
     ////MediaPlayer shipMediaPlayer = new MediaPlayer(sMusic);//////////////////////////////
 
-    private enum GameProgression {
-        SHIP_PLACEMENT, PLAYING_GAME;
+    public PlayerPane(Player player, Player otherPlayer) {
 
-        private static GameProgression whichProgression(int nbrShipPlaced) {
-            return (nbrShipPlaced < ShipType.values().length) ? SHIP_PLACEMENT : PLAYING_GAME;
-        }
-    }
-
-    public PlayerPane(Player mainPlayer, Player otherPlayer) {
-
-        this.mainPlayer = mainPlayer;
+        this.player = player;
         this.otherPlayer = otherPlayer;
-        sizeCol = mainPlayer.getBoard().getSizeCol();
-        sizeRow = mainPlayer.getBoard().getSizeRow();
+        sizeCol = player.getBoard().getSizeCol();
+        sizeRow = player.getBoard().getSizeRow();
 
         setMinSize(sizeRow * GraphicalCell.SIZE + offsetX, 2 * (sizeCol * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS);
         setMaxSize(sizeRow * GraphicalCell.SIZE + offsetX, 2 * (sizeCol * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS);
         setPrefSize(sizeRow * GraphicalCell.SIZE + offsetX, 2 * (sizeCol * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS);
         setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
-/*
-        setBackground(
-                new Background(
-                        new BackgroundImage(
-                                new Image(Objects.requireNonNull(PlayerPane.class.getClassLoader().getResourceAsStream("assets/background.png"))),
-                                BackgroundRepeat.NO_REPEAT,
-                                BackgroundRepeat.NO_REPEAT,
-                                new BackgroundPosition(Side.RIGHT, 0, true, Side.BOTTOM, 0, true),
-                                BackgroundSize.DEFAULT)));
 
- */
         loadBothSea();
-        if (mainPlayer.getPlayerId() == PlayerId.PLAYER_1) {
-            mainPlayer.setAmICurrentPlayer(true);
-            otherPlayer.setAmICurrentPlayer(false); // TODO SHOULD BE USELESS
-        }
 
         setOnKeyPressed(event -> {
-            if (mainPlayer.amICurrentPlayer()) {
+            if (player.amICurrentPlayer()) { // TODO
                 requestFocus();
                 System.out.println("Key code: " + event.getCode());
                 if (event.getCode() == KeyCode.ESCAPE) System.out.println("Escape");
@@ -100,9 +65,8 @@ public class PlayerPane extends Pane {
         });
 
 
-
         setOnKeyReleased(event -> {
-            if (mainPlayer.amICurrentPlayer()) {
+            if (player.amICurrentPlayer()) { // TODO
                 if (!(event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN ||
                         event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.RIGHT)) {
                     currentOrientation = null;
@@ -112,84 +76,6 @@ public class PlayerPane extends Pane {
         });
 
 
-
-        setOnMouseClicked(event -> {
-            if (mainPlayer.amICurrentPlayer()) {
-                System.out.println("Just Clicked");
-                if ((event.getButton() == MouseButton.PRIMARY) && (event.getTarget() instanceof GraphicalCell gCell)) {
-                    switch (GameProgression.whichProgression(shipPlacedCounter)) {
-                        case SHIP_PLACEMENT:
-                            if (gCell.isMine()) { // TODO condition about nonNull orientation
-
-                                if (currentOrientation != null && mainPlayer.addShip(ShipType.values()[shipPlacedCounter], gCell.getCoordinates(), currentOrientation)) {
-                                    ////shipMediaPlayer.setAutoPlay(true);//////////////////////////////
-                                    ////shipMediaPlayer.play();//////////////////////////////
-                                    System.out.println("Good Placement!");
-                                    ++shipPlacedCounter;
-                                    if (shipPlacedCounter == ShipType.values().length) { // TODO REFACTOR AND PRETTIER
-                                        otherPlayer.setAmICurrentPlayer(true);
-                                        mainPlayer.setAmICurrentPlayer(false);
-                                    }
-                                } else {
-                                    System.out.println("Placement Failed!");
-                                }
-                            }
-                            break;
-                        case PLAYING_GAME:
-                            mainPlayerProgressBar.setVisible(true);
-                            otherPlayerProgressBar.setVisible(true);
-                            Alert alert = null;
-                            ButtonType buttonType = null;
-                            Optional<ButtonType> result = null;
-                            if (mainPlayer.getNumberOfRemainingShips() == 0) {
-                                theOtherPlayerAlreadyWon = true;
-                                //winMediaPlayer.setAutoPlay(true);//////////////////////////////
-                                //winMediaPlayer.play();//////////////////////////////
-                                alert = new Alert(Alert.AlertType.INFORMATION);
-                                alert.setHeaderText("the other player: " + otherPlayer.getPlayerId() + " Wins!!");
-                                //System.out.println(mainPlayer.getPlayerId() + " Wins!!");
-                                alert.setContentText("The game is over. Click on the button to move back to the game menu.");
-                                buttonType = new ButtonType("OK");
-                                alert.getButtonTypes().setAll(buttonType);
-                                result = alert.showAndWait();
-                                if (result.get() == buttonType) {
-                                    Stage stage = (Stage) this.getScene().getWindow();
-                                    stage.close();
-                                    Main.main(new String[]{});
-                                }
-                            }
-                            if (!gCell.isMine()) {
-                                mainPlayer.handleShot(gCell.getCoordinates(), otherPlayer);
-                                if (otherPlayer.getNumberOfRemainingShips() == 0 && !theOtherPlayerAlreadyWon) {
-                                    //winMediaPlayer.setAutoPlay(true);//////////////////////////////
-                                    //winMediaPlayer.play();//////////////////////////////
-                                    alert = new Alert(Alert.AlertType.INFORMATION);
-                                    alert.setHeaderText("YOU, " + mainPlayer.getPlayerId() + " Win!!");
-                                    //System.out.println(mainPlayer.getPlayerId() + " Wins!!");
-                                    alert.setContentText("The game is over. Click on the button to move back to the game menu.");
-                                    buttonType = new ButtonType("OK");
-                                    alert.getButtonTypes().setAll(buttonType);
-                                    result = alert.showAndWait();
-                                    if (result.get() == buttonType) {
-                                        Stage stage = (Stage) this.getScene().getWindow();
-                                        stage.close();
-                                        Main.main(new String[]{});
-
-                                    }
-                                otherPlayer.setAmICurrentPlayer(false);
-                                mainPlayer.setAmICurrentPlayer(false);
-                                }
-                                mainPlayerProgressBar.setProgress((double) mainPlayer.getNumberOfRemainingShips() / ShipType.values().length);
-                                otherPlayerProgressBar.setProgress((double) otherPlayer.getNumberOfRemainingShips() / ShipType.values().length);
-                                otherPlayer.setAmICurrentPlayer(true);
-                                mainPlayer.setAmICurrentPlayer(false);
-                            }
-
-
-                    }
-                }
-            }
-        });
     }
 
     private Orientation updateOrientation(KeyCode code) {
@@ -220,29 +106,28 @@ public class PlayerPane extends Pane {
 
         Label mainPlayerlabel = new Label("Up:");
         mainPlayerlabel.setFont(new Font(16));
-        mainPlayerlabel.relocate(22,offsetY - 30 + (sizeCol * GraphicalCell.SIZE) + (OFFSET_BETWEEN_SEAS / 2));
+        mainPlayerlabel.relocate(22, offsetY - 30 + (sizeCol * GraphicalCell.SIZE) + (OFFSET_BETWEEN_SEAS / 2));
         getChildren().add(mainPlayerlabel);
 
         Label otherPlayerlabel = new Label("Down:");
         otherPlayerlabel.setFont(new Font(16));
-        otherPlayerlabel.relocate(22,offsetY + (sizeCol * GraphicalCell.SIZE) + (OFFSET_BETWEEN_SEAS / 2));
+        otherPlayerlabel.relocate(22, offsetY + (sizeCol * GraphicalCell.SIZE) + (OFFSET_BETWEEN_SEAS / 2));
         getChildren().add(otherPlayerlabel);
 
 
+        progressBar = new ProgressBar();
+        progressBar.setProgress(1.0);
+        progressBar.setPrefSize(200, 20); // Set width and height
+        progressBar.relocate(75, offsetY - 30 + (sizeCol * GraphicalCell.SIZE) + (OFFSET_BETWEEN_SEAS / 2)); // Set position
+        progressBar.setVisible(false);
+        getChildren().add(progressBar); // Add progress bar to scene
 
-        mainPlayerProgressBar = new ProgressBar();
-        mainPlayerProgressBar.setProgress(1.0);
-        mainPlayerProgressBar.setPrefSize(200, 20); // Set width and height
-        mainPlayerProgressBar.relocate(75, offsetY - 30 + (sizeCol * GraphicalCell.SIZE) + (OFFSET_BETWEEN_SEAS / 2)); // Set position
-        mainPlayerProgressBar.setVisible(false);
-        getChildren().add(mainPlayerProgressBar); // Add progress bar to scene
-
-        otherPlayerProgressBar = new ProgressBar();
-        otherPlayerProgressBar.setProgress(1.0);
-        otherPlayerProgressBar.setPrefSize(200, 20); // Set width and height
-        otherPlayerProgressBar.relocate(75, offsetY + (sizeCol * GraphicalCell.SIZE) + (OFFSET_BETWEEN_SEAS / 2)); // Set position
-        otherPlayerProgressBar.setVisible(false);
-        getChildren().add(otherPlayerProgressBar); // Add progress bar to scene
+        otherProgressBar = new ProgressBar();
+        otherProgressBar.setProgress(1.0);
+        otherProgressBar.setPrefSize(200, 20); // Set width and height
+        otherProgressBar.relocate(75, offsetY + (sizeCol * GraphicalCell.SIZE) + (OFFSET_BETWEEN_SEAS / 2)); // Set position
+        otherProgressBar.setVisible(false);
+        getChildren().add(otherProgressBar); // Add progress bar to scene
 
 
         for (int row = 0; row < sizeCol; row++) {
@@ -283,11 +168,11 @@ public class PlayerPane extends Pane {
                     Text text2 = new Text(Character.valueOf((char) (col + 65)).toString());
                     text2.setFill(Color.BLUE);
                     text2.setFont(Font.font(16));
-                    text2.relocate((col + 1) * GraphicalCell.SIZE , OFFSET_BETWEEN_SEAS + (GraphicalCell.SIZE * sizeRow));
+                    text2.relocate((col + 1) * GraphicalCell.SIZE, OFFSET_BETWEEN_SEAS + (GraphicalCell.SIZE * sizeRow));
                     getChildren().add(text2);
                 }
 
-                GraphicalCell t = new GraphicalCell(mainPlayer.getBoard().getCell(new Coordinates(col, row)), true);
+                GraphicalCell t = new GraphicalCell(player.getBoard().getCell(new Coordinates(col, row)), true);
                 t.relocate(offsetX + (GraphicalCell.SIZE * col), offsetY + GraphicalCell.SIZE * sizeCol + OFFSET_BETWEEN_SEAS + (GraphicalCell.SIZE * row));
                 getChildren().add(t);
             }
@@ -296,5 +181,15 @@ public class PlayerPane extends Pane {
 
     public int getSizeBoard() {
         return sizeCol;
+    }
+
+    public void setProgressBarsVisible(boolean visible) {
+        progressBar.setVisible(visible);
+        otherProgressBar.setVisible(visible);
+    }
+
+    public void setProgressBarsProgress(double playerChange, double otherPlayerChange) {
+        progressBar.setProgress(playerChange);
+        otherProgressBar.setProgress(otherPlayerChange);
     }
 }
