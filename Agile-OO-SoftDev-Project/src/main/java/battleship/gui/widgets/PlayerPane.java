@@ -1,30 +1,23 @@
 package battleship.gui.widgets;
 
-import battleship.Battleship;
 import battleship.game.*;
+import battleship.gui.GameInfo;
 import javafx.geometry.Insets;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.File;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Optional;
 
 
-public class PlayerPane extends Pane {
+public class PlayerPane extends Pane implements Observer {
 
     private int sizeCol;
     private int sizeRow;
@@ -32,16 +25,22 @@ public class PlayerPane extends Pane {
     private int offsetX = GraphicalCell.SIZE / 2;
     private int offsetY = GraphicalCell.SIZE / 2;
 
+    private int infoSize= 100 ;
+
     private Orientation currentOrientation = Orientation.N;
 
     private int shipPlacedCounter;
 
     private Player mainPlayer;
     private Player otherPlayer;
+    VBox gameInfoBox;
 
     ProgressBar mainPlayerProgressBar;
     ProgressBar otherPlayerProgressBar;
     boolean theOtherPlayerAlreadyWon = false;
+
+
+
 
     ////File winMusic = new File("battleship/gui/sounds/win.mp3");//////////////////////////////
     ////Media wMusic = new Media(winMusic.toURI().toString());//////////////////////////////
@@ -65,10 +64,11 @@ public class PlayerPane extends Pane {
         this.otherPlayer = otherPlayer;
         sizeCol = mainPlayer.getBoard().getSizeCol();
         sizeRow = mainPlayer.getBoard().getSizeRow();
+        mainPlayer.getGameInfo().addObserver(this);
 
-        setMinSize(sizeRow * GraphicalCell.SIZE + offsetX, 2 * (sizeCol * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS);
-        setMaxSize(sizeRow * GraphicalCell.SIZE + offsetX, 2 * (sizeCol * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS);
-        setPrefSize(sizeRow * GraphicalCell.SIZE + offsetX, 2 * (sizeCol * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS);
+        setMinSize(sizeRow * GraphicalCell.SIZE + 2*offsetX, 2 * (sizeCol * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
+        setMaxSize(sizeRow * GraphicalCell.SIZE + 2*offsetX, 2 * (sizeCol * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
+        setPrefSize(sizeRow * GraphicalCell.SIZE + 2*offsetX, 2 * (sizeCol * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS+ infoSize);
         setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
 /*
@@ -88,34 +88,17 @@ public class PlayerPane extends Pane {
             otherPlayer.setAmICurrentPlayer(false); // TODO SHOULD BE USELESS
         }
 
-        setOnKeyPressed(event -> {
+        this.setOnKeyPressed(event -> {
             if (mainPlayer.amICurrentPlayer()) {
-                requestFocus();
-                System.out.println("Key code: " + event.getCode());
-                if (event.getCode() == KeyCode.ESCAPE) System.out.println("Escape");
-                updateOrientation(event.getCode());
                 if (currentOrientation == null) currentOrientation = Orientation.N;
-                System.out.println("Pressed" + currentOrientation);
+                updateOrientation(event.getCode());
             }
         });
-
-
-
-        setOnKeyReleased(event -> {
-            if (mainPlayer.amICurrentPlayer()) {
-                if (!(event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN ||
-                        event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.RIGHT)) {
-                    currentOrientation = null;
-                }
-                System.out.println("Released" + currentOrientation);
-            }
-        });
-
-
 
         setOnMouseClicked(event -> {
             if (mainPlayer.amICurrentPlayer()) {
-                System.out.println("Just Clicked");
+                requestFocus();
+                //System.out.println("Just Clicked");
                 if ((event.getButton() == MouseButton.PRIMARY) && (event.getTarget() instanceof GraphicalCell gCell)) {
                     switch (GameProgression.whichProgression(shipPlacedCounter)) {
                         case SHIP_PLACEMENT:
@@ -124,14 +107,13 @@ public class PlayerPane extends Pane {
                                 if (currentOrientation != null && mainPlayer.addShip(ShipType.values()[shipPlacedCounter], gCell.getCoordinates(), currentOrientation)) {
                                     ////shipMediaPlayer.setAutoPlay(true);//////////////////////////////
                                     ////shipMediaPlayer.play();//////////////////////////////
-                                    System.out.println("Good Placement!");
+                                    //mainPlayer.getGameInfo().addInfo("Good Placement!");
+
                                     ++shipPlacedCounter;
                                     if (shipPlacedCounter == ShipType.values().length) { // TODO REFACTOR AND PRETTIER
                                         otherPlayer.setAmICurrentPlayer(true);
                                         mainPlayer.setAmICurrentPlayer(false);
                                     }
-                                } else {
-                                    System.out.println("Placement Failed!");
                                 }
                             }
                             break;
@@ -292,7 +274,38 @@ public class PlayerPane extends Pane {
                 getChildren().add(t);
             }
         }
+
+
+        gameInfoBox = new VBox();
+        gameInfoBox.setStyle("-fx-background-color: white;");
+        gameInfoBox.setPrefSize(2*offsetX + (GraphicalCell.SIZE * sizeRow), infoSize);
+        gameInfoBox.relocate(0,2*GraphicalCell.SIZE*sizeCol+2*offsetY+OFFSET_BETWEEN_SEAS);
+        getChildren().add(gameInfoBox);
+        update(mainPlayer.getGameInfo(),new Object());
     }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        GameInfo info = (GameInfo) o;
+        Label titleLabel = new Label("Game Info");
+        titleLabel.setFont(new Font(18));
+
+        Label gameNewInfoLabel = new Label("- "+info.getNewInfo());
+        gameNewInfoLabel.setFont(new Font(12));
+        gameNewInfoLabel.setWrapText(true);
+        gameNewInfoLabel.setMaxWidth(2*GraphicalCell.SIZE*sizeCol+2*offsetY+OFFSET_BETWEEN_SEAS-5);
+
+        Label gameLastInfoLabel = new Label("- " + info.getLastInfo());
+        gameLastInfoLabel.setFont(new Font(12));
+        gameLastInfoLabel.setWrapText(true);
+        gameLastInfoLabel.setMaxWidth(2*GraphicalCell.SIZE*sizeCol+2*offsetY+OFFSET_BETWEEN_SEAS-5);
+
+
+        gameInfoBox.getChildren().clear();
+        gameInfoBox.getChildren().addAll(titleLabel, gameNewInfoLabel,gameLastInfoLabel);
+    }
+
+
 
     public int getSizeBoard() {
         return sizeCol;

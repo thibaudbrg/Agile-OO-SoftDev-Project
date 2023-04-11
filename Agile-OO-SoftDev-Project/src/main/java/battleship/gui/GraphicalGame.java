@@ -1,8 +1,10 @@
 package battleship.gui;
 
+import battleship.game.Orientation;
 import battleship.game.Player;
 import battleship.gui.widgets.PlayerPane;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -21,10 +23,8 @@ public class GraphicalGame {
             case MULTIPLAYER -> {
                 Stage stage1 = new Stage();
                 Stage stage2 = new Stage();
-
                 PlayerPane playerPane1 = new PlayerPane(player1, player2);
                 PlayerPane playerPane2 = new PlayerPane(player2, player1);
-
                 BorderPane container1 = new BorderPane();
                 BorderPane container2 = new BorderPane();
 
@@ -34,7 +34,9 @@ public class GraphicalGame {
                 Scene scene1 = new Scene(container1);
                 Scene scene2 = new Scene(container2);
 
+
                 stage1.setScene(scene1);
+
                 stage1.setX(300);
                 stage1.setY(0);
                 stage2.setScene(scene2);

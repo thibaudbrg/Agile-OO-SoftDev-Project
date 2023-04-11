@@ -1,5 +1,6 @@
 package battleship.game;
 
+import battleship.gui.GameInfo;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -22,11 +23,18 @@ public abstract class Player {
     private Board board;
     private Board memory;
     private boolean amICurrentPlayer;
+
+    public GameInfo getGameInfo() {
+        return gameInfo;
+    }
+
+    private GameInfo gameInfo;
     public Player(List<Ship> remainingShips, Board board, PlayerId playerId) {
         this.remainingShips = remainingShips;
         this.board = board;
         this.playerId = playerId;
         this.memory = new Board(board.getSizeCol(), board.getSizeRow());
+        this.gameInfo=new GameInfo( "You are going to place the ship: " + ShipType.CARRIER+" It has a length of " + ShipType.CARRIER.getSize(),"Welcome to player: "+ (playerId.ordinal()+1)+ ". GOOD LUCK :)");
     }
 
     public List<Ship> getRemainingShips() {
@@ -48,34 +56,33 @@ public abstract class Player {
             newStatus = CellStatus.HIT;
             //missMediaPlayer.setAutoPlay(true);//////////////////////////////
             //missMediaPlayer.play();//////////////////////////////
-            System.out.println("Already Hit");
+            gameInfo.addInfo("Already Hit");
             printBoard(otherRealPlayer.getBoard());
         } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.OCEAN) {
             //missMediaPlayer.setAutoPlay(true);//////////////////////////////
             //missMediaPlayer.play();//////////////////////////////
             newStatus = CellStatus.MISSED;
-            System.out.println("Miss !");
+            gameInfo.addInfo("Miss !");
             otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.MISSED);
             printBoard(otherRealPlayer.getBoard());
         } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.MISSED) {
             newStatus = CellStatus.MISSED;
             //missMediaPlayer.setAutoPlay(true);//////////////////////////////
             //missMediaPlayer.play();//////////////////////////////
-            System.out.println("Already missed !");
+            gameInfo.addInfo("Already missed !");
             printBoard(otherRealPlayer.getBoard());
         } else {
             //hitMediaPlayer.setAutoPlay(true);//////////////////////////////
             //hitMediaPlayer.play();//////////////////////////////
             newStatus = CellStatus.HIT;
-            System.out.println("HIT !");
+            gameInfo.addInfo("HIT !");
             otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.HIT);
             Iterator<Ship> iterator = otherRealPlayer.remainingShips.iterator();
             while (iterator.hasNext()) {
                 Ship ship = iterator.next();
                 if (ship.hasSunk()) {
-                    System.out.println("One ship sank ");
+                    gameInfo.addInfo("One ship sank "+ "There are still " + otherRealPlayer.getNumberOfRemainingShips() + " remaining ");
                     iterator.remove();
-                    System.out.println("There are still " + otherRealPlayer.getNumberOfRemainingShips() + " remaining ");
                 }
             }
             memory.getCell(coords).setCellStatus(newStatus);
@@ -118,11 +125,13 @@ public abstract class Player {
         Ship ship = new Ship(new ArrayList<>(), shipType);
 
         //System.out.println(getPlayerId() + " places ship");
-        System.out.println("You are going to place the ship: " + shipType);
-        System.out.println("It has a length of " + shipType.getSize());
+        gameInfo.addInfo("Good Placement!");
+        if(shipType!=ShipType.DESTROYER){
+            gameInfo.addInfo("You are going to place the ship: " + shipType.next()+" It has a length of " + shipType.next().getSize());
+        }
 
         if(board.getCell(new Coordinates(col,row)).getCellStatus()==CellStatus.SHIP){
-            System.out.println("The ship collides with another ship or is out of the board! Try again.");
+            gameInfo.addInfo("The ship collides with another ship or is out of the board! Try again.");
             return false;
         }
 
@@ -140,7 +149,7 @@ public abstract class Player {
             row += changes[1];
 
             if (!isInsideBoard(col, row) || board.getCell(new Coordinates(col,row)).getCellStatus() == CellStatus.SHIP) {
-                System.out.println("The ship collides with another ship or is out of the board! Try again.");
+                gameInfo.addInfo("The ship collides with another ship or is out of the board! Try again.");
                 return false;
             }
 

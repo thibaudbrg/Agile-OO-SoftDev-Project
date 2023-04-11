@@ -41,4 +41,11 @@ public enum ShipType {
     public static ShipType random() {
         return values()[random.nextInt(values().length)];
     }
+    public ShipType next() {
+        int nextOrdinal = this.ordinal() + 1;
+        if (nextOrdinal >= values().length) {
+            nextOrdinal = 0;
+        }
+        return values()[nextOrdinal];
+    }
 }
