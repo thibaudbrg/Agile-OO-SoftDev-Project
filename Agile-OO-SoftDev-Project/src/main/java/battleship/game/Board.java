@@ -1,10 +1,6 @@
 package battleship.game;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Board  {
-//public class Board {
     private final int sizeCol;
     private final int sizeRow;
     private Cell[][] boardArray;
@@ -30,8 +26,8 @@ public class Board  {
 
     private Cell[][] fillBoard(int sizeCol, int sizeRow) {
         boardArray = new Cell[this.sizeRow][this.sizeCol];
-        for (int col = 0; col < sizeCol; col++) {
-            for (int row = 0; row < sizeRow; row++) {
+        for (int col = 0; col < sizeRow; col++) {
+            for (int row = 0; row < sizeCol; row++) {
                 Cell cell = new Cell(new Coordinates(col, row), CellStatus.OCEAN);
                 boardArray[row][col] = cell ;
             }

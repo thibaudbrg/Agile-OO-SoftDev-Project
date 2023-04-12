@@ -2,17 +2,9 @@ package battleship.game;
 
 import battleship.gui.GameMode;
 import battleship.gui.GraphicalGame;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
 
-import java.io.File;
-import java.util.*;
-import java.util.List;
-import java.util.Scanner;
 import java.util.ArrayList;
-
-import static battleship.game.Display.*;
+import java.util.List;
 
 public class Game {
 

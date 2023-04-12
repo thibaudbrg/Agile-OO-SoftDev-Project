@@ -1,8 +1,8 @@
-package battleship.gui.widgets;
+package battleship.gui;
 
 import battleship.game.*;
-import battleship.gui.GameInfo;
-import battleship.gui.Info;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -11,14 +11,15 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Optional;
 
 
-public class PlayerPane extends Pane implements Observer {
+public class PlayerPane extends Pane {
 
     private final int sizeCol;
     private final int sizeRow;
@@ -61,7 +62,7 @@ public class PlayerPane extends Pane implements Observer {
         this.otherPlayer = otherPlayer;
         sizeCol = mainPlayer.getBoard().getSizeCol();
         sizeRow = mainPlayer.getBoard().getSizeRow();
-        mainPlayer.getGameInfo().addObserver(this);
+        mainPlayer.getGameInfo().infoProperty().addListener((observable, oldValue, newValue) -> updateGameInfo(newValue));
 
         setMinSize(sizeRow * GraphicalCell.SIZE + 2 * offsetX, 2 * (sizeCol * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
         setMaxSize(sizeRow * GraphicalCell.SIZE + 2 * offsetX, 2 * (sizeCol * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
@@ -71,8 +72,17 @@ public class PlayerPane extends Pane implements Observer {
         loadBothSea();
         if (mainPlayer.getPlayerId() == PlayerId.PLAYER_1) {
             mainPlayer.setAmICurrentPlayer(true);
-            otherPlayer.setAmICurrentPlayer(false); // TODO SHOULD BE USELESS
+            otherPlayer.setAmICurrentPlayer(false); // TODO SHOULD BE MADE USELESS
+
+            mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).willPlayFirst());
+            mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).chooseShipsPlacements());
+            mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).chooseFirstShipPlacement(ShipType.values()[0]));
         }
+
+        if (mainPlayer.getPlayerId() == PlayerId.PLAYER_2) {
+            mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).willPlayFirst());
+        }
+
 
         this.setOnKeyPressed(event -> {
             if (mainPlayer.amICurrentPlayer()) {
@@ -99,7 +109,16 @@ public class PlayerPane extends Pane implements Observer {
                                     if (shipPlacedCounter == ShipType.values().length) { // TODO REFACTOR AND PRETTIER
                                         otherPlayer.setAmICurrentPlayer(true);
                                         mainPlayer.setAmICurrentPlayer(false);
-                                        mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).willPlayFirst());
+
+                                        mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).shipArePlaced());
+                                        if (mainPlayer.getPlayerId() == PlayerId.PLAYER_1) {
+                                            otherPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).chooseShipsPlacements());
+                                            otherPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).chooseFirstShipPlacement(ShipType.values()[0]));
+                                        }
+
+                                        if (mainPlayer.getPlayerId() == PlayerId.PLAYER_2) {
+                                            otherPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).canPlay());
+                                        }
                                     }
                                 }
                             }
@@ -110,6 +129,8 @@ public class PlayerPane extends Pane implements Observer {
 
                             if (!gCell.isMine()) {
                                 mainPlayer.handleShot(gCell.getCoordinates(), otherPlayer);
+                                mainPlayerProgressBar.setProgress((double) mainPlayer.getNumberOfRemainingShips() / ShipType.values().length);
+                                otherPlayerProgressBar.setProgress((double) otherPlayer.getNumberOfRemainingShips() / ShipType.values().length);
                                 if (otherPlayer.getNumberOfRemainingShips() == 0) {
                                     //winMediaPlayer.setAutoPlay(true);//////////////////////////////
                                     //winMediaPlayer.play();//////////////////////////////
@@ -120,10 +141,12 @@ public class PlayerPane extends Pane implements Observer {
                                     otherPlayer.setAmICurrentPlayer(false);
                                     mainPlayer.setAmICurrentPlayer(false);
                                 }
-                                mainPlayerProgressBar.setProgress((double) mainPlayer.getNumberOfRemainingShips() / ShipType.values().length);
-                                otherPlayerProgressBar.setProgress((double) otherPlayer.getNumberOfRemainingShips() / ShipType.values().length);
-                                otherPlayer.setAmICurrentPlayer(true);
-                                mainPlayer.setAmICurrentPlayer(false);
+                                else {
+                                    otherPlayer.setAmICurrentPlayer(true);
+                                    mainPlayer.setAmICurrentPlayer(false);
+                                    otherPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).canPlay());
+                                }
+
                             }
 
 
@@ -241,49 +264,24 @@ public class PlayerPane extends Pane implements Observer {
         scrollPane.relocate(0, 2 * GraphicalCell.SIZE * sizeCol + 2 * offsetY + OFFSET_BETWEEN_SEAS);
         getChildren().add(scrollPane);
 
-        //getChildren().add(gameInfoBox);
-        update(mainPlayer.getGameInfo(), new Object());
+        getChildren().add(gameInfoBox);
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        GameInfo info = (GameInfo) o;
+
+    private void updateGameInfo(LinkedList<String> infos) {
         Label titleLabel = new Label("Game Info:");
         titleLabel.setFont(new Font(18));
         gameInfoBox.getChildren().clear();
         gameInfoBox.getChildren().add(titleLabel);
 
-        for (int i = info.getInfos().size() - 1; i >= 0; i--) {
-            System.out.println(info.getInfos().get(i));
-        }
-
-        for (int i = info.getInfos().size() - 1; i >= 0; i--) {
-            Label gameInfoLabel = new Label("- " + info.getInfos().get(i));
+        for (int i = infos.size() - 1; i >= 0; i--) {
+            Label gameInfoLabel = new Label("- " + infos.get(i));
             gameInfoLabel.setFont(new Font(12));
-            gameInfoLabel.setMaxWidth(2 * GraphicalCell.SIZE * sizeCol + 2 * offsetY + OFFSET_BETWEEN_SEAS - 5);
+            gameInfoLabel.setMaxWidth(2 * offsetX + (GraphicalCell.SIZE * sizeRow));
             gameInfoLabel.setWrapText(true);
             gameInfoBox.getChildren().add(gameInfoLabel);
-
-
         }
-        /*Label gameNewInfoLabel = new Label("- " + info.getNewInfo());
-        gameNewInfoLabel.setFont(new Font(12));
-        gameNewInfoLabel.setWrapText(true);
-        gameNewInfoLabel.setMaxWidth(2 * GraphicalCell.SIZE * sizeCol + 2 * offsetY + OFFSET_BETWEEN_SEAS - 5);
-
-        Label gameLastInfoLabel = new Label("- " + info.getLastInfo());
-        gameLastInfoLabel.setFont(new Font(12));
-        gameLastInfoLabel.setWrapText(true);
-        gameLastInfoLabel.setMaxWidth(2 * GraphicalCell.SIZE * sizeCol + 2 * offsetY + OFFSET_BETWEEN_SEAS - 5);
-
-
-
-        gameInfoBox.getChildren().clear();
-        gameInfoBox.getChildren().addAll(titleLabel, gameNewInfoLabel, gameLastInfoLabel);
-
-         */
     }
-
 
     public int getSizeBoard() {
         return sizeCol;

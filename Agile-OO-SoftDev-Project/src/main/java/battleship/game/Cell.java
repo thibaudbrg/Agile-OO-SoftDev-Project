@@ -8,7 +8,7 @@ import java.util.List;
 public class Cell {
     private final Coordinates coords;
     private CellStatus cellStatus;
-    private List<CellObserver> observers = new ArrayList<>();
+    private final List<CellObserver> observers = new ArrayList<>();
 
     public Cell(Coordinates coords, CellStatus cellStatus) {
         this.coords = coords;

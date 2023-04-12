@@ -8,8 +8,8 @@ public enum PlayerId {
     public static final List<PlayerId> ALL = List.of(PlayerId.values());
     public static final int COUNT = ALL.size();
 
-    private int playerNumber;
-    private String extendedName;
+    private final int playerNumber;
+    private final String extendedName;
 
     /**
      * returns the next player

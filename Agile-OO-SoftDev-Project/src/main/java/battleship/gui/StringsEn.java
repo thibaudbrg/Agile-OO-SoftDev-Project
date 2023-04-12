@@ -9,9 +9,10 @@ public class StringsEn {
     public static final String START_BUTTON = "Start";
     public static final String RULES_BUTTON = "Rules";
     public static final String EXIT_BUTTON = "Exit";
+    public static final String DIFFICULTY_LABEL = "CHOOSE YOUR DIFFICULTY";
     public static final String MULTIPLAYER_BUTTON = "Multiplayer";
-    public static final String EASY_BUTTON = "Easy";
-    public static final String HARD_BUTTON = "Hard";
+    public static final String EASY_BUTTON = "Easy Bot";
+    public static final String HARD_BUTTON = "Hard Bot";
 
     // Window titles
     public static final String RULES = "You and your opponent sit facing each other and neighter can see the other's ocean grid.\n" +
@@ -31,41 +32,45 @@ public class StringsEn {
 
     // Prompts
 
-    public static final String WHO_AM_I = "You are the %s.\n";
+    public static final String WHO_AM_I = "You are the %s.";
 
     public static final String CHOOSE_SHIP_PLACEMENTS =
-            "You need to place your ships on the board.\nYou need to place the first ship: %s. It has length of %s.\n";
+            "You need to place your ships on the board.";
+
+    public static final String CHOOSE_FIRST_SHIP_PLACEMENT =
+            "You need to place the ship: %s. It has a length of %s.";
 
     public static final String CHOOSE_SPECIFIC_SHIP_PLACEMENT =
-            "You need to place the ship: %s. It has a length of %s.\n";
+            "You need to place the ship: %s. It has a length of %s.";
 
     public static final String PLACEMENT_COLLISION =
-            "The ship collides with another ship or is out of the board! Try again.\n";
+            "The ship collides with another ship or is out of the board! Try again.";
 
     public static final String GOOD_PLACEMENT =
-            "Good placement!\n";
+            "Good placement!";
 
     // Information about the course of the game
 
     public static final String WILL_PLAY_FIRST =
-            "%s will play first.\n\n";
+            "%s will play first.";
     public static final String PLACED_SHIPS =
-            "%s has placed his ships.\n";
+            "You have placed your ships.";
     public static final String CAN_PLAY =
-            "\nIt's %s's turn.\n";
+            "It's your turn.";
 
     public static final String HIT =
-            "Hit!\n";
+            "Hit!";
 
-    public static final String ALREADY_HIT = "Already hit!\n";
-    public static final String MISS =
-            "Miss...\n";
+    public static final String ALREADY_HIT = "Already hit!";
 
-    public static final String ALREADY_MISSED = "Already missed...\n";
+    public static final String MISS = "Miss...";
+
+    public static final String ALREADY_MISSED = "Already missed...";
+
     public static final String SANK_SHIP =
-            "You sank the %s.\n Still %s ship(s) remaining.\n";
+            "You sank the %s. Still %s ship(s) remaining.";
     public static final String WINS =
-            "\n%s wins the game!\n";
+            "%s wins the game!";
 
 
 }

@@ -1,10 +1,17 @@
 package battleship.gui;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.LinkedList;
 import java.util.Observable;
 
-public class GameInfo extends Observable {
+public class GameInfo {
 
-    private LinkedList<String> infos = new LinkedList<String>();
+    private final LinkedList<String> infos = new LinkedList<>();
+    private final ObjectProperty<LinkedList<String>> infoProperty = new SimpleObjectProperty<>();
+
 
     public GameInfo(String info) {
         addInfo(info);
@@ -14,10 +21,14 @@ public class GameInfo extends Observable {
         return infos;
     }
 
+
     public void addInfo(String addedInfo) {
         this.infos.add(addedInfo);
-        setChanged();
-        notifyObservers();
+        infoProperty.set(new LinkedList<>(infos));
+    }
+
+    public ObjectProperty<LinkedList<String>> infoProperty() {
+        return infoProperty;
     }
 }
 

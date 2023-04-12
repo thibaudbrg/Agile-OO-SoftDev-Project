@@ -1,11 +1,9 @@
-package battleship.gui.widgets;
+package battleship.gui;
 
 import java.util.Objects;
 
 import battleship.game.Cell;
-import battleship.gui.CellObserver;
 import battleship.game.Coordinates;
-import battleship.gui.IdGenerator;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
@@ -16,9 +14,9 @@ public class GraphicalCell extends Canvas implements CellObserver {
 
     public static final int SIZE = 35;
 
-    private int id;
+    private final int id;
     private boolean mouseOver;
-    private Cell cell;
+    private final Cell cell;
     private final boolean isItMine;
 
     public GraphicalCell(Cell cell, boolean isItMine) {
@@ -30,16 +28,8 @@ public class GraphicalCell extends Canvas implements CellObserver {
         cell.addObserver(this);
         redraw();
 
-        setOnMouseEntered(new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) { setMouseOver(true); }
-        });
-        setOnMouseExited(new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) {
-                setMouseOver(false);
-            }
-        });
+        setOnMouseEntered((EventHandler<Event>) event -> setMouseOver(true));
+        setOnMouseExited((EventHandler<Event>) event -> setMouseOver(false));
 
     }
 

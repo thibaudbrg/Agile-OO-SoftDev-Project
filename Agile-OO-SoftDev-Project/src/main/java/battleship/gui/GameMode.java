@@ -3,9 +3,9 @@ package battleship.gui;
 public enum GameMode {
     MULTIPLAYER("Multiplayer"), EASY("Easy mode"), HARD("Hard mode");
 
-    private String extendedName;
+    private final String extendedName;
 
-    private GameMode(String extendedName) {
+    GameMode(String extendedName) {
         this.extendedName = extendedName;
     }
 

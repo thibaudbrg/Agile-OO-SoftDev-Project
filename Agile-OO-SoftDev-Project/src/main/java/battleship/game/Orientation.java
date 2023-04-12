@@ -4,11 +4,9 @@ import java.util.List;
 
 public enum Orientation {
     N("North"), S("South"), E("East"), W("West");
-    private String extendedName;
+    private final String extendedName;
 
-    public static List<Orientation> ALL = List.of(Orientation.values());
-
-    private Orientation(String extendedName) {
+    Orientation(String extendedName) {
         this.extendedName = extendedName;
     }
 

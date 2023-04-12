@@ -28,8 +28,12 @@ public final class Info {
      *
      * @return (String) a String declaring that the player needs to choose the ships placements
      */
-    public String chooseShipsPlacements(ShipType shipType) {
-        return String.format(StringsEn.CHOOSE_SHIP_PLACEMENTS, shipType, shipType.getSize());
+    public String chooseShipsPlacements() {
+        return String.format(StringsEn.CHOOSE_SHIP_PLACEMENTS);
+    }
+
+    public String chooseFirstShipPlacement(ShipType shipType) {
+        return String.format(StringsEn.CHOOSE_FIRST_SHIP_PLACEMENT, shipType, shipType.getSize());
     }
 
     public String chooseSpecificShipPlacement(ShipType shipType) {
@@ -60,7 +64,7 @@ public final class Info {
      * @return (String) a String declaring the player has places all his ships
      */
     public String shipArePlaced() {
-        return String.format(StringsEn.PLACED_SHIPS, playerId);
+        return String.format(StringsEn.PLACED_SHIPS);
     }
 
     /**
@@ -69,7 +73,7 @@ public final class Info {
      * @return (String) a String declaring that the player can play
      */
     public String canPlay() {
-        return String.format(StringsEn.CAN_PLAY, playerId);
+        return String.format(StringsEn.CAN_PLAY);
     }
 
     /**

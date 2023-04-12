@@ -1,10 +1,7 @@
 package battleship.gui;
 
-import battleship.game.Orientation;
 import battleship.game.Player;
-import battleship.gui.widgets.PlayerPane;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 

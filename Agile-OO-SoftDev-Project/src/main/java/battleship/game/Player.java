@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static battleship.game.Display.printBoard;
 
 public abstract class Player {
     //File missMusic = new File("battleship/gui/sounds/miss.mp3");//////////////////////////////
@@ -28,7 +27,7 @@ public abstract class Player {
         this.board = board;
         this.playerId = playerId;
         this.memory = new Board(board.getSizeCol(), board.getSizeRow());
-        this.gameInfo = new GameInfo(new Info(playerId).whoAmI() + new Info(playerId).chooseShipsPlacements(ShipType.values()[0]));
+        this.gameInfo = new GameInfo(new Info(playerId).whoAmI());
     }
 
     public List<Ship> getRemainingShips() {
@@ -54,20 +53,17 @@ public abstract class Player {
             //missMediaPlayer.setAutoPlay(true);//////////////////////////////
             //missMediaPlayer.play();//////////////////////////////
             gameInfo.addInfo(new Info(playerId).alreadyHit());
-            printBoard(otherRealPlayer.getBoard());
         } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.OCEAN) {
             //missMediaPlayer.setAutoPlay(true);//////////////////////////////
             //missMediaPlayer.play();//////////////////////////////
             newStatus = CellStatus.MISSED;
             gameInfo.addInfo(new Info(playerId).miss());
             otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.MISSED);
-            printBoard(otherRealPlayer.getBoard());
         } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.MISSED) {
             newStatus = CellStatus.MISSED;
             //missMediaPlayer.setAutoPlay(true);//////////////////////////////
             //missMediaPlayer.play();//////////////////////////////
             gameInfo.addInfo(new Info(playerId).alreadyMissed());
-            printBoard(otherRealPlayer.getBoard());
         } else {
             //hitMediaPlayer.setAutoPlay(true);//////////////////////////////
             //hitMediaPlayer.play();//////////////////////////////
@@ -78,12 +74,11 @@ public abstract class Player {
             while (iterator.hasNext()) {
                 Ship ship = iterator.next();
                 if (ship.hasSunk()) {
-                    gameInfo.addInfo(new Info(playerId).sankShip(ship.getShipType(), otherRealPlayer.getNumberOfRemainingShips()));
                     iterator.remove();
+                    gameInfo.addInfo(new Info(playerId).sankShip(ship.getShipType(), otherRealPlayer.getNumberOfRemainingShips()));
                 }
             }
             memory.getCell(coords).setCellStatus(newStatus);
-            printBoard(otherRealPlayer.getBoard());
         }
     }
 
@@ -109,18 +104,11 @@ public abstract class Player {
 
         Ship ship = new Ship(new ArrayList<>(), shipType);
 
-        gameInfo.addInfo(new Info(playerId).goodPlacement());
-
-
-        if (shipType != ShipType.DESTROYER) {
-            gameInfo.addInfo(new Info(playerId).chooseSpecificShipPlacement(shipType.next()));
-        }
 
         if (board.getCell(new Coordinates(col, row)).getCellStatus() == CellStatus.SHIP) {
             gameInfo.addInfo(new Info(playerId).placementCollision());
             return false;
         }
-
 
         int sizeShip = ship.getShipType().getSize();
 
@@ -146,6 +134,12 @@ public abstract class Player {
             cellToAdd.setCellStatus(CellStatus.SHIP);
             ship.add(cellToAdd);
         }
+
+        gameInfo.addInfo(new Info(playerId).goodPlacement());
+        if (shipType != ShipType.DESTROYER) {
+            gameInfo.addInfo(new Info(playerId).chooseSpecificShipPlacement(shipType.next()));
+        }
+
         remainingShips.add(ship);
         return true;
     }
@@ -153,5 +147,6 @@ public abstract class Player {
     private boolean isInsideBoard(int col, int row) {
         return col >= 0 && col < board.getSizeRow() && row >= 0 && row < board.getSizeCol();
     }
+
 
 }
