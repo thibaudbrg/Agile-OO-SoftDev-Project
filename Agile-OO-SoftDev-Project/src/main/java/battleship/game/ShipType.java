@@ -6,19 +6,22 @@ import java.util.Objects;
 import java.util.Random;
 
 public enum ShipType {
-    CARRIER(5, "assets/carrier.png"),
-    BATTLESHIP(4, "assets/battleship.png"),
-    CRUISER(3, "assets/cruiser.png"),
-    SUBMARINE(3, "assets/submarine.png"),
-    DESTROYER(2, "assets/destroyer.png");
+    CARRIER(5, "assets/carrier.png", "Carrier"),
+    BATTLESHIP(4, "assets/battleship.png", "Battleship"),
+    CRUISER(3, "assets/cruiser.png", "Cruiser"),
+    SUBMARINE(3, "assets/submarine.png", "Submarine"),
+    DESTROYER(2, "assets/destroyer.png", "Destroyer");
 
     private static final Random random = new Random();
     private final int size;
     private final Image image;
 
-    private ShipType(int size, String assetName) {
+    private final String extendedName;
+
+    private ShipType(int size, String assetName, String extendedName) {
         this.size = size;
         this.image = new Image(Objects.requireNonNull(ShipType.class.getClassLoader().getResourceAsStream(assetName)));
+        this.extendedName = extendedName;
     }
     public Integer getSize() {
         return size;
@@ -47,5 +50,10 @@ public enum ShipType {
             nextOrdinal = 0;
         }
         return values()[nextOrdinal];
+    }
+
+    @Override
+    public String toString() {
+        return extendedName;
     }
 }

@@ -26,6 +26,7 @@ public class AIPlayer extends Player {
 
     }
 
+    /*
     @Override
     public Ship createShip(ShipType shipType, Coordinates coords, Orientation orient) {
 
@@ -56,12 +57,15 @@ public class AIPlayer extends Player {
 
         System.out.println("Good placement!");
 
-        */
+
         return ship;
 
 
-    }
 
+
+
+    }
+*/
     public Coordinates randomShoot() {
         int col;
         int row;

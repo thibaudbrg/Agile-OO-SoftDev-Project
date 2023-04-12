@@ -1,27 +1,21 @@
 package battleship.gui;
-
+import java.util.LinkedList;
 import java.util.Observable;
 
 public class GameInfo extends Observable {
-    private String lastInfo = "" ;
-    private String newInfo= "";
 
-    public GameInfo(String newInfo ,String lastInfo) {
-        addInfo(lastInfo);
-        addInfo(newInfo);
+    private LinkedList<String> infos = new LinkedList<String>();
+
+    public GameInfo(String info) {
+        addInfo(info);
     }
 
-    public String getLastInfo() {
-        return lastInfo;
-    }
-
-    public String getNewInfo() {
-        return newInfo;
+    public LinkedList<String> getInfos() {
+        return infos;
     }
 
     public void addInfo(String addedInfo) {
-        this.lastInfo = newInfo;
-        this.newInfo= addedInfo;
+        this.infos.add(addedInfo);
         setChanged();
         notifyObservers();
     }

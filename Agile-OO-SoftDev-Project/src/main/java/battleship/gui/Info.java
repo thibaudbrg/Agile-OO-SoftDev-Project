@@ -1,53 +1,47 @@
 package battleship.gui;
 
+import battleship.game.PlayerId;
 import battleship.game.ShipType;
 
 /**
  * Generate most of the in-game messages
  */
 public final class Info {
-    private final String playerName;
+    private final PlayerId playerId;
 
     /**
      * Public constructor
      *
-     * @param playerName name of the player
+     * @param playerId of the player
      */
-    public Info(String playerName) {
-        this.playerName = playerName;
+    public Info(PlayerId playerId) {
+        this.playerId = playerId;
     }
 
-    /**
-     * Returns a strings with the card's name
-     *
-     * @param shipType (ShipType) given ShipType
-     * @return (String) a strings with the ship name
-     */
-    public static String shipName(ShipType shipType) {
-        switch (shipType) {
-            case CARRIER:
-                return StringsEn.CARRIER;
-            case BATTLESHIP:
-                return StringsEn.BATTLESHIP;
-            case CRUISER:
-                return StringsEn.CRUISER;
-            case SUBMARINE:
-                return StringsEn.SUBMARINE;
-            case DESTROYER:
-                return StringsEn.DESTROYER;
-            default:
-                throw new Error();
-        }
-    }
 
+    public String whoAmI() {
+        return String.format(StringsEn.WHO_AM_I, playerId);
+    }
 
     /**
      * Returns a String declaring that the player needs to choose the ships placements
      *
      * @return (String) a String declaring that the player needs to choose the ships placements
      */
-    public String chooseShipsPlacements() {
-        return String.format(StringsEn.CHOOSE_SHIP_PLACEMENTS, playerName);
+    public String chooseShipsPlacements(ShipType shipType) {
+        return String.format(StringsEn.CHOOSE_SHIP_PLACEMENTS, shipType, shipType.getSize());
+    }
+
+    public String chooseSpecificShipPlacement(ShipType shipType) {
+        return String.format(StringsEn.CHOOSE_SPECIFIC_SHIP_PLACEMENT, shipType, shipType.getSize());
+    }
+
+    public String placementCollision() {
+        return String.format(StringsEn.PLACEMENT_COLLISION);
+    }
+
+    public String goodPlacement() {
+        return String.format(StringsEn.GOOD_PLACEMENT);
     }
 
     /**
@@ -56,7 +50,7 @@ public final class Info {
      * @return (String) a String declaring which player plays first
      */
     public String willPlayFirst() {
-        return String.format(StringsEn.WILL_PLAY_FIRST, playerName);
+        return String.format(StringsEn.WILL_PLAY_FIRST, playerId);
     }
 
 
@@ -66,7 +60,7 @@ public final class Info {
      * @return (String) a String declaring the player has places all his ships
      */
     public String shipArePlaced() {
-        return String.format(StringsEn.PLACED_SHIPS, playerName);
+        return String.format(StringsEn.PLACED_SHIPS, playerId);
     }
 
     /**
@@ -75,7 +69,7 @@ public final class Info {
      * @return (String) a String declaring that the player can play
      */
     public String canPlay() {
-        return String.format(StringsEn.CAN_PLAY, playerName);
+        return String.format(StringsEn.CAN_PLAY, playerId);
     }
 
     /**
@@ -84,7 +78,11 @@ public final class Info {
      * @return (String) a String declaring that the player hit a ship
      */
     public String hit() {
-        return String.format(StringsEn.HIT, playerName);
+        return String.format(StringsEn.HIT);
+    }
+
+    public String alreadyHit() {
+        return String.format(StringsEn.ALREADY_HIT);
     }
 
     /**
@@ -93,7 +91,11 @@ public final class Info {
      * @return (String) a String declaring that the player missed a ship
      */
     public String miss() {
-        return String.format(StringsEn.MISS, playerName);
+        return String.format(StringsEn.MISS);
+    }
+
+    public String alreadyMissed() {
+        return String.format(StringsEn.ALREADY_MISSED);
     }
 
     /**
@@ -101,8 +103,8 @@ public final class Info {
      *
      * @return (String) a String declaring that the player sank a ship
      */
-    public String sank_ship(ShipType shipType) {
-        return String.format(StringsEn.SANK_SHIP, playerName, shipName(shipType));
+    public String sankShip(ShipType shipType, int numberOfRemainingShips) {
+        return String.format(StringsEn.SANK_SHIP, shipType, numberOfRemainingShips);
     }
 
     /**
@@ -111,6 +113,6 @@ public final class Info {
      * @return (String) a String declaring that the player won the game
      */
     public String won() {
-        return String.format(StringsEn.WINS, playerName);
+        return String.format(StringsEn.WINS, playerId);
     }
 }
