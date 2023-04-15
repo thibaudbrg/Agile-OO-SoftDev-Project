@@ -108,7 +108,7 @@ public class PlayerTest {
     @And("the first player has a ship at {int}, {int} with an orientation of {string} and a type {string}")
     public void theFirstPlayerHasAShipAtWithAnOrientationOfAndAType(int i1, int i2, String o, String st) {
         Ship ship = new Ship(new ArrayList<>(), ShipType.valueOf(st));
-        realPlayer1.getBoard().addShip(new Coordinates(i1, i2), ship, Orientation.valueOf(o));
+        realPlayer1.addShip(ShipType.valueOf(st),new Coordinates(i1, i2), Orientation.valueOf(o));
         realPlayer1.getRemainingShips().add(ship);
         beforeActionPlayer1RemainingShip = realPlayer1.getNumberOfRemainingShips();
     }
@@ -133,14 +133,14 @@ public class PlayerTest {
     @Given("the player has a ship at {string}, {string} with an orientation of {string} and a type {string}")
     public void the_player_has_a_ship_at_with_an_orientation_of_and_a_type(String i1, String i2, String o, String st) {
         Ship ship = new Ship(new ArrayList<>(), ShipType.valueOf(st));
-        realPlayer.getBoard().addShip(new Coordinates(Integer.parseInt(i1), Integer.parseInt(i2)), ship, Orientation.valueOf(o));
+        realPlayer.addShip(ShipType.valueOf(st),new Coordinates(Integer.parseInt(i1), Integer.parseInt(i2)), Orientation.valueOf(o));
         realPlayer.getRemainingShips().add(ship);
     }
 
     @When("the player attempts to place a ship at {string}, {string} with an orientation of {string}")
     public void the_player_attempts_to_place_a_ship_at_with_an_orientation_of(String i1, String i2, String o) {
         Ship ship = new Ship(new ArrayList<>(), ShipType.CARRIER);
-        playerPlacesWorked = realPlayer.getBoard().addShip(new Coordinates(Integer.parseInt(i1), Integer.parseInt(i2)), ship, Orientation.valueOf(o));
+        playerPlacesWorked = realPlayer.addShip(ShipType.CARRIER,new Coordinates(Integer.parseInt(i1), Integer.parseInt(i2)), Orientation.valueOf(o));
 
     }
 

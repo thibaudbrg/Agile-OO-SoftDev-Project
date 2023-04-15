@@ -1,0 +1,32 @@
+.title-label {
+    -fx-font-family: "Verdana";
+    -fx-font-size: 22;
+}
+
+.grid-pane {
+    -fx-border-radius: 5;
+    -fx-padding: 20;
+}
+
+.grid-label {
+    -fx-font-family: "Verdana";
+    -fx-font-size: 20;
+}
+
+.grid-combo-box {
+    -fx-font-family: "Verdana";
+    -fx-font-size: 14;
+}
+
+.battleship-button {
+    -fx-background-color: #E6E6E6;
+    -fx-background-radius: 20;
+    -fx-font-family: "Verdana";
+    -fx-font-size: 14;
+    -fx-padding: 10 20;
+    -fx-text-fill: black;
+}
+
+.battleship-button:hover {
+    -fx-background-color: #DCDCDC;
+}

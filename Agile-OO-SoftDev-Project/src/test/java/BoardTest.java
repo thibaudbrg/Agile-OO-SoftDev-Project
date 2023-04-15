@@ -10,6 +10,7 @@ public class BoardTest {
 
     private Board board;
 
+    private Player player;
     private Ship ship;
     private Cell accessedCell;
     private boolean shipAdded;
@@ -30,7 +31,7 @@ public class BoardTest {
                 break;
             }
         }
-        shipAdded = board.addShip(new Coordinates(col, row), ship, o);
+        shipAdded = player.addShip(ShipType.getShipTypeFromLabel(shipSize),new Coordinates(col, row), o);
 
 
     }
@@ -53,7 +54,7 @@ public class BoardTest {
         } else {
             shipOrient = startCol < endCol ? Orientation.E : Orientation.W;
         }
-        boolean added = board.addShip(new Coordinates(startCol, startRow), ship, shipOrient);
+        boolean added = player.addShip(ShipType.getShipTypeFromLabel(shipSize),new Coordinates(startCol, startRow), shipOrient);
         assertTrue(added);
 
     }
