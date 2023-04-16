@@ -83,7 +83,7 @@ public class PlayerPane extends Pane {
         }
 
         if (mainPlayer.getPlayerId() == PlayerId.PLAYER_2) {
-            mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).willPlayFirst());
+            mainPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).willPlayFirst());
         }
 
 

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Agile-OO-SoftDev-Project.iml" filepath="$PROJECT_DIR$/.idea/Agile-OO-SoftDev-Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Agile-OO-SoftDev-Project.iml" filepath="$PROJECT_DIR$/Agile-OO-SoftDev-Project.iml" />
     </modules>
   </component>
 </project>

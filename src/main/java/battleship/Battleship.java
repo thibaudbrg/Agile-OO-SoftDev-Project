@@ -20,21 +20,21 @@ public class Battleship extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         try {
-            //String path = "src/main/ressources/sounds/gamemusic.wav";//////////////////////////////
+            String path = "src/main/ressources/sounds/gamemusic.wav";//////////////////////////////
             //AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(path));
             //Clip clip = AudioSystem.getClip();
             //clip.open(inputStream);
             //clip.loop(0);
 
-            //Media media = new Media(new File(path).toURI().toString());///////////////////////////
-            //MediaPlayer mediaPlayer = new MediaPlayer(media);////////////////////////////////
+            Media media = new Media(new File(path).toURI().toString());///////////////////////////
+            MediaPlayer mediaPlayer = new MediaPlayer(media);////////////////////////////////
             SceneManager manager = new SceneManager();
             //primaryStage = manager.getMainStage();
-            //mediaPlayer.setAutoPlay(true);//////////////////////////////
+            mediaPlayer.setAutoPlay(true);//////////////////////////////
             primaryStage.setTitle("BattleShip");
             primaryStage.setScene(manager.getMainStage().getScene());
             primaryStage.setResizable(false);
-            //mediaPlayer.play();//////////////////////////////
+            mediaPlayer.play();//////////////////////////////
             //primaryStage.setFullScreen(true);
             primaryStage.setOnCloseRequest(x -> {
                 x.consume();

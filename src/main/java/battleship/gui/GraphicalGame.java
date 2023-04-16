@@ -33,9 +33,9 @@ public class GraphicalGame {
 
 
                 stage1.setScene(scene1);
-
                 stage1.setX(300);
                 stage1.setY(0);
+
                 stage2.setScene(scene2);
                 stage2.setX(800);
                 stage2.setY(0);
