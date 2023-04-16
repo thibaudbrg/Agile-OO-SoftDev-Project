@@ -13,8 +13,8 @@ public class InfoLabel extends Label {
 
 
     public InfoLabel(String text) {
-        setPrefWidth(400);
-        setPrefHeight(20);
+        setPrefWidth(200);
+        setHeight(20);
         setPadding(new Insets(10, 40, 40, 50));
         setText(text);
         setWrapText(true);

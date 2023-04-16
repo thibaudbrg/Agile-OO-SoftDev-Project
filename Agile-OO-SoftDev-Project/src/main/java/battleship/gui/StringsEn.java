@@ -15,19 +15,25 @@ public class StringsEn {
     public static final String HARD_BUTTON = "Hard Bot";
 
     // Window titles
-    public static final String RULES = "You and your opponent sit facing each other and neighter can see the other's ocean grid.\n" +
+    public static final String RULES = "\n" +
+            "You and your opponent sit facing each other and neighter can see the other's ocean grid.\n" +
             "Place your fleet of 5 ships on the ocean grid.\n\n" +
             "Rules for placing ships:\n" +
             "Place each ship in any horizontal or vertical position but not diagonally.\n" +
-            "Don't place a ship so that any part of it overlaps letters, numbers, the edge of the grid or another ship.\n" +
-            "Don't change the position of any ships once the game has begun.\n\n\n" +
-            "You and your opponent will alternate turns, calling out one shot per turn to try to hit each other's ships.\n" +
+            "Don't place a ship so that any part of it overlaps letters, numbers, the edge of the grid\n" +
+            "or another ship.\n" +
+            "Don't change the position of any ships once the game has begun.\n\n" +
+            "You and your opponent will alternate turns, calling out one shot per turn to try to hit\n" +
+            "each other's ships.\n" +
             "On your turn, pick a target hole and call out its location by letter and number.\n\n" +
             " ---> It's a hit!!\n" +
-            "           If you call out a shot location that is occupied by a ship on your opponent's ocean grid, your shot is a hit!\n" +
+            "      If you call out a shot location occupied by a ship on your opponent's ocean grid,\n" +
+            "      your shot is a hit!\n" +
             " ---> It's a miss...\n" +
-            "           If you call out a shot location not occupied by a ship on your opponent's ocean grid, its a miss.\n\n" +
-            "Once all the holes in any one ship are hit, the ship will sink. The owner of that ship must announce which ship was sunk.\n\n";
+            "      If you call out a shot location not occupied by a ship on your opponent's ocean grid,\n" +
+            "      its a miss.\n\n" +
+            "Once all the holes in any one ship are hit, the ship will sink. The owner of that ship\n" +
+            "must announce which ship was sunk.\n\n";
 
 
     // Prompts

@@ -12,8 +12,8 @@ public class BattleShipSubScene extends SubScene {
     private boolean isHidden = true;
 
     public BattleShipSubScene() {
-        super(new AnchorPane(), 600, 400);
-        prefWidth(600);
+        super(new AnchorPane(), 650, 460);
+        prefWidth(900);
         prefHeight(400);
 
         AnchorPane root2 = (AnchorPane) this.getRoot();

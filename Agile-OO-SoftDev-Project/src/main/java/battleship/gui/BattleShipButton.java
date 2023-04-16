@@ -1,9 +1,11 @@
 package battleship.gui;
 
+import javafx.animation.ScaleTransition;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 public class BattleShipButton extends Button {
 
@@ -24,13 +26,13 @@ public class BattleShipButton extends Button {
         setStyle(BUTTON_PRESSED_STYLE);
         setPrefHeight(49);
         setLayoutY(getLayoutY() + 4);
-
     }
 
     private void setButtonReleasedStyle() {
         setStyle(BUTTON_FREE_STYLE);
         setPrefHeight(49);
         setLayoutY(getLayoutY() - 4);
+
     }
 
     private void initializeButtonListeners() {
@@ -44,7 +46,19 @@ public class BattleShipButton extends Button {
                 setButtonReleasedStyle();
             }
         });
-        setOnMouseEntered(event -> setEffect(new DropShadow(50, Color.YELLOW)));
-        setOnMouseExited(event -> setEffect(null));
+        setOnMouseEntered(event -> {setEffect(new DropShadow(50, Color.YELLOW));
+                                    ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.1), this);
+                                    scaleTransition.setFromX(1);
+                                    scaleTransition.setFromY(1);
+                                    scaleTransition.setToX(1.25);
+                                    scaleTransition.setToY(1.25);
+                                    scaleTransition.play();});
+        setOnMouseExited(event -> {setEffect(null);
+                                   ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.1), this);
+                                   scaleTransition.setFromX(1.25);
+                                   scaleTransition.setFromY(1.25);
+                                   scaleTransition.setToX(1);
+                                   scaleTransition.setToY(1);
+                                   scaleTransition.play();});
     }
 }

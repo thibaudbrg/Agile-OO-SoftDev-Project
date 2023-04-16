@@ -1,20 +1,20 @@
 package battleship.gui;
 
 import battleship.game.Game;
+import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public class SceneManager {
         menuButtons = new ArrayList<>();
         mainPane = new AnchorPane();
         mainScene = new Scene(mainPane, WIDTH, HEIGHT);
-        mainScene.getStylesheets().add("battleship/gui/Subscene.css");
+        mainScene.getStylesheets().add("Subscene.css");
         mainStage = new Stage();
         mainStage.setScene(mainScene);
         createSubScenes();
@@ -65,6 +65,9 @@ public class SceneManager {
 
         InfoLabel help = new InfoLabel(StringsEn.RULES_BUTTON);
         help.setFont(new Font("Verdana", 40));
+        help.setLayoutX(60);
+        help.setLayoutY(10);
+        help.setPrefSize(400,20);
         rulesSubScene.getPane().getChildren().add(help);
 
         GridPane rulesGrid = new GridPane();
@@ -78,6 +81,12 @@ public class SceneManager {
         Label rulesLabel = new Label(StringsEn.RULES);
         rulesLabel.setFont(new Font("Verdana", 12));
         rulesGrid.add(rulesLabel, 0, 0);
+
+        // Fade in animation
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(2), rulesSubScene);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(10);
+        fadeTransition.play();
     }
 
     private void createDifficultySubScene() {
@@ -87,6 +96,7 @@ public class SceneManager {
         InfoLabel chooseDifficultyLabel = new InfoLabel(StringsEn.DIFFICULTY_LABEL);
         chooseDifficultyLabel.getStyleClass().add("title-label");
         difficultySubScene.getPane().getChildren().add(chooseDifficultyLabel);
+        chooseDifficultyLabel.setFont(new Font("Verdana", 40));
         chooseDifficultyLabel.setLayoutX(100);
         chooseDifficultyLabel.setLayoutY(45);
         chooseDifficultyLabel.setPrefSize(400,50);
@@ -137,6 +147,11 @@ public class SceneManager {
         hardMode.getStyleClass().add("three-buttons");
         difficultySubScene.getPane().getChildren().add(hardMode);
 
+        // Fade in animation
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(2), difficultySubScene);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(10);
+        fadeTransition.play();
 
     }
 
@@ -146,6 +161,12 @@ public class SceneManager {
             sceneToHide.moveSubScene();
         }
         subScene.moveSubScene();
+
+        // Fade in animation
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(2), subScene);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(10);
+        fadeTransition.play();
         sceneToHide = subScene;
     }
 
@@ -251,10 +272,9 @@ public class SceneManager {
         mainPane.getChildren().add(logo);
         logo.setLayoutX(400);
         logo.setLayoutY(50);
-        logo.setOnMouseEntered(e -> logo.setEffect(new DropShadow(100, Color.YELLOW)));
-        logo.setOnMouseExited(e -> logo.setEffect(null));
+        logo.setOnMouseEntered(e -> {logo.setEffect(new DropShadow(100, Color.YELLOW));});
+        logo.setOnMouseExited(e -> {logo.setEffect(null);});
     }
 
 }
-
 

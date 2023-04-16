@@ -8,12 +8,15 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
@@ -40,12 +43,12 @@ public class PlayerPane extends Pane {
     ProgressBar mainPlayerProgressBar;
     ProgressBar otherPlayerProgressBar;
 
-    ////File winMusic = new File("battleship/gui/sounds/win.mp3");//////////////////////////////
-    ////Media wMusic = new Media(winMusic.toURI().toString());//////////////////////////////
-    ////MediaPlayer winMediaPlayer = new MediaPlayer(wMusic);//////////////////////////////
+    //File winMusic = new File("battleship/gui/sounds/win.mp3");//////////////////////////////
+    //Media wMusic = new Media(winMusic.toURI().toString());//////////////////////////////
+    //MediaPlayer winMediaPlayer = new MediaPlayer(wMusic);//////////////////////////////
 
-    ////File shipMusic = new File("battleship/gui/sounds/place_ship.mp3");//////////////////////////////
-    ////Media sMusic = new Media(shipMusic.toURI().toString());//////////////////////////////
+    //File shipMusic = new File("battleship/gui/sounds/place_ship.mp3");//////////////////////////////
+    //Media sMusic = new Media(shipMusic.toURI().toString());//////////////////////////////
     ////MediaPlayer shipMediaPlayer = new MediaPlayer(sMusic);//////////////////////////////
 
     private enum GameProgression {
