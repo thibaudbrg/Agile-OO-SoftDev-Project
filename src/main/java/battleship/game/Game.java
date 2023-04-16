@@ -21,8 +21,6 @@ public class Game {
         List<Board> boards = generateBoards(rows,cols);
 
         List<Player> players = generatePlayers(gameMode, shipsPlayer1, shipsPlayer2, boards);
-        //Player player1 = players.get(0);
-        //Player player2 = players.get(1);
 
         GraphicalGame.initial(gameMode, players);
     }

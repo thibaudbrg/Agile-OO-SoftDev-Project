@@ -4,14 +4,22 @@ import javafx.animation.ScaleTransition;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseButton;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+
+import java.io.File;
 
 public class BattleShipButton extends Button {
 
     private static final String BUTTON_PRESSED_STYLE = "-fx-background-color: transparent;-fx-background-image: url('ImagesFromSpaceRunner/rocketButton.png');-fx-background-size: 100%;";
     private static final String BUTTON_FREE_STYLE = "-fx-background-color: transparent;-fx-background-image: url('ImagesFromSpaceRunner/rocketButton.png');-fx-background-size: 100%;";
 
+    File buttonMusic = new File("src/main/ressources/sounds/press_button.mp3");
+
+    Media bMusic = new Media(buttonMusic.toURI().toString());
+    MediaPlayer buttonMediaPlayer = new MediaPlayer(bMusic);
     public BattleShipButton(String text) {
         setStyle(BUTTON_FREE_STYLE);
         setPrefSize(1,1);
@@ -39,11 +47,15 @@ public class BattleShipButton extends Button {
         setOnMousePressed(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 setButtonPressedStyle();
+                buttonMediaPlayer.setAutoPlay(true);
+                buttonMediaPlayer.play();
             }
         });
         setOnMouseReleased(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 setButtonReleasedStyle();
+                buttonMediaPlayer.setAutoPlay(true);
+                buttonMediaPlayer.stop();
             }
         });
         setOnMouseEntered(event -> {setEffect(new DropShadow(50, Color.YELLOW));

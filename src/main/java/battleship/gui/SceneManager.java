@@ -11,11 +11,14 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +40,6 @@ public class SceneManager {
 
     ComboBox<Integer> rowComboBox;
     ComboBox<Integer> colComboBox;
-
 
 
 
@@ -180,8 +182,6 @@ public class SceneManager {
         BattleShipButton exitMenu = createExitButton(MENU_BUTTON_START_X, MENU_BUTTON_START_Y + menuButtons.size() * 100);
         exitMenu.getStyleClass().add("three-buttons");
         menuButtons.add(exitMenu);
-
-
         mainPane.getChildren().addAll(menuButtons);
     }
 
@@ -224,7 +224,6 @@ public class SceneManager {
             int numRows = rowComboBox.getValue();
             int numCols = colComboBox.getValue();
             mainStage.hide();
-
             Game.play(GameMode.EASY,numRows,numCols);
         });
         return easyModeButton;
@@ -238,7 +237,6 @@ public class SceneManager {
             int numRows = rowComboBox.getValue();
             int numCols = colComboBox.getValue();
             mainStage.hide();
-
             Game.play(GameMode.HARD,numRows,numCols);
         });
         return HardModeButton;

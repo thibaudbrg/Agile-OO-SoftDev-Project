@@ -43,13 +43,21 @@ public class PlayerPane extends Pane {
     ProgressBar mainPlayerProgressBar;
     ProgressBar otherPlayerProgressBar;
 
-    //File winMusic = new File("battleship/gui/sounds/win.mp3");//////////////////////////////
-    //Media wMusic = new Media(winMusic.toURI().toString());//////////////////////////////
-    //MediaPlayer winMediaPlayer = new MediaPlayer(wMusic);//////////////////////////////
+    File winMusic = new File("src/main/ressources/sounds/win.mp3");
+    Media wMusic = new Media(winMusic.toURI().toString());
+    MediaPlayer winMediaPlayer = new MediaPlayer(wMusic);
 
-    //File shipMusic = new File("battleship/gui/sounds/place_ship.mp3");//////////////////////////////
-    //Media sMusic = new Media(shipMusic.toURI().toString());//////////////////////////////
-    ////MediaPlayer shipMediaPlayer = new MediaPlayer(sMusic);//////////////////////////////
+    File shipMusic = new File("src/main/ressources/sounds/place_ship.mp3");
+    Media sMusic = new Media(shipMusic.toURI().toString());
+    MediaPlayer shipMediaPlayer = new MediaPlayer(sMusic);
+
+    File missMusic = new File("src/main/ressources/sounds/miss.mp3");
+    Media mMusic = new Media(missMusic.toURI().toString());
+    MediaPlayer missMediaPlayer = new MediaPlayer(mMusic);
+
+    File hitMusic = new File("src/main/ressources/sounds/hit.mp3");
+    Media hMusic = new Media(hitMusic.toURI().toString());
+    MediaPlayer hitMediaPlayer = new MediaPlayer(hMusic);
 
     private enum GameProgression {
         SHIP_PLACEMENT, PLAYING_GAME;
@@ -105,8 +113,8 @@ public class PlayerPane extends Pane {
                             if (gCell.isMine()) { // TODO condition about nonNull orientation
 
                                 if (currentOrientation != null && mainPlayer.addShip(ShipType.values()[shipPlacedCounter], gCell.getCoordinates(), currentOrientation)) {
-                                    ////shipMediaPlayer.setAutoPlay(true);//////////////////////////////
-                                    ////shipMediaPlayer.play();//////////////////////////////
+                                    shipMediaPlayer.setAutoPlay(true);
+                                    shipMediaPlayer.play();
 
                                     ++shipPlacedCounter;
                                     if (shipPlacedCounter == ShipType.values().length) { // TODO REFACTOR AND PRETTIER
@@ -131,12 +139,19 @@ public class PlayerPane extends Pane {
                             otherPlayerProgressBar.setVisible(true);
 
                             if (!gCell.isMine()) {
-                                mainPlayer.handleShot(gCell.getCoordinates(), otherPlayer);
+                                boolean sound = mainPlayer.handleShot(gCell.getCoordinates(), otherPlayer);
                                 mainPlayerProgressBar.setProgress((double) mainPlayer.getNumberOfRemainingShips() / ShipType.values().length);
                                 otherPlayerProgressBar.setProgress((double) otherPlayer.getNumberOfRemainingShips() / ShipType.values().length);
+                                if (sound){
+                                    missMediaPlayer.setAutoPlay(true);
+                                    missMediaPlayer.play();
+                                }else{
+                                    hitMediaPlayer.setAutoPlay(true);
+                                    hitMediaPlayer.play();
+                                }
                                 if (otherPlayer.getNumberOfRemainingShips() == 0) {
-                                    //winMediaPlayer.setAutoPlay(true);//////////////////////////////
-                                    //winMediaPlayer.play();//////////////////////////////
+                                    winMediaPlayer.setAutoPlay(true);
+                                    winMediaPlayer.play();
 
                                     mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).won());
                                     otherPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).won());
@@ -154,9 +169,14 @@ public class PlayerPane extends Pane {
 
 
                     }
+
                 }
             }
         });
+        setOnMouseReleased(event ->{shipMediaPlayer.stop();
+                                    winMediaPlayer.stop();
+                                    missMediaPlayer.stop();
+                                    hitMediaPlayer .stop();});
     }
 
     private void updateOrientation(KeyCode code) {
