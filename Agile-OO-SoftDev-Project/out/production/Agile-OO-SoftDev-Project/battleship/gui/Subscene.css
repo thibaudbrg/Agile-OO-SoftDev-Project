@@ -10,19 +10,28 @@
 
 .grid-label {
     -fx-font-family: "Verdana";
-    -fx-font-size: 20;
+    -fx-font-size: 22;
 }
 
 .grid-combo-box {
     -fx-font-family: "Verdana";
-    -fx-font-size: 14;
+    -fx-font-size: 20;
 }
 
 .battleship-button {
     -fx-background-color: #E6E6E6;
     -fx-background-radius: 20;
     -fx-font-family: "Verdana";
-    -fx-font-size: 14;
+    -fx-font-size: 18;
+    -fx-padding: 10 20;
+    -fx-text-fill: black;
+}
+
+.three-buttons {
+    -fx-background-color: #E6E6E6;
+    -fx-background-radius: 20;
+    -fx-font-family: "Verdana";
+    -fx-font-size: 20;
     -fx-padding: 10 20;
     -fx-text-fill: black;
 }

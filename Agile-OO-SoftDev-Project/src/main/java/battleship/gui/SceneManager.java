@@ -126,12 +126,15 @@ public class SceneManager {
         double heightOfPane = difficultySubScene.getPane().getHeight();
 
         BattleShipButton multiplayer = createMultiButton(widthOfPane / 10 * 6, heightOfPane * 0.45);
+        multiplayer.getStyleClass().add("three-buttons");
         difficultySubScene.getPane().getChildren().add(multiplayer);
 
         BattleShipButton easyMode = createEasyModeButton(widthOfPane / 10 * 6, heightOfPane * 0.6);
+        easyMode.getStyleClass().add("three-buttons");
         difficultySubScene.getPane().getChildren().add(easyMode);
 
         BattleShipButton hardMode = createHardModeButton(widthOfPane / 10 * 6, heightOfPane * 0.75);
+        hardMode.getStyleClass().add("three-buttons");
         difficultySubScene.getPane().getChildren().add(hardMode);
 
 
@@ -148,10 +151,13 @@ public class SceneManager {
 
     private void createButtonsMainMenu() {
         BattleShipButton startMenu = createStartButton(MENU_BUTTON_START_X, MENU_BUTTON_START_Y + menuButtons.size() * 100);
+        startMenu.getStyleClass().add("three-buttons");
         menuButtons.add(startMenu);
         BattleShipButton rulesMenu = createRulesButton(MENU_BUTTON_START_X, MENU_BUTTON_START_Y + menuButtons.size() * 100);
+        rulesMenu.getStyleClass().add("three-buttons");
         menuButtons.add(rulesMenu);
         BattleShipButton exitMenu = createExitButton(MENU_BUTTON_START_X, MENU_BUTTON_START_Y + menuButtons.size() * 100);
+        exitMenu.getStyleClass().add("three-buttons");
         menuButtons.add(exitMenu);
 
 
