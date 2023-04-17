@@ -26,7 +26,7 @@ public abstract class Player {
         this.remainingShips = remainingShips;
         this.board = board;
         this.playerId = playerId;
-        this.memory = new Board(board.getSizeCol(), board.getSizeRow());
+        this.memory = new Board(board.getNumRow(), board.getNumCol());
         this.gameInfo = new GameInfo(new Info(playerId).whoAmI());
     }
 
@@ -145,7 +145,7 @@ public abstract class Player {
     }
 
     private boolean isInsideBoard(int col, int row) {
-        return col >= 0 && col < board.getSizeRow() && row >= 0 && row < board.getSizeCol();
+        return col >= 0 && col < board.getNumCol() && row >= 0 && row < board.getNumRow();
     }
 
 

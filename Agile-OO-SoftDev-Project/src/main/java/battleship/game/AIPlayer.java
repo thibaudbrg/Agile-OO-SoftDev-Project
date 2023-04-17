@@ -1,6 +1,5 @@
 package battleship.game;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -70,8 +69,8 @@ public class AIPlayer extends Player {
         int col;
         int row;
         do {
-            col = rn.nextInt(getBoard().getSizeCol());
-            row = rn.nextInt(getBoard().getSizeRow());
+            col = rn.nextInt(getBoard().getNumRow());
+            row = rn.nextInt(getBoard().getNumCol());
         } while (getMemory().getCell(new Coordinates(col, row)).getCellStatus() != CellStatus.OCEAN);
 
 

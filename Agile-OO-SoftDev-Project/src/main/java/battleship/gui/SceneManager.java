@@ -198,7 +198,7 @@ public class SceneManager {
             int numCols = colComboBox.getValue();
             mainStage.hide();
 
-            Game.play(GameMode.EASY,numRows,numCols);
+            Game.play(GameMode.EASY,numCols,numRows);
         });
         return easyModeButton;
     }
@@ -212,7 +212,7 @@ public class SceneManager {
             int numCols = colComboBox.getValue();
             mainStage.hide();
 
-            Game.play(GameMode.HARD,numRows,numCols);
+            Game.play(GameMode.HARD,numCols,numRows);
         });
         return HardModeButton;
     }
