@@ -1,22 +1,22 @@
 package battleship.game;
 
 public class Board  {
-    private final int sizeCol;
-    private final int sizeRow;
+    private final int numRow;
+    private final int numCol;
     private Cell[][] boardArray;
 
-    public Board(int sizeCol, int sizeRow) {
-        this.sizeRow = sizeRow;
-        this.sizeCol = sizeCol;
-        fillBoard(sizeCol, sizeRow);
+    public Board(int numRow, int numCol) {
+        this.numCol = numCol;
+        this.numRow = numRow;
+        fillBoard();
     }
 
-    public int getSizeRow() {
-        return sizeRow;
+    public int getNumCol() {
+        return numCol;
     }
 
-    public int getSizeCol() {
-        return sizeCol;
+    public int getNumRow() {
+        return numRow;
     }
 
     public Cell getCell(Coordinates coords) {
@@ -24,10 +24,10 @@ public class Board  {
     }
 
 
-    private Cell[][] fillBoard(int sizeCol, int sizeRow) {
-        boardArray = new Cell[this.sizeRow][this.sizeCol];
-        for (int col = 0; col < sizeRow; col++) {
-            for (int row = 0; row < sizeCol; row++) {
+    private Cell[][] fillBoard() {
+        boardArray = new Cell[numRow][numCol];
+        for (int col = 0; col < numCol; col++) {
+            for (int row = 0; row < numRow; row++) {
                 Cell cell = new Cell(new Coordinates(col, row), CellStatus.OCEAN);
                 boardArray[row][col] = cell ;
             }

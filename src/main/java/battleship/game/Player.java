@@ -2,11 +2,9 @@ package battleship.game;
 
 import battleship.gui.GameInfo;
 import battleship.gui.Info;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import battleship.gui.PlayerObserver;
 
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -19,14 +17,32 @@ public abstract class Player {
     private final Board memory;
     private boolean amICurrentPlayer;
     private final GameInfo gameInfo;
+    private final List<PlayerObserver> observers = new ArrayList<>();
+
+
 
     public Player(List<Ship> remainingShips, Board board, PlayerId playerId) {
         this.remainingShips = remainingShips;
         this.board = board;
         this.playerId = playerId;
-        this.memory = new Board(board.getSizeCol(), board.getSizeRow());
+        this.memory = new Board(board.getNumRow(), board.getNumCol());
         this.gameInfo = new GameInfo(new Info(playerId).whoAmI());
     }
+
+    public void addObserver(PlayerObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(PlayerObserver observer) {
+        observers.remove(observer);
+    }
+
+    private void notifyObservers(int remainingShips) {
+        for (PlayerObserver observer : observers) {
+            observer.onRemainingShipsChanged(remainingShips);
+        }
+    }
+
 
     public List<Ship> getRemainingShips() {
         return remainingShips;
@@ -77,8 +93,10 @@ public abstract class Player {
                 if (ship.hasSunk()) {
                     iterator.remove();
                     gameInfo.addInfo(new Info(playerId).sankShip(ship.getShipType(), otherRealPlayer.getNumberOfRemainingShips()));
+
                 }
             }
+            notifyObservers(otherRealPlayer.getNumberOfRemainingShips());
             memory.getCell(coords).setCellStatus(newStatus);
             return false;
         }
@@ -148,7 +166,7 @@ public abstract class Player {
     }
 
     private boolean isInsideBoard(int col, int row) {
-        return col >= 0 && col < board.getSizeRow() && row >= 0 && row < board.getSizeCol();
+        return col >= 0 && col < board.getNumCol() && row >= 0 && row < board.getNumRow();
     }
 
 

@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 
 public class GraphicalCell extends Canvas implements CellObserver {
 
-    public static final int SIZE = 35;
+    public static final int SIZE = 30;
 
     private final int id;
     private boolean mouseOver;

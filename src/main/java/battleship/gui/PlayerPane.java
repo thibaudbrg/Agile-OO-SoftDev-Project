@@ -1,8 +1,6 @@
 package battleship.gui;
 
 import battleship.game.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -14,20 +12,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.LinkedList;
-import java.util.Observable;
-import java.util.Observer;
 
 
-public class PlayerPane extends Pane {
+public class PlayerPane extends Pane implements PlayerObserver  {
 
-    private final int sizeCol;
-    private final int sizeRow;
+    private final int numRow;
+    private final int numCol;
     public static final int OFFSET_BETWEEN_SEAS = 70;
-    private final int offsetX = GraphicalCell.SIZE / 2;
+    private final int offsetX = GraphicalCell.SIZE /2;
     private final int offsetY = GraphicalCell.SIZE / 2;
 
     private final int infoSize = 100;
@@ -41,23 +35,26 @@ public class PlayerPane extends Pane {
     VBox gameInfoBox;
 
     ProgressBar mainPlayerProgressBar;
-    ProgressBar otherPlayerProgressBar;
+    //ProgressBar otherPlayerProgressBar;
 
-    File winMusic = new File("src/main/ressources/sounds/win.mp3");
+    File winMusic = new File("src/main/resources/sounds/win.mp3");
     Media wMusic = new Media(winMusic.toURI().toString());
     MediaPlayer winMediaPlayer = new MediaPlayer(wMusic);
 
-    File shipMusic = new File("src/main/ressources/sounds/place_ship.mp3");
+    File shipMusic = new File("src/main/resources/sounds/place_ship.mp3");
     Media sMusic = new Media(shipMusic.toURI().toString());
     MediaPlayer shipMediaPlayer = new MediaPlayer(sMusic);
 
-    File missMusic = new File("src/main/ressources/sounds/miss.mp3");
+    File missMusic = new File("src/main/resources/sounds/miss.mp3");
     Media mMusic = new Media(missMusic.toURI().toString());
     MediaPlayer missMediaPlayer = new MediaPlayer(mMusic);
 
-    File hitMusic = new File("src/main/ressources/sounds/hit.mp3");
+    File hitMusic = new File("src/main/resources/sounds/hit.mp3");
     Media hMusic = new Media(hitMusic.toURI().toString());
     MediaPlayer hitMediaPlayer = new MediaPlayer(hMusic);
+
+
+
 
     private enum GameProgression {
         SHIP_PLACEMENT, PLAYING_GAME;
@@ -68,16 +65,15 @@ public class PlayerPane extends Pane {
     }
 
     public PlayerPane(Player mainPlayer, Player otherPlayer) {
-
         this.mainPlayer = mainPlayer;
         this.otherPlayer = otherPlayer;
-        sizeCol = mainPlayer.getBoard().getSizeCol();
-        sizeRow = mainPlayer.getBoard().getSizeRow();
+        numRow = mainPlayer.getBoard().getNumRow();
+        numCol = mainPlayer.getBoard().getNumCol();
         mainPlayer.getGameInfo().infoProperty().addListener((observable, oldValue, newValue) -> updateGameInfo(newValue));
 
-        setMinSize(sizeRow * GraphicalCell.SIZE + 2 * offsetX, 2 * (sizeCol * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
-        setMaxSize(sizeRow * GraphicalCell.SIZE + 2 * offsetX, 2 * (sizeCol * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
-        setPrefSize(sizeRow * GraphicalCell.SIZE + 2 * offsetX, 2 * (sizeCol * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
+        setMinSize(numCol * GraphicalCell.SIZE + 2 * offsetX, 2 * (numRow * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
+        setMaxSize(numCol * GraphicalCell.SIZE + 2 * offsetX, 2 * (numRow * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
+        setPrefSize(numCol * GraphicalCell.SIZE + 2 * offsetX, 2 * (numRow * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
         setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
         loadBothSea();
@@ -135,13 +131,10 @@ public class PlayerPane extends Pane {
                             }
                             break;
                         case PLAYING_GAME:
-                            mainPlayerProgressBar.setVisible(true);
-                            otherPlayerProgressBar.setVisible(true);
-
+                            mainPlayer.addObserver(this);
                             if (!gCell.isMine()) {
                                 boolean sound = mainPlayer.handleShot(gCell.getCoordinates(), otherPlayer);
-                                mainPlayerProgressBar.setProgress((double) mainPlayer.getNumberOfRemainingShips() / ShipType.values().length);
-                                otherPlayerProgressBar.setProgress((double) otherPlayer.getNumberOfRemainingShips() / ShipType.values().length);
+
                                 if (sound){
                                     missMediaPlayer.setAutoPlay(true);
                                     missMediaPlayer.play();
@@ -181,19 +174,19 @@ public class PlayerPane extends Pane {
 
     private void updateOrientation(KeyCode code) {
         switch (code) {
-            case A -> {
+            case UP,W -> {
                 currentOrientation = Orientation.N;
                 System.out.println("n");
             }
-            case DOWN -> {
+            case DOWN,S -> {
                 currentOrientation = Orientation.S;
                 System.out.println("s");
             }
-            case LEFT -> {
+            case LEFT,A -> {
                 currentOrientation = Orientation.W;
                 System.out.println("w");
             }
-            case RIGHT -> {
+            case RIGHT,D -> {
                 currentOrientation = Orientation.E;
                 System.out.println("e");
             }
@@ -204,44 +197,32 @@ public class PlayerPane extends Pane {
 
     private void loadBothSea() {
 
-        Label mainPlayerlabel = new Label("Up:");
+        Label mainPlayerlabel = new Label("Your Progress:");
         mainPlayerlabel.setFont(new Font(16));
-        mainPlayerlabel.relocate(22, offsetY - 30 + (sizeCol * GraphicalCell.SIZE) + ((double) OFFSET_BETWEEN_SEAS / 2));
+        mainPlayerlabel.relocate(offsetX, offsetY  + (numRow * GraphicalCell.SIZE) + 3*((double) OFFSET_BETWEEN_SEAS / 8));
         getChildren().add(mainPlayerlabel);
-
-        Label otherPlayerlabel = new Label("Down:");
-        otherPlayerlabel.setFont(new Font(16));
-        otherPlayerlabel.relocate(22, offsetY + (sizeCol * GraphicalCell.SIZE) + ((double) OFFSET_BETWEEN_SEAS / 2));
-        getChildren().add(otherPlayerlabel);
 
 
         mainPlayerProgressBar = new ProgressBar();
-        mainPlayerProgressBar.setProgress(1.0);
-        mainPlayerProgressBar.setPrefSize(200, 20); // Set width and height
-        mainPlayerProgressBar.relocate(75, offsetY - 30 + (sizeCol * GraphicalCell.SIZE) + ((double) OFFSET_BETWEEN_SEAS / 2)); // Set position
-        mainPlayerProgressBar.setVisible(false);
-        getChildren().add(mainPlayerProgressBar); // Add progress bar to scene
-
-        otherPlayerProgressBar = new ProgressBar();
-        otherPlayerProgressBar.setProgress(1.0);
-        otherPlayerProgressBar.setPrefSize(200, 20); // Set width and height
-        otherPlayerProgressBar.relocate(75, offsetY + (sizeCol * GraphicalCell.SIZE) + ((double) OFFSET_BETWEEN_SEAS / 2)); // Set position
-        otherPlayerProgressBar.setVisible(false);
-        getChildren().add(otherPlayerProgressBar); // Add progress bar to scene
+        mainPlayerProgressBar.setProgress(0.0);
+        mainPlayerProgressBar.setPrefSize(numCol * GraphicalCell.SIZE- 9 * offsetX , (double) OFFSET_BETWEEN_SEAS/4);
+        mainPlayerProgressBar.relocate(8 *offsetX, offsetY  + (numRow * GraphicalCell.SIZE) + 3*((double) OFFSET_BETWEEN_SEAS / 8));
+        mainPlayerProgressBar.setVisible(true);
+        getChildren().add(mainPlayerProgressBar);
 
 
-        for (int row = 0; row < sizeCol; row++) {
+        for (int row = 0; row < numRow; row++) {
             Text text = new Text(String.valueOf(row + 1));
             text.setFill(Color.BLUE);
-            text.setFont(Font.font(16));
+            text.setFont(Font.font(12));
             text.relocate(((double) GraphicalCell.SIZE / 2) - text.getLayoutBounds().getWidth() - 3, ((row + 1) * GraphicalCell.SIZE) - (text.getLayoutBounds().getHeight() / 2));
             getChildren().add(text);
 
-            for (int col = 0; col < sizeRow; col++) {
+            for (int col = 0; col < numCol; col++) {
                 if (row == 0) {
                     Text text2 = new Text(Character.valueOf((char) (col + 65)).toString());
                     text2.setFill(Color.BLUE);
-                    text2.setFont(Font.font(16));
+                    text2.setFont(Font.font(12));
                     text2.relocate((col + 1) * GraphicalCell.SIZE, 0);
                     getChildren().add(text2);
                 }
@@ -252,24 +233,24 @@ public class PlayerPane extends Pane {
             }
         }
 
-        for (int row = 0; row < sizeCol; row++) {
+        for (int row = 0; row < numRow; row++) {
             Text text = new Text(String.valueOf(row + 1));
             text.setFill(Color.BLUE);
-            text.setFont(Font.font(16));
-            text.relocate(((double) GraphicalCell.SIZE / 2) - text.getLayoutBounds().getWidth() - 3, ((row + 1) * GraphicalCell.SIZE) - (text.getLayoutBounds().getHeight() / 2) + GraphicalCell.SIZE * sizeCol + OFFSET_BETWEEN_SEAS);
+            text.setFont(Font.font(12));
+            text.relocate(((double) GraphicalCell.SIZE / 2) - text.getLayoutBounds().getWidth() - 3, ((row + 1) * GraphicalCell.SIZE) - (text.getLayoutBounds().getHeight() / 2) + GraphicalCell.SIZE * numRow + OFFSET_BETWEEN_SEAS);
             getChildren().add(text);
 
-            for (int col = 0; col < sizeRow; col++) {
+            for (int col = 0; col < numCol; col++) {
                 if (row == 0) {
                     Text text2 = new Text(Character.valueOf((char) (col + 65)).toString());
                     text2.setFill(Color.BLUE);
-                    text2.setFont(Font.font(16));
-                    text2.relocate((col + 1) * GraphicalCell.SIZE, OFFSET_BETWEEN_SEAS + (GraphicalCell.SIZE * sizeRow));
+                    text2.setFont(Font.font(12));
+                    text2.relocate((col + 1) * GraphicalCell.SIZE, OFFSET_BETWEEN_SEAS + (GraphicalCell.SIZE * numRow));
                     getChildren().add(text2);
                 }
 
                 GraphicalCell t = new GraphicalCell(mainPlayer.getBoard().getCell(new Coordinates(col, row)), true);
-                t.relocate(offsetX + (GraphicalCell.SIZE * col), offsetY + GraphicalCell.SIZE * sizeCol + OFFSET_BETWEEN_SEAS + (GraphicalCell.SIZE * row));
+                t.relocate(offsetX + (GraphicalCell.SIZE * col), offsetY + GraphicalCell.SIZE * numRow + OFFSET_BETWEEN_SEAS + (GraphicalCell.SIZE * row));
                 getChildren().add(t);
             }
         }
@@ -277,14 +258,14 @@ public class PlayerPane extends Pane {
 
         gameInfoBox = new VBox();
         gameInfoBox.setStyle("-fx-background-color: white;");
-        gameInfoBox.setPrefSize(2 * offsetX + (GraphicalCell.SIZE * sizeRow), infoSize);
-        gameInfoBox.relocate(0, 2 * GraphicalCell.SIZE * sizeCol + 2 * offsetY + OFFSET_BETWEEN_SEAS);
+        gameInfoBox.setPrefSize(2 * offsetX + (GraphicalCell.SIZE * numCol), infoSize);
+        gameInfoBox.relocate(0, 2 * GraphicalCell.SIZE * numRow + 2 * offsetY + OFFSET_BETWEEN_SEAS);
 
         ScrollPane scrollPane = new ScrollPane(gameInfoBox);
-        scrollPane.setPrefSize(2 * offsetX + (GraphicalCell.SIZE * sizeRow), infoSize);
+        scrollPane.setPrefSize(2 * offsetX + (GraphicalCell.SIZE * numCol), infoSize);
         scrollPane.setFitToWidth(true);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        scrollPane.relocate(0, 2 * GraphicalCell.SIZE * sizeCol + 2 * offsetY + OFFSET_BETWEEN_SEAS);
+        scrollPane.relocate(0, 2 * GraphicalCell.SIZE * numRow + 2 * offsetY + OFFSET_BETWEEN_SEAS);
         getChildren().add(scrollPane);
 
         getChildren().add(gameInfoBox);
@@ -300,13 +281,19 @@ public class PlayerPane extends Pane {
         for (int i = infos.size() - 1; i >= 0; i--) {
             Label gameInfoLabel = new Label("- " + infos.get(i));
             gameInfoLabel.setFont(new Font(12));
-            gameInfoLabel.setMaxWidth(2 * offsetX + (GraphicalCell.SIZE * sizeRow));
+            gameInfoLabel.setMaxWidth(2 * offsetX + (GraphicalCell.SIZE * numCol));
             gameInfoLabel.setWrapText(true);
             gameInfoBox.getChildren().add(gameInfoLabel);
         }
     }
 
-    public int getSizeBoard() {
-        return sizeCol;
+    @Override
+    public void onRemainingShipsChanged(int remainingShips) {
+        System.out.println(mainPlayer.getPlayerId());
+        mainPlayerProgressBar.setProgress(1 - remainingShips/(double)ShipType.values().length);
+
     }
+
+
+
 }

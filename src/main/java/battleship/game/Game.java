@@ -12,24 +12,24 @@ public class Game {
     private Game() {
     }
 
-    public static void play(GameMode gameMode, int rows , int cols) {
+    public static void play(GameMode gameMode, int numCol , int numRow) {
 
 
         final List<Ship> shipsPlayer1 = new ArrayList<>();
         final List<Ship> shipsPlayer2 = new ArrayList<>();
 
-        List<Board> boards = generateBoards(rows,cols);
+        List<Board> boards = generateBoards(numCol,numRow);
 
         List<Player> players = generatePlayers(gameMode, shipsPlayer1, shipsPlayer2, boards);
 
         GraphicalGame.initial(gameMode, players);
     }
 
-    private static List<Board> generateBoards(int rows, int cols) {
+    private static List<Board> generateBoards(int numCol, int numRow) {
         List<Board> boards = new ArrayList<>();
 
-        Board board1 = new Board(cols, rows);
-        Board board2 = new Board(cols, rows);
+        Board board1 = new Board(numRow, numCol);
+        Board board2 = new Board(numRow, numCol);
         boards.add(board1);
         boards.add(board2);
         return boards;

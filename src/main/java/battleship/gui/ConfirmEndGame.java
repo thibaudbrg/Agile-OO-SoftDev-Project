@@ -13,12 +13,12 @@ public class ConfirmEndGame {
         alert.setHeaderText("Ship commander !!");
         alert.setTitle("Not enjoying the game?");
         alert.setContentText("Are you sure you want to quit?");
-        if (!Objects.equals(alert.showAndWait(), Optional.of(ButtonType.CANCEL))) {
-            Optional<ButtonType> obj = alert.showAndWait();
-            if (Objects.equals(obj, Optional.of(ButtonType.OK))) {
-                return true;
-            } else return !Objects.equals(obj, Optional.of(ButtonType.CANCEL));
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
+
 }

@@ -9,8 +9,5 @@
         <module name="Agile-OO-SoftDev-Project" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Agile-OO-SoftDev-Project" target="19" />
-    </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,6 +1,5 @@
 import io.cucumber.java.en.*;
 import battleship.game.*;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 
@@ -78,14 +77,14 @@ public class BoardTest {
 
     @When("the size of the board is requested")
     public void the_size_of_the_board_is_requested() {
-        int sizeRowCheck = board.getSizeRow();
-        int sizeColCheck = board.getSizeCol();
+        int sizeRowCheck = board.getNumCol();
+        int sizeColCheck = board.getNumRow();
     }
 
     @Then("the returned size should be {int} x {int}")
     public void the_returned_size_should_be_x(Integer expectedSizeRow, Integer expectedSizeCol) {
-        assertEquals(expectedSizeRow, Integer.valueOf(board.getSizeRow()));
-        assertEquals(expectedSizeCol, Integer.valueOf(board.getSizeCol()));
+        assertEquals(expectedSizeRow, Integer.valueOf(board.getNumCol()));
+        assertEquals(expectedSizeCol, Integer.valueOf(board.getNumRow()));
     }
 
     @When("the board is filled with cells")
@@ -96,8 +95,8 @@ public class BoardTest {
     @Then("the number of cells on the board should be {int}")
     public void the_number_of_cells_on_the_board_should_be(int expectedCellCount) {
         int cellCount = 0;
-        for (int col = 0; col < board.getSizeCol(); col++) {
-            for (int row = 0; row < board.getSizeRow(); row++) {
+        for (int col = 0; col < board.getNumRow(); col++) {
+            for (int row = 0; row < board.getNumCol(); row++) {
                 if (board.getCell(new Coordinates(col, row)) != null) {
                     cellCount++;
                 }
@@ -109,8 +108,8 @@ public class BoardTest {
 
     @Then("all cells on the board should have status OCEAN")
     public void all_cells_on_the_board_should_have_status_ocean() {
-        for (int row = 0; row < board.getSizeRow(); row++) {
-            for (int col = 0; col < board.getSizeCol(); col++) {
+        for (int row = 0; row < board.getNumCol(); row++) {
+            for (int col = 0; col < board.getNumRow(); col++) {
                 assertEquals(CellStatus.OCEAN, board.getCell(new Coordinates(col, row)).getCellStatus());
             }
         }

@@ -16,7 +16,7 @@ public class BattleShipButton extends Button {
     private static final String BUTTON_PRESSED_STYLE = "-fx-background-color: transparent;-fx-background-image: url('ImagesFromSpaceRunner/rocketButton.png');-fx-background-size: 100%;";
     private static final String BUTTON_FREE_STYLE = "-fx-background-color: transparent;-fx-background-image: url('ImagesFromSpaceRunner/rocketButton.png');-fx-background-size: 100%;";
 
-    File buttonMusic = new File("src/main/ressources/sounds/press_button.mp3");
+    File buttonMusic = new File("src/main/resources/sounds/press_button.mp3");
 
     Media bMusic = new Media(buttonMusic.toURI().toString());
     MediaPlayer buttonMediaPlayer = new MediaPlayer(bMusic);
