@@ -12,9 +12,10 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="junit.jupiter" level="project" />
-    <orderEntry type="library" exported="" name="javafx-swt" level="application" />
     <orderEntry type="library" exported="" name="junit.vintage.engine" level="project" />
     <orderEntry type="library" exported="" name="io.cucumber.junit" level="project" />
     <orderEntry type="library" exported="" name="io.cucumber.java" level="project" />
+    <orderEntry type="library" name="javafx-swt" level="application" />
+    <orderEntry type="library" exported="" name="OPEN JFX" level="application" />
   </component>
 </module>

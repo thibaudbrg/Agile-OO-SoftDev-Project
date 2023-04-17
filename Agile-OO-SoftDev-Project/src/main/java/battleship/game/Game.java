@@ -102,7 +102,20 @@ public class Game {
         Player player1  = new RealPlayer(ships1, board1,PlayerId.PLAYER_1);
         Player player2;
 
-        player2 = mode==1 ? new AIPlayer(ships2, board2, PlayerId.PLAYER_2) : new RealPlayer(ships2, board2, PlayerId.PLAYER_2);
+        if (mode == 1){
+            player2 = new AIPlayer(ships2, board2, PlayerId.PLAYER_2);
+            System.out.println("Select the AI type: 1. RANDOM, 2. BASIC");
+            int type;
+            do {
+                type = scanner.nextInt();
+                if (type != 1 && type != 2) {
+                    System.out.println("ERROR: You need to enter either 1 or 2");
+                }
+            } while (type != 1 && type != 2);
+            ((AIPlayer) player2).setType(type);
+
+        } else player2 = new RealPlayer(ships2, board2, PlayerId.PLAYER_2);
+
 
         players.add(player1);
         players.add(player2);

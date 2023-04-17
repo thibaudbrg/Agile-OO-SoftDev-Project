@@ -6,24 +6,25 @@ import java.util.Random;
 
 public class AIPlayer extends Player {
 
-    private Random rn = new Random();
-    private int lastRow;
-    private int lastColumn;
+    private final Random rn = new Random();
+    //private int lastRow;
+    //private int lastColumn;
+    private int type;
     public AIPlayer(List<Ship> ships, Board board, PlayerId playerId) {
         super(ships, board, playerId);
-        this.lastRow = -1;
-        this.lastColumn = -1;
+        //by default the AI is random
+        this.type = 1;
 
     }
 
-    public void updateMemory(int col, int row, CellStatus status){
+    /*public void updateMemory(int col, int row, CellStatus status){
         getMemory().getCell(new Coordinates(col, row)).setCellStatus(status);
         if (status == CellStatus.HIT){
             this.lastColumn = col;
             this.lastRow = row;
         }
 
-    }
+    }*/
 
     @Override
     public Ship createShip(ShipType shipType) {
@@ -52,7 +53,7 @@ public class AIPlayer extends Player {
         return ship;
     }
 
-    public void randomAI(Player player1, Player player2) {
+    public Coordinates randomAI() {
         Board memory = this.getMemory();
         ArrayList<Coordinates> unknown = new ArrayList<>();
 
@@ -66,11 +67,13 @@ public class AIPlayer extends Player {
 
         if (unknown.size() > 0) {
             int randomIndex = new Random().nextInt(unknown.size());
-            this.makeMove(unknown.get(randomIndex),player1,player2);
+            //this.makeMove(unknown.get(randomIndex),player1,player2);
+            return unknown.get(randomIndex);
         }
+        return null;
     }
 
-    public void basicAI(Player currentPlayer, Player player1, Player player2){
+    public Coordinates basicAI(){
         // setup
         Board memory = this.getMemory();
         ArrayList<Coordinates> unknown = new ArrayList<>();
@@ -103,16 +106,16 @@ public class AIPlayer extends Player {
         // pick "OCEAN" square with direct and level-2 neighbor both marked as "HIT"
         for(Coordinates u : unknown){
             if(unknownNeighboringHits1.contains(u) && unknownNeighboringHits2.contains(u)){
-                makeMove(u,player1,player2);
-                return;
+                //makeMove(u,player1,player2);
+                return u;
             }
         }
 
         // pick "OCEAN" square that has a level-1 neighbor marked as "HIT" and a level-2 neighbor marked as "HIT"
         if(!unknownNeighboringHits1.isEmpty()){
             Coordinates move = unknownNeighboringHits1.get(new Random().nextInt(unknownNeighboringHits1.size()));
-            makeMove(move,player1,player2);
-            return;
+            //makeMove(move,player1,player2);
+            return move;
         }
 
         // checker board pattern
@@ -125,19 +128,24 @@ public class AIPlayer extends Player {
 
         if(!checkerBoard.isEmpty()){
             Coordinates move = checkerBoard.get(new Random().nextInt(checkerBoard.size()));
-            makeMove(move,player1,player2);
-            return;
+            //makeMove(move,player1,player2);
+            return move;
         }
 
         // random move
-        randomAI(player1,player2);
+        return randomAI();
     }
 
+    @Override
+    public Coordinates shoot() {
+        if (type ==1) return randomAI();
+        return basicAI();
+    }
+    public void setType(int type) {
+        this.type = type;
+    }
 
-
-
-
-    public Coordinates randomShoot() {
+    /*public Coordinates randomShoot() {
         int col;
         int row;
         do {
@@ -148,9 +156,9 @@ public class AIPlayer extends Player {
 
         return new Coordinates(col, row);
 
-    }
+    }*/
 
-    @Override
+    /*@Override
     public Coordinates shoot() {
         int col = 0;
         int row = 0;
@@ -312,6 +320,6 @@ public class AIPlayer extends Player {
         }
         return new Coordinates(col, row);
 
-    }
+    }*/
 
 }
