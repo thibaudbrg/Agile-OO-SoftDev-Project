@@ -11,10 +11,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
 import java.io.File;
 import java.util.LinkedList;
-
 
 public class PlayerPane extends Pane implements PlayerObserver  {
 
@@ -23,32 +21,23 @@ public class PlayerPane extends Pane implements PlayerObserver  {
     public static final int OFFSET_BETWEEN_SEAS = 70;
     private final int offsetX = GraphicalCell.SIZE /2;
     private final int offsetY = GraphicalCell.SIZE / 2;
-
     private final int infoSize = 100;
-
     private Orientation currentOrientation = Orientation.N;
-
     private int shipPlacedCounter;
-
     private final Player mainPlayer;
     private final Player otherPlayer;
     VBox gameInfoBox;
 
     ProgressBar mainPlayerProgressBar;
-    //ProgressBar otherPlayerProgressBar;
-
     File winMusic = new File("src/main/resources/sounds/win.mp3");
     Media wMusic = new Media(winMusic.toURI().toString());
     MediaPlayer winMediaPlayer = new MediaPlayer(wMusic);
-
     File shipMusic = new File("src/main/resources/sounds/place_ship.mp3");
     Media sMusic = new Media(shipMusic.toURI().toString());
     MediaPlayer shipMediaPlayer = new MediaPlayer(sMusic);
-
     File missMusic = new File("src/main/resources/sounds/miss.mp3");
     Media mMusic = new Media(missMusic.toURI().toString());
     MediaPlayer missMediaPlayer = new MediaPlayer(mMusic);
-
     File hitMusic = new File("src/main/resources/sounds/hit.mp3");
     Media hMusic = new Media(hitMusic.toURI().toString());
     MediaPlayer hitMediaPlayer = new MediaPlayer(hMusic);
@@ -69,6 +58,7 @@ public class PlayerPane extends Pane implements PlayerObserver  {
         this.otherPlayer = otherPlayer;
         numRow = mainPlayer.getBoard().getNumRow();
         numCol = mainPlayer.getBoard().getNumCol();
+        boolean isAi = otherPlayer instanceof AIPlayer;
         mainPlayer.getGameInfo().infoProperty().addListener((observable, oldValue, newValue) -> updateGameInfo(newValue));
 
         setMinSize(numCol * GraphicalCell.SIZE + 2 * offsetX, 2 * (numRow * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
@@ -89,7 +79,6 @@ public class PlayerPane extends Pane implements PlayerObserver  {
         if (mainPlayer.getPlayerId() == PlayerId.PLAYER_2) {
             mainPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).willPlayFirst());
         }
-
 
         this.setOnKeyPressed(event -> {
             if (mainPlayer.amICurrentPlayer()) {
@@ -114,9 +103,13 @@ public class PlayerPane extends Pane implements PlayerObserver  {
 
                                     ++shipPlacedCounter;
                                     if (shipPlacedCounter == ShipType.values().length) { // TODO REFACTOR AND PRETTIER
-                                        otherPlayer.setAmICurrentPlayer(true);
-                                        mainPlayer.setAmICurrentPlayer(false);
-
+                                        if (isAi){
+                                            ((AIPlayer)otherPlayer).addShips();
+                                        }
+                                        else {
+                                            otherPlayer.setAmICurrentPlayer(true);
+                                            mainPlayer.setAmICurrentPlayer(false);
+                                        }
                                         mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).shipArePlaced());
                                         if (mainPlayer.getPlayerId() == PlayerId.PLAYER_1) {
                                             otherPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).chooseShipsPlacements());
@@ -153,8 +146,14 @@ public class PlayerPane extends Pane implements PlayerObserver  {
                                     mainPlayer.setAmICurrentPlayer(false);
                                 }
                                 else {
+                                    if (isAi){
+                                        ((AIPlayer) otherPlayer).handleShot(mainPlayer);
+                                        otherPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).canPlay());
+                                    }
+                                    else {
                                     otherPlayer.setAmICurrentPlayer(true);
                                     mainPlayer.setAmICurrentPlayer(false);
+                                    }
                                     otherPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).canPlay());
                                 }
 
@@ -191,6 +190,7 @@ public class PlayerPane extends Pane implements PlayerObserver  {
                 System.out.println("e");
             }
             default -> {
+                currentOrientation = Orientation.N;
             }
         }
     }

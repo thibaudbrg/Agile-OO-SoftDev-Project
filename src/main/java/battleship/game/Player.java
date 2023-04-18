@@ -63,27 +63,18 @@ public abstract class Player {
     public boolean handleShot(Coordinates coords, Player otherRealPlayer) {
         CellStatus newStatus = CellStatus.OCEAN;
         if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.HIT) {
-            newStatus = CellStatus.HIT;
-            //missMediaPlayer.setAutoPlay(true);
-            //missMediaPlayer.play();
             gameInfo.addInfo(new Info(playerId).alreadyHit());
             return true;
         } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.OCEAN) {
-            //missMediaPlayer.setAutoPlay(true);
-            //missMediaPlayer.play();
-            newStatus = CellStatus.MISSED;
+
             gameInfo.addInfo(new Info(playerId).miss());
             otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.MISSED);
             return true;
         } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.MISSED) {
-            newStatus = CellStatus.MISSED;
-            //missMediaPlayer.setAutoPlay(true);
-            //missMediaPlayer.play();
             gameInfo.addInfo(new Info(playerId).alreadyMissed());
             return true;
         } else {
-            //hitMediaPlayer.setAutoPlay(true);
-            //hitMediaPlayer.play();
+
             newStatus = CellStatus.HIT;
             gameInfo.addInfo(new Info(playerId).hit());
             otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.HIT);

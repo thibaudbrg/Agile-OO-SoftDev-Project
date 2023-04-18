@@ -2,7 +2,6 @@ package battleship.gui;
 
 import battleship.game.Game;
 import javafx.animation.FadeTransition;
-import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -11,14 +10,11 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -137,7 +133,7 @@ public class SceneManager {
         double widthOfPane = difficultySubScene.getPane().getWidth();
         double heightOfPane = difficultySubScene.getPane().getHeight();
 
-        BattleShipButton multiplayer = createMultiButton(widthOfPane / 10 * 6, heightOfPane * 0.45);
+        BattleShipButton multiplayer = createMultiplayerButton(widthOfPane / 10 * 6, heightOfPane * 0.45);
         multiplayer.getStyleClass().add("three-buttons");
         difficultySubScene.getPane().getChildren().add(multiplayer);
 
@@ -190,8 +186,8 @@ public class SceneManager {
         BattleShipButton rulesButton = new BattleShipButton(StringsEn.RULES_BUTTON);
         rulesButton.setLayoutX(x);
         rulesButton.setLayoutY(y);
-        rulesButton.setOnAction(arg0 -> showSubScene(rulesSubScene));
-
+        rulesButton.setOnAction(arg0 ->
+            showSubScene(rulesSubScene));
         return rulesButton;
     }
 
@@ -203,14 +199,13 @@ public class SceneManager {
         return startButton;
     }
 
-    private BattleShipButton createMultiButton(double x, double y) {
+    private BattleShipButton createMultiplayerButton(double x, double y) {
         BattleShipButton multiButton = new BattleShipButton(StringsEn.MULTIPLAYER_BUTTON);
         multiButton.setLayoutX(x);
         multiButton.setLayoutY(y);
         multiButton.setOnAction(event -> {
             int numRows = rowComboBox.getValue();
             int numCols = colComboBox.getValue();
-            mainStage.hide();
             Game.play(GameMode.MULTIPLAYER,numCols,numRows);
         });
         return multiButton;
@@ -223,7 +218,6 @@ public class SceneManager {
         easyModeButton.setOnAction(event -> {
             int numRows = rowComboBox.getValue();
             int numCols = colComboBox.getValue();
-            mainStage.hide();
             Game.play(GameMode.EASY,numRows,numCols);
         });
         return easyModeButton;
@@ -236,7 +230,6 @@ public class SceneManager {
         HardModeButton.setOnAction(event -> {
             int numRows = rowComboBox.getValue();
             int numCols = colComboBox.getValue();
-            mainStage.hide();
             Game.play(GameMode.HARD,numRows,numCols);
         });
         return HardModeButton;
@@ -249,7 +242,6 @@ public class SceneManager {
         exitButton.setOnAction(arg0 -> {
             Platform.exit();
         });
-
         return exitButton;
     }
 
