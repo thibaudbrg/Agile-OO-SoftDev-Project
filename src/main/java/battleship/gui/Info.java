@@ -119,4 +119,8 @@ public final class Info {
     public String won() {
         return String.format(StringsEn.WINS, playerId);
     }
+
+    public String rockHit() {
+        return String.format(StringsEn.ROCK_HIT);
+    }
 }

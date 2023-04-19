@@ -62,18 +62,24 @@ public abstract class Player {
 
     public CellStatus handleShot(Coordinates coords, Player otherRealPlayer) {
         CellStatus newStatus = CellStatus.OCEAN;
-        if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.HIT) {
+        if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.HIT
+                || otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.ROCK_HIT) {
             gameInfo.addInfo(new Info(playerId).alreadyHit());
             return CellStatus.ALREADY_HIT;
         } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.OCEAN) {
             gameInfo.addInfo(new Info(playerId).miss());
             otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.MISSED);
+            memory.getCell(coords).setCellStatus(CellStatus.MISSED);
             return CellStatus.MISSED;
         } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.MISSED) {
             gameInfo.addInfo(new Info(playerId).alreadyMissed());
             return CellStatus.ALREADY_MISSED;
-        } else {
-
+        } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.ROCK) {
+            gameInfo.addInfo(new Info(playerId).rockHit());
+            otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.ROCK_HIT);
+            return CellStatus.ROCK_HIT;
+        }
+            else{
             newStatus = CellStatus.HIT;
             gameInfo.addInfo(new Info(playerId).hit());
             otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.HIT);
@@ -133,7 +139,9 @@ public abstract class Player {
             col += changes[0];
             row += changes[1];
 
-            if (!isInsideBoard(col, row) || board.getCell(new Coordinates(col, row)).getCellStatus() == CellStatus.SHIP) {
+            if (!isInsideBoard(col, row) ||
+                    board.getCell(new Coordinates(col, row)).getCellStatus() == CellStatus.SHIP ||
+                    board.getCell(new Coordinates(col, row)).getCellStatus() == CellStatus.ROCK) {
                 gameInfo.addInfo(new Info(playerId).placementCollision());
                 return false;
             }

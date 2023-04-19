@@ -50,7 +50,7 @@ public class StringsEn {
             "You need to place the ship: %s. It has a length of %s.";
 
     public static final String PLACEMENT_COLLISION =
-            "The ship collides with another ship or is out of the board! Try again.";
+            "The ship collides with another ship or a rock or is out of the board! Try again.";
 
     public static final String GOOD_PLACEMENT =
             "Good placement!";
@@ -67,6 +67,7 @@ public class StringsEn {
     public static final String HIT =
             "Hit!";
 
+    public static final String ROCK_HIT = "You Hit a rock!";
     public static final String ALREADY_HIT = "Already hit!";
 
     public static final String MISS = "Miss...";

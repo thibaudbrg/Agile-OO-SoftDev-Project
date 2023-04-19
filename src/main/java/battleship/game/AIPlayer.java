@@ -141,7 +141,6 @@ public class AIPlayer extends Player {
         if (isHard == false) {
             do {
                 newCellstatus = handleShot(randomAI(),otherRealPlayer) ;
-                System.out.println(newCellstatus);
             } while (newCellstatus== CellStatus.ALREADY_MISSED || newCellstatus== CellStatus.ALREADY_HIT);
 
             return newCellstatus;
