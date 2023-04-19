@@ -46,10 +46,15 @@ public class Game {
                 player1 = new RealPlayer(ships1, board1, PlayerId.PLAYER_1);
                 player2 = new RealPlayer(ships2, board2, PlayerId.PLAYER_2);
                 break;
-            case EASY, HARD:
+            case EASY:
                 player1 = new RealPlayer(ships1, board1, PlayerId.PLAYER_1);
-                player2 = new AIPlayer(ships2, board2, PlayerId.PLAYER_2);
+                player2 = new AIPlayer(ships2, board2, PlayerId.PLAYER_2,false);
                 break;
+            case  HARD:
+                player1 = new RealPlayer(ships1, board1, PlayerId.PLAYER_1);
+                player2 = new AIPlayer(ships2, board2, PlayerId.PLAYER_2,true);
+                break;
+
         }
 
         List<Player> players = new ArrayList<>();

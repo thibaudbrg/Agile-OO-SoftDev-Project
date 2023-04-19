@@ -9,11 +9,11 @@ public class AIPlayer extends Player {
     private final Random rn = new Random();
     //private int lastRow;
     //private int lastColumn; 
-    private int type;
-    public AIPlayer(List<Ship> ships, Board board, PlayerId playerId) {
+    private boolean isHard;
+    public AIPlayer(List<Ship> ships, Board board, PlayerId playerId,boolean isHard) {
         super(ships, board, playerId);
         //by default the AI is random
-        this.type = 1;
+        this.isHard = isHard;
 
     }
 
@@ -136,18 +136,21 @@ public class AIPlayer extends Player {
         return randomAI();
     }
 
-    public boolean handleShot(Player otherRealPlayer){
-        if (type ==1) {
-            return this.handleShot(randomAI(),otherRealPlayer) ;
+    public CellStatus handleShot(Player otherRealPlayer){
+        CellStatus newCellstatus;
+        if (isHard == false) {
+            do {
+                newCellstatus = handleShot(randomAI(),otherRealPlayer) ;
+                System.out.println(newCellstatus);
+            } while (newCellstatus== CellStatus.ALREADY_MISSED || newCellstatus== CellStatus.ALREADY_HIT);
+
+            return newCellstatus;
         }
         else{
+            //TODO THE AI SHOULD NEVER HIT AN ALREADY HIT OR AN ALREADY MISSED
             return this.handleShot(basicAI(),otherRealPlayer) ;
         }
 
-    }
-
-    public void setType(int type) {
-        this.type = type;
     }
 
     /*public Coordinates randomShoot() {

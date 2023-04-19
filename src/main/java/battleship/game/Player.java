@@ -60,19 +60,18 @@ public abstract class Player {
         return gameInfo;
     }
 
-    public boolean handleShot(Coordinates coords, Player otherRealPlayer) {
+    public CellStatus handleShot(Coordinates coords, Player otherRealPlayer) {
         CellStatus newStatus = CellStatus.OCEAN;
         if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.HIT) {
             gameInfo.addInfo(new Info(playerId).alreadyHit());
-            return true;
+            return CellStatus.ALREADY_HIT;
         } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.OCEAN) {
-
             gameInfo.addInfo(new Info(playerId).miss());
             otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.MISSED);
-            return true;
+            return CellStatus.MISSED;
         } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.MISSED) {
             gameInfo.addInfo(new Info(playerId).alreadyMissed());
-            return true;
+            return CellStatus.ALREADY_MISSED;
         } else {
 
             newStatus = CellStatus.HIT;
@@ -89,7 +88,7 @@ public abstract class Player {
             }
             notifyObservers(otherRealPlayer.getNumberOfRemainingShips());
             memory.getCell(coords).setCellStatus(newStatus);
-            return false;
+            return CellStatus.HIT;
         }
 
     }

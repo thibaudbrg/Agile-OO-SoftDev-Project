@@ -58,7 +58,7 @@ public class PlayerPane extends Pane implements PlayerObserver  {
         this.otherPlayer = otherPlayer;
         numRow = mainPlayer.getBoard().getNumRow();
         numCol = mainPlayer.getBoard().getNumCol();
-        boolean isAi = otherPlayer instanceof AIPlayer;
+        boolean otherPlayerIsAi = otherPlayer instanceof AIPlayer;
         mainPlayer.getGameInfo().infoProperty().addListener((observable, oldValue, newValue) -> updateGameInfo(newValue));
 
         setMinSize(numCol * GraphicalCell.SIZE + 2 * offsetX, 2 * (numRow * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
@@ -103,7 +103,7 @@ public class PlayerPane extends Pane implements PlayerObserver  {
 
                                     ++shipPlacedCounter;
                                     if (shipPlacedCounter == ShipType.values().length) { // TODO REFACTOR AND PRETTIER
-                                        if (isAi){
+                                        if (otherPlayerIsAi){
                                             ((AIPlayer)otherPlayer).addShips();
                                         }
                                         else {
@@ -126,36 +126,45 @@ public class PlayerPane extends Pane implements PlayerObserver  {
                         case PLAYING_GAME:
                             mainPlayer.addObserver(this);
                             if (!gCell.isMine()) {
-                                boolean sound = mainPlayer.handleShot(gCell.getCoordinates(), otherPlayer);
+                                CellStatus newStatus = mainPlayer.handleShot(gCell.getCoordinates(), otherPlayer);
 
-                                if (sound){
-                                    missMediaPlayer.setAutoPlay(true);
-                                    missMediaPlayer.play();
-                                }else{
+
+                                if (newStatus==CellStatus.HIT){
                                     hitMediaPlayer.setAutoPlay(true);
                                     hitMediaPlayer.play();
+                                }else{
+                                    missMediaPlayer.setAutoPlay(true);
+                                    missMediaPlayer.play();
                                 }
-                                if (otherPlayer.getNumberOfRemainingShips() == 0) {
-                                    winMediaPlayer.setAutoPlay(true);
-                                    winMediaPlayer.play();
 
-                                    mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).won());
-                                    otherPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).won());
+                                if (newStatus!= CellStatus.ALREADY_HIT && newStatus!= CellStatus.ALREADY_MISSED){
+                                    if (otherPlayer.getNumberOfRemainingShips() == 0) {
+                                        winMediaPlayer.setAutoPlay(true);
+                                        winMediaPlayer.play();
 
-                                    otherPlayer.setAmICurrentPlayer(false);
-                                    mainPlayer.setAmICurrentPlayer(false);
-                                }
-                                else {
-                                    if (isAi){
+                                        mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).won());
+                                        otherPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).won());
+
+                                        otherPlayer.setAmICurrentPlayer(false);
+                                        mainPlayer.setAmICurrentPlayer(false);
+                                    }
+                                    if (otherPlayerIsAi){
                                         ((AIPlayer) otherPlayer).handleShot(mainPlayer);
-                                        otherPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).canPlay());
+                                        mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).canPlay());
+
                                     }
                                     else {
-                                    otherPlayer.setAmICurrentPlayer(true);
-                                    mainPlayer.setAmICurrentPlayer(false);
+                                        otherPlayer.setAmICurrentPlayer(true);
+                                        mainPlayer.setAmICurrentPlayer(false);
                                     }
                                     otherPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).canPlay());
                                 }
+                                else {
+                                    mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).canPlay());
+                                }
+
+
+
 
                             }
 
