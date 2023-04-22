@@ -57,7 +57,6 @@ public final class Info {
         return String.format(StringsEn.WILL_PLAY_FIRST, playerId);
     }
 
-
     /**
      * Returns a String declaring that the player has placed all his ships
      *
@@ -122,5 +121,9 @@ public final class Info {
 
     public String rockHit() {
         return String.format(StringsEn.ROCK_HIT);
+    }
+
+    public String hasBomb() {
+        return String.format(StringsEn.You_HAVE_A_BOMB);
     }
 }

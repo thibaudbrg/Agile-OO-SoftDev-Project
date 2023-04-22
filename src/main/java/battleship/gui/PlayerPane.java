@@ -42,6 +42,10 @@ public class PlayerPane extends Pane implements PlayerObserver  {
     Media hMusic = new Media(hitMusic.toURI().toString());
     MediaPlayer hitMediaPlayer = new MediaPlayer(hMusic);
 
+    File bombMusic = new File("src/main/resources/sounds/bomb.mp3");
+    Media bMusic = new Media(bombMusic.toURI().toString());
+    MediaPlayer bombMediaPlayer = new MediaPlayer(bMusic);
+
 
 
 
@@ -126,10 +130,13 @@ public class PlayerPane extends Pane implements PlayerObserver  {
                         case PLAYING_GAME:
                             mainPlayer.addObserver(this);
                             if (!gCell.isMine()) {
+                                boolean hasBomb = mainPlayer.getHasBomb();
                                 CellStatus newStatus = mainPlayer.handleShot(gCell.getCoordinates(), otherPlayer);
-
-
-                                if (newStatus==CellStatus.HIT){
+                                if (newStatus==CellStatus.HIT && hasBomb){
+                                    bombMediaPlayer.setAutoPlay(true);
+                                    bombMediaPlayer.play();
+                                }
+                                else if (newStatus==CellStatus.HIT || newStatus==CellStatus.ROCK_HIT){
                                     hitMediaPlayer.setAutoPlay(true);
                                     hitMediaPlayer.play();
                                 }else{
@@ -148,16 +155,18 @@ public class PlayerPane extends Pane implements PlayerObserver  {
                                         otherPlayer.setAmICurrentPlayer(false);
                                         mainPlayer.setAmICurrentPlayer(false);
                                     }
-                                    if (otherPlayerIsAi){
-                                        ((AIPlayer) otherPlayer).handleShot(mainPlayer);
-                                        mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).canPlay());
-
-                                    }
                                     else {
-                                        otherPlayer.setAmICurrentPlayer(true);
-                                        mainPlayer.setAmICurrentPlayer(false);
+                                        if (otherPlayerIsAi){
+                                            ((AIPlayer) otherPlayer).handleShot(mainPlayer);
+                                            mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).canPlay());
+
+                                        }
+                                        else {
+                                            otherPlayer.setAmICurrentPlayer(true);
+                                            mainPlayer.setAmICurrentPlayer(false);
+                                        }
+                                        otherPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).canPlay());
                                     }
-                                    otherPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).canPlay());
                                 }
                                 else {
                                     mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).canPlay());
@@ -291,6 +300,7 @@ public class PlayerPane extends Pane implements PlayerObserver  {
             Label gameInfoLabel = new Label("- " + infos.get(i));
             gameInfoLabel.setFont(new Font(12));
             gameInfoLabel.setMaxWidth(2 * offsetX + (GraphicalCell.SIZE * numCol));
+            gameInfoLabel.setPrefWidth(2 * offsetX + (GraphicalCell.SIZE * numCol));
             gameInfoLabel.setWrapText(true);
             gameInfoBox.getChildren().add(gameInfoLabel);
         }

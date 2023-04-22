@@ -15,7 +15,6 @@ import javafx.scene.paint.ImagePattern;
 public class GraphicalCell extends Canvas implements CellObserver {
 
     public static final int SIZE = 30;
-
     private final int id;
     private boolean mouseOver;
     private final Cell cell;

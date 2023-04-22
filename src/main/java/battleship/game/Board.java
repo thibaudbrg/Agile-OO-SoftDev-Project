@@ -36,7 +36,7 @@ public class Board  {
                 boardArray[row][col] = cell;
             }
         }
-        while (rockCount < 3) {
+        while (rockCount < 2) {
             int randomRow = random.nextInt(numRow);
             int randomCol = random.nextInt(numCol);
             Cell cell = boardArray[randomRow][randomCol];

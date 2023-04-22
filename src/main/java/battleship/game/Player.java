@@ -18,6 +18,7 @@ public abstract class Player {
     private boolean amICurrentPlayer;
     private final GameInfo gameInfo;
     private final List<PlayerObserver> observers = new ArrayList<>();
+    private boolean hasBomb ;
 
 
 
@@ -27,6 +28,7 @@ public abstract class Player {
         this.playerId = playerId;
         this.memory = new Board(board.getNumRow(), board.getNumCol());
         this.gameInfo = new GameInfo(new Info(playerId).whoAmI());
+        this.hasBomb = false;
     }
 
     public void addObserver(PlayerObserver observer) {
@@ -62,7 +64,15 @@ public abstract class Player {
 
     public CellStatus handleShot(Coordinates coords, Player otherRealPlayer) {
         CellStatus newStatus = CellStatus.OCEAN;
-        if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.HIT
+        if (this.hasBomb){
+            this.setHasBomb(false);
+            handleShot(coords,otherRealPlayer);
+            List<Coordinates> neighbouringCoordinates = neighbouringCoordinates(coords);
+            for (Coordinates neighbouringCoords :neighbouringCoordinates) {
+                handleShot(neighbouringCoords,otherRealPlayer);
+            }
+           return CellStatus.HIT;
+        } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.HIT
                 || otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.ROCK_HIT) {
             gameInfo.addInfo(new Info(playerId).alreadyHit());
             return CellStatus.ALREADY_HIT;
@@ -77,6 +87,8 @@ public abstract class Player {
         } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.ROCK) {
             gameInfo.addInfo(new Info(playerId).rockHit());
             otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.ROCK_HIT);
+            otherRealPlayer.getGameInfo().addInfo(new Info((otherRealPlayer.getPlayerId())).hasBomb());
+            otherRealPlayer.setHasBomb(true);
             return CellStatus.ROCK_HIT;
         }
             else{
@@ -167,5 +179,27 @@ public abstract class Player {
         return col >= 0 && col < board.getNumCol() && row >= 0 && row < board.getNumRow();
     }
 
+    public boolean getHasBomb() {
+        return hasBomb;
+    }
+
+    public void setHasBomb(boolean hasBomb) {
+        this.hasBomb = hasBomb;
+    }
+
+    public List<Coordinates> neighbouringCoordinates(Coordinates coords) {
+        List<Coordinates> neighbours = new ArrayList<>();
+        int row = coords.getRow();
+        int col = coords.getCol();
+        int[][] offsets = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1},{0, 1}, {1, -1},{1, 0},{1, 1}};
+        for (int[] offset : offsets) {
+            int newRow = row + offset[0];
+            int newCol = col + offset[1];
+            if (isInsideBoard(newCol,newRow)) {
+                neighbours.add(new Coordinates(newCol, newRow));
+            }
+        }
+        return neighbours;
+    }
 
 }
