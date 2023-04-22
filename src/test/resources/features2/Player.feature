@@ -60,8 +60,29 @@ Feature: Player functionality
       | 4    | 6    | E            | 4     | 6      | 5    | 6    |
       | 9    | 1    | S            | 9     | 1      | 9    | 2    |
 
+
+  Scenario: Player can place a ship
+    Given a player with a board
+    When the player attempts to place a ship at "0", "0" with an orientation of "S"
+    Then the placement should succeed
+
+
   Scenario: Player cannot place overlapping ships
     Given a player with a board
     And the player has a ship at "2", "3" with an orientation of "N" and a type "DESTROYER"
     When the player attempts to place a ship at "2", "2" with an orientation of "E"
     Then the placement should fail
+
+  Scenario: Player cannot place ships outside the board
+    Given a player with a board
+    When the player attempts to place a ship at "0", "0" with an orientation of "N"
+    Then the placement should fail
+
+  Scenario: Player cannot place ships hitting a Rock
+    Given a player with a board
+    And the player's Board has a Rock at "0", "1"
+    When the player attempts to place a ship at "0", "0" with an orientation of "N"
+    Then the placement should fail
+
+
+

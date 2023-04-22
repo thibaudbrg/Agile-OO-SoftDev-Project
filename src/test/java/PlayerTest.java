@@ -25,7 +25,7 @@ public class PlayerTest {
         for (int i = 0; i < Integer.parseInt(string); i++) {
             remainingShips.add(new Ship(new ArrayList<>(), ShipType.BATTLESHIP));
         }
-        board = new Board(10, 10);
+        board = new Board(10, 10,false);
         this.realPlayer = new RealPlayer(remainingShips, board,PlayerId.PLAYER_2);
     }
 
@@ -46,7 +46,7 @@ public class PlayerTest {
         for (int i = 0; i < 5; i++) {
             remainingShips.add(new Ship(new ArrayList<>(), ShipType.BATTLESHIP));
         }
-        board = new Board(10, 10);
+        board = new Board(10, 10,false);
         this.realPlayer = new RealPlayer(remainingShips, board,PlayerId.PLAYER_1);
     }
 
@@ -65,14 +65,14 @@ public class PlayerTest {
         List<Cell> cells = new ArrayList<>();
         cells.add(new Cell(new Coordinates(2, 2), CellStatus.SHIP));
         cells.add(new Cell(new Coordinates(2, 3), CellStatus.SHIP));
-        Board board1 = new Board(10, 10);
+        Board board1 = new Board(10, 10,false);
         List<Ship> remainingShips1 = new ArrayList<>();
 
         remainingShips1.add(new Ship(cells, ShipType.DESTROYER));
 
         realPlayer1 = new RealPlayer(remainingShips1, board1,PlayerId.PLAYER_1);
 
-        Board board2 = new Board(10, 10);
+        Board board2 = new Board(10, 10,false);
         List<Ship> remainingShips2 = new ArrayList<>();
 
         remainingShips2.add(new Ship(cells, ShipType.DESTROYER));
@@ -109,7 +109,6 @@ public class PlayerTest {
     public void theFirstPlayerHasAShipAtWithAnOrientationOfAndAType(int i1, int i2, String o, String st) {
         Ship ship = new Ship(new ArrayList<>(), ShipType.valueOf(st));
         realPlayer1.addShip(ShipType.valueOf(st),new Coordinates(i1, i2), Orientation.valueOf(o));
-        realPlayer1.getRemainingShips().add(ship);
         beforeActionPlayer1RemainingShip = realPlayer1.getNumberOfRemainingShips();
     }
 
@@ -149,6 +148,13 @@ public class PlayerTest {
         assertFalse(playerPlacesWorked);
     }
 
+    @Then("the placement should succeed")
+    public void the_placement_should_succeed() {
+        assertTrue(playerPlacesWorked);
+    }
 
-
+    @Given("the player's Board has a Rock at {string}, {string}")
+    public void the_player_s_board_has_a_rock_at(String col, String row) {
+       this.realPlayer.getBoard().getCell(new Coordinates(Integer.parseInt(col), Integer.parseInt(row))).setCellStatus(CellStatus.ROCK);
+    }
 }

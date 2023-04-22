@@ -7,9 +7,12 @@ public class Board  {
     private final int numCol;
     private Cell[][] boardArray;
 
-    public Board(int numRow, int numCol) {
+    private final boolean withRock ;
+
+    public Board(int numRow, int numCol,boolean withRock) {
         this.numCol = numCol;
         this.numRow = numRow;
+        this.withRock = withRock;
         fillBoard();
     }
 
@@ -36,15 +39,18 @@ public class Board  {
                 boardArray[row][col] = cell;
             }
         }
-        while (rockCount < 2) {
-            int randomRow = random.nextInt(numRow);
-            int randomCol = random.nextInt(numCol);
-            Cell cell = boardArray[randomRow][randomCol];
-            if (cell.getCellStatus() == CellStatus.OCEAN) {
-                cell.setCellStatus(CellStatus.ROCK);
-                rockCount++;
+        if (withRock){
+            while (rockCount < 2) {
+                int randomRow = random.nextInt(numRow);
+                int randomCol = random.nextInt(numCol);
+                Cell cell = boardArray[randomRow][randomCol];
+                if (cell.getCellStatus() == CellStatus.OCEAN) {
+                    cell.setCellStatus(CellStatus.ROCK);
+                    rockCount++;
+                }
             }
         }
+
 
         return boardArray;
     }

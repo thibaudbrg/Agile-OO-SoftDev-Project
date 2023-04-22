@@ -26,7 +26,7 @@ public abstract class Player {
         this.remainingShips = remainingShips;
         this.board = board;
         this.playerId = playerId;
-        this.memory = new Board(board.getNumRow(), board.getNumCol());
+        this.memory = new Board(board.getNumRow(), board.getNumCol(),false);
         this.gameInfo = new GameInfo(new Info(playerId).whoAmI());
         this.hasBomb = false;
     }

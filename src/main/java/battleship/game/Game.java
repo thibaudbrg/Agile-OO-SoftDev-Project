@@ -28,8 +28,8 @@ public class Game {
     private static List<Board> generateBoards(int numCol, int numRow) {
         List<Board> boards = new ArrayList<>();
 
-        Board board1 = new Board(numRow, numCol);
-        Board board2 = new Board(numRow, numCol);
+        Board board1 = new Board(numRow, numCol,true);
+        Board board2 = new Board(numRow, numCol,true);
         boards.add(board1);
         boards.add(board2);
         return boards;

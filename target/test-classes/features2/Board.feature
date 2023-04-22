@@ -1,23 +1,5 @@
 Feature: Board
 
-# Adding a ship to the board
-
-  Scenario: Successfully add a ship to the board
-    Given a board with size 10 x 10
-    When a ship of size 3 is added at cell (2;3) with orientation East
-    Then the cells (2;3), (3;3) and (4;3) should have status SHIP
-
-  Scenario: Add a ship that collides with another ship
-    Given a board with size 10 x 10
-    And a ship already placed at (2;3) to (4;3)
-    When a ship of size 4 is added at cell (3;3) with orientation South
-    Then the ship should not be added
-
-  Scenario: Add a ship that is out of the board
-    Given a board with size 10 x 10
-    When a ship of size 3 is added at cell (0;0) with orientation North
-    Then the ship should not be added
-
 # Accessing cells on the board
 
   Scenario: Get cell at specific location
@@ -40,7 +22,7 @@ Feature: Board
   Scenario: Fill board with ocean cells
     Given a board with size 10 x 10
     When the board is filled with cells
-    Then all cells on the board should have status OCEAN
+    Then all cells on the board should have status OCEAN or ROCK
 
   Scenario: Fill board with cells in correct positions
     Given a board with size 5 x 5
