@@ -12,7 +12,7 @@ public class Game {
     private Game() {
     }
 
-    public static void play(GameMode gameMode, int numCol , int numRow) {
+    public static void play(GameMode gameMode, int numCol , int numRow,boolean isTimed) {
 
 
         final List<Ship> shipsPlayer1 = new ArrayList<>();
@@ -22,7 +22,7 @@ public class Game {
 
         List<Player> players = generatePlayers(gameMode, shipsPlayer1, shipsPlayer2, boards);
 
-        GraphicalGame.initial(gameMode, players);
+        GraphicalGame.initial(gameMode, players,isTimed);
     }
 
     private static List<Board> generateBoards(int numCol, int numRow){

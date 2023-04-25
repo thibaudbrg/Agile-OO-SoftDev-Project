@@ -38,7 +38,6 @@ public class SceneManager {
     ComboBox<Integer> colComboBox;
 
 
-
     public SceneManager() {
         menuButtons = new ArrayList<>();
         mainPane = new AnchorPane();
@@ -65,7 +64,7 @@ public class SceneManager {
         help.setFont(new Font("Verdana", 40));
         help.setLayoutX(60);
         help.setLayoutY(10);
-        help.setPrefSize(400,20);
+        help.setPrefSize(400, 20);
         rulesSubScene.getPane().getChildren().add(help);
 
         GridPane rulesGrid = new GridPane();
@@ -97,7 +96,7 @@ public class SceneManager {
         chooseDifficultyLabel.setFont(new Font("Verdana", 40));
         chooseDifficultyLabel.setLayoutX(100);
         chooseDifficultyLabel.setLayoutY(45);
-        chooseDifficultyLabel.setPrefSize(400,50);
+        chooseDifficultyLabel.setPrefSize(400, 50);
         chooseDifficultyLabel.setCenterShape(true);
 
         GridPane grid = new GridPane();
@@ -133,15 +132,19 @@ public class SceneManager {
         double widthOfPane = difficultySubScene.getPane().getWidth();
         double heightOfPane = difficultySubScene.getPane().getHeight();
 
-        BattleShipButton multiplayer = createMultiplayerButton(widthOfPane / 10 * 6, heightOfPane * 0.45);
-        multiplayer.getStyleClass().add("three-buttons");
-        difficultySubScene.getPane().getChildren().add(multiplayer);
+        BattleShipButton multiplayer1 = createMultiplayerButton(widthOfPane / 10 * 6, heightOfPane * 0.35, false);
+        multiplayer1.getStyleClass().add("three-buttons");
+        difficultySubScene.getPane().getChildren().add(multiplayer1);
 
-        BattleShipButton easyMode = createEasyModeButton(widthOfPane / 10 * 6, heightOfPane * 0.6);
+        BattleShipButton multiplayer2 = createMultiplayerButton(widthOfPane / 10 * 6, heightOfPane * 0.50, true);
+        multiplayer2.getStyleClass().add("three-buttons");
+        difficultySubScene.getPane().getChildren().add(multiplayer2);
+
+        BattleShipButton easyMode = createEasyModeButton(widthOfPane / 10 * 6, heightOfPane * 0.65);
         easyMode.getStyleClass().add("three-buttons");
         difficultySubScene.getPane().getChildren().add(easyMode);
 
-        BattleShipButton hardMode = createHardModeButton(widthOfPane / 10 * 6, heightOfPane * 0.75);
+        BattleShipButton hardMode = createHardModeButton(widthOfPane / 10 * 6, heightOfPane * 0.80);
         hardMode.getStyleClass().add("three-buttons");
         difficultySubScene.getPane().getChildren().add(hardMode);
 
@@ -187,7 +190,7 @@ public class SceneManager {
         rulesButton.setLayoutX(x);
         rulesButton.setLayoutY(y);
         rulesButton.setOnAction(arg0 ->
-            showSubScene(rulesSubScene));
+                showSubScene(rulesSubScene));
         return rulesButton;
     }
 
@@ -199,17 +202,19 @@ public class SceneManager {
         return startButton;
     }
 
-    private BattleShipButton createMultiplayerButton(double x, double y) {
-        BattleShipButton multiButton = new BattleShipButton(StringsEn.MULTIPLAYER_BUTTON);
+    private BattleShipButton createMultiplayerButton(double x, double y, boolean isTimed) {
+        BattleShipButton multiButton = isTimed ?
+                new BattleShipButton(StringsEn.MULTIPLAYER_BUTTON_TIMER) : new BattleShipButton(StringsEn.MULTIPLAYER_BUTTON_NO_TIMER);
         multiButton.setLayoutX(x);
         multiButton.setLayoutY(y);
         multiButton.setOnAction(event -> {
             int numRows = rowComboBox.getValue();
             int numCols = colComboBox.getValue();
-            Game.play(GameMode.MULTIPLAYER,numCols,numRows);
+            Game.play(GameMode.MULTIPLAYER, numCols, numRows, isTimed);
         });
         return multiButton;
     }
+
 
     private BattleShipButton createEasyModeButton(double x, double y) {
         BattleShipButton easyModeButton = new BattleShipButton(StringsEn.EASY_BUTTON);
@@ -218,7 +223,7 @@ public class SceneManager {
         easyModeButton.setOnAction(event -> {
             int numRows = rowComboBox.getValue();
             int numCols = colComboBox.getValue();
-            Game.play(GameMode.EASY,numRows,numCols);
+            Game.play(GameMode.EASY, numRows, numCols, false);
         });
         return easyModeButton;
     }
@@ -230,7 +235,7 @@ public class SceneManager {
         HardModeButton.setOnAction(event -> {
             int numRows = rowComboBox.getValue();
             int numCols = colComboBox.getValue();
-            Game.play(GameMode.HARD,numRows,numCols);
+            Game.play(GameMode.HARD, numRows, numCols, false);
         });
         return HardModeButton;
     }
@@ -262,9 +267,12 @@ public class SceneManager {
         mainPane.getChildren().add(logo);
         logo.setLayoutX(400);
         logo.setLayoutY(50);
-        logo.setOnMouseEntered(e -> {logo.setEffect(new DropShadow(100, Color.YELLOW));});
-        logo.setOnMouseExited(e -> {logo.setEffect(null);});
+        logo.setOnMouseEntered(e -> {
+            logo.setEffect(new DropShadow(100, Color.YELLOW));
+        });
+        logo.setOnMouseExited(e -> {
+            logo.setEffect(null);
+        });
     }
 
 }
-

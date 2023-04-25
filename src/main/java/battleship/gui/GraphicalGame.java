@@ -12,7 +12,7 @@ public class GraphicalGame {
     private GraphicalGame() {
     }
 
-    public static void initial(GameMode gameMode, List<Player> players) {
+    public static void initial(GameMode gameMode, List<Player> players,boolean isTimed) {
         Player player1 = players.get(0);
         Player player2 = players.get(1);
 
@@ -20,8 +20,8 @@ public class GraphicalGame {
             case MULTIPLAYER -> {
                 Stage stage1 = new Stage();
                 Stage stage2 = new Stage();
-                PlayerPane playerPane1 = new PlayerPane(player1, player2);
-                PlayerPane playerPane2 = new PlayerPane(player2, player1);
+                PlayerPane playerPane1 = new PlayerPane(player1, player2,isTimed);
+                PlayerPane playerPane2 = new PlayerPane(player2, player1,isTimed);
                 BorderPane container1 = new BorderPane();
                 BorderPane container2 = new BorderPane();
 
@@ -48,7 +48,7 @@ public class GraphicalGame {
             }
             case EASY, HARD -> {
                 Stage stage = new Stage();
-                PlayerPane playerPane = new PlayerPane(player1, player2);
+                PlayerPane playerPane = new PlayerPane(player1, player2,false);
                 BorderPane container = new BorderPane();
                 container.setCenter(playerPane);
 

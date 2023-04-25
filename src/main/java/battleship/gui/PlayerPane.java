@@ -1,6 +1,9 @@
 package battleship.gui;
 
 import battleship.game.*;
+import io.cucumber.java.sl.In;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -10,45 +13,50 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
+
 import java.io.File;
 import java.util.LinkedList;
 
-public class PlayerPane extends Pane implements PlayerObserver  {
+public class PlayerPane extends Pane implements PlayerObserver {
 
-    private final int numRow;
-    private final int numCol;
     public static final int OFFSET_BETWEEN_SEAS = 70;
-    private final int offsetX = GraphicalCell.SIZE /2;
-    private final int offsetY = GraphicalCell.SIZE / 2;
-    private final int infoSize = 100;
+
     private Orientation currentOrientation = Orientation.N;
     private int shipPlacedCounter;
+    private final int numRow;
+    private final int numCol;
+    private final int offsetX = GraphicalCell.SIZE / 2;
+    private final int offsetY = GraphicalCell.SIZE / 2;
+    private final int infoSize = 100;
     private final Player mainPlayer;
     private final Player otherPlayer;
-    VBox gameInfoBox;
 
-    ProgressBar mainPlayerProgressBar;
-    File winMusic = new File("src/main/resources/sounds/win.mp3");
-    Media wMusic = new Media(winMusic.toURI().toString());
-    MediaPlayer winMediaPlayer = new MediaPlayer(wMusic);
-    File shipMusic = new File("src/main/resources/sounds/place_ship.mp3");
-    Media sMusic = new Media(shipMusic.toURI().toString());
-    MediaPlayer shipMediaPlayer = new MediaPlayer(sMusic);
-    File missMusic = new File("src/main/resources/sounds/miss.mp3");
-    Media mMusic = new Media(missMusic.toURI().toString());
-    MediaPlayer missMediaPlayer = new MediaPlayer(mMusic);
-    File hitMusic = new File("src/main/resources/sounds/hit.mp3");
-    Media hMusic = new Media(hitMusic.toURI().toString());
-    MediaPlayer hitMediaPlayer = new MediaPlayer(hMusic);
+    private VBox gameInfoBox;
+    private VBox gameTimerBox;
+    private ProgressBar mainPlayerProgressBar;
 
-    File bombMusic = new File("src/main/resources/sounds/bomb.mp3");
-    Media bMusic = new Media(bombMusic.toURI().toString());
-    MediaPlayer bombMediaPlayer = new MediaPlayer(bMusic);
+    private final File winMusic = new File("src/main/resources/sounds/win.mp3");
+    private final Media wMusic = new Media(winMusic.toURI().toString());
+    private final MediaPlayer winMediaPlayer = new MediaPlayer(wMusic);
+    private final File shipMusic = new File("src/main/resources/sounds/place_ship.mp3");
+    private final Media sMusic = new Media(shipMusic.toURI().toString());
+    private final MediaPlayer shipMediaPlayer = new MediaPlayer(sMusic);
+    private final File missMusic = new File("src/main/resources/sounds/miss.mp3");
+    private final Media mMusic = new Media(missMusic.toURI().toString());
+    private final MediaPlayer missMediaPlayer = new MediaPlayer(mMusic);
+    private final File hitMusic = new File("src/main/resources/sounds/hit.mp3");
+    private final Media hMusic = new Media(hitMusic.toURI().toString());
+    private final MediaPlayer hitMediaPlayer = new MediaPlayer(hMusic);
+    private final File bombMusic = new File("src/main/resources/sounds/bomb.mp3");
+    private final Media bMusic = new Media(bombMusic.toURI().toString());
+    private final MediaPlayer bombMediaPlayer = new MediaPlayer(bMusic);
 
-    File loseMusic = new File("src/main/resources/sounds/lose.mp3");
-    Media lMusic = new Media(loseMusic.toURI().toString());
-    MediaPlayer loseMediaPlayer = new MediaPlayer(lMusic);
+    private final File loseMusic = new File("src/main/resources/sounds/lose.mp3");
+    private final Media lMusic = new Media(loseMusic.toURI().toString());
+    private final MediaPlayer loseMediaPlayer = new MediaPlayer(lMusic);
 
 
     private enum GameProgression {
@@ -59,20 +67,25 @@ public class PlayerPane extends Pane implements PlayerObserver  {
         }
     }
 
-    public PlayerPane(Player mainPlayer, Player otherPlayer) {
+    public PlayerPane(Player mainPlayer, Player otherPlayer, boolean isTimed) {
         this.mainPlayer = mainPlayer;
         this.otherPlayer = otherPlayer;
         numRow = mainPlayer.getBoard().getNumRow();
         numCol = mainPlayer.getBoard().getNumCol();
         boolean otherPlayerIsAi = otherPlayer instanceof AIPlayer;
         mainPlayer.getGameInfo().infoProperty().addListener((observable, oldValue, newValue) -> updateGameInfo(newValue));
+        if (isTimed) {
+            mainPlayer.timerProperty().addListener((observable, oldValue, newValue) -> updateTimer(newValue.intValue()));
+        }
 
         setMinSize(numCol * GraphicalCell.SIZE + 2 * offsetX, 2 * (numRow * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
         setMaxSize(numCol * GraphicalCell.SIZE + 2 * offsetX, 2 * (numRow * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
         setPrefSize(numCol * GraphicalCell.SIZE + 2 * offsetX, 2 * (numRow * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
         setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        loadBothSea();
+        loadBothSea(isTimed);
+
+
         if (mainPlayer.getPlayerId() == PlayerId.PLAYER_1) {
             mainPlayer.setAmICurrentPlayer(true);
             otherPlayer.setAmICurrentPlayer(false); // TODO SHOULD BE MADE USELESS
@@ -85,6 +98,7 @@ public class PlayerPane extends Pane implements PlayerObserver  {
         if (mainPlayer.getPlayerId() == PlayerId.PLAYER_2) {
             mainPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).willPlayFirst());
         }
+
 
         this.setOnKeyPressed(event -> {
             if (mainPlayer.amICurrentPlayer()) {
@@ -109,10 +123,9 @@ public class PlayerPane extends Pane implements PlayerObserver  {
 
                                     ++shipPlacedCounter;
                                     if (shipPlacedCounter == ShipType.values().length) { // TODO REFACTOR AND PRETTIER
-                                        if (otherPlayerIsAi){
-                                            ((AIPlayer)otherPlayer).addShips();
-                                        }
-                                        else {
+                                        if (otherPlayerIsAi) {
+                                            ((AIPlayer) otherPlayer).addShips();
+                                        } else {
                                             otherPlayer.setAmICurrentPlayer(true);
                                             mainPlayer.setAmICurrentPlayer(false);
                                         }
@@ -134,19 +147,18 @@ public class PlayerPane extends Pane implements PlayerObserver  {
                             if (!gCell.isMine()) {
                                 boolean hasBomb = mainPlayer.getHasBomb();
                                 CellStatus newStatus = mainPlayer.handleShot(gCell.getCoordinates(), otherPlayer);
-                                if (newStatus==CellStatus.HIT && hasBomb){
+                                if (newStatus == CellStatus.HIT && hasBomb) {
                                     bombMediaPlayer.setAutoPlay(true);
                                     bombMediaPlayer.play();
-                                }
-                                else if (newStatus==CellStatus.HIT || newStatus==CellStatus.ROCK_HIT){
+                                } else if (newStatus == CellStatus.HIT || newStatus == CellStatus.ROCK_HIT) {
                                     hitMediaPlayer.setAutoPlay(true);
                                     hitMediaPlayer.play();
-                                }else{
+                                } else {
                                     missMediaPlayer.setAutoPlay(true);
                                     missMediaPlayer.play();
                                 }
 
-                                if (newStatus!= CellStatus.ALREADY_HIT && newStatus!= CellStatus.ALREADY_MISSED){
+                                if (newStatus != CellStatus.ALREADY_HIT && newStatus != CellStatus.ALREADY_MISSED) {
                                     if (otherPlayer.getNumberOfRemainingShips() == 0) {
                                         winMediaPlayer.setAutoPlay(true);
                                         winMediaPlayer.play();
@@ -154,66 +166,67 @@ public class PlayerPane extends Pane implements PlayerObserver  {
                                         mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).won());
                                         otherPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).won());
 
-                                        otherPlayer.setAmICurrentPlayer(false);
+                                        if (isTimed) {
+                                            mainPlayer.resetTimer();
+                                            otherPlayer.resetTimer();
+                                        }
                                         mainPlayer.setAmICurrentPlayer(false);
-                                    }
-                                    else {
-                                        if (otherPlayerIsAi){
+                                        otherPlayer.setAmICurrentPlayer(false);
+                                    } else {
+                                        if (otherPlayerIsAi) {
                                             ((AIPlayer) otherPlayer).handleShot(mainPlayer);
-                                            if (mainPlayer.getNumberOfRemainingShips()==0){
+                                            if (mainPlayer.getNumberOfRemainingShips() == 0) {
                                                 mainPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).won());
                                                 loseMediaPlayer.setAutoPlay(true);
                                                 loseMediaPlayer.play();
                                                 mainPlayer.setAmICurrentPlayer(false);
-                                            }
-                                            else {
+                                            } else {
                                                 mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).canPlay());
                                             }
 
-                                        }
-                                        else {
-                                            otherPlayer.setAmICurrentPlayer(true);
+                                        } else {
+                                            if (isTimed) {
+                                                mainPlayer.resetTimer();
+                                                otherPlayer.startTimer();
+                                            }
+
                                             mainPlayer.setAmICurrentPlayer(false);
+                                            otherPlayer.setAmICurrentPlayer(true);
                                         }
                                         otherPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).canPlay());
                                     }
-                                }
-                                else {
+                                } else {
                                     mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).canPlay());
                                 }
-
-
-
-
                             }
-
-
                     }
 
                 }
             }
         });
-        setOnMouseReleased(event ->{shipMediaPlayer.stop();
-                                    winMediaPlayer.stop();
-                                    missMediaPlayer.stop();
-                                    hitMediaPlayer .stop();});
+        setOnMouseReleased(event -> {
+            shipMediaPlayer.stop();
+            winMediaPlayer.stop();
+            missMediaPlayer.stop();
+            hitMediaPlayer.stop();
+        });
     }
 
     private void updateOrientation(KeyCode code) {
         switch (code) {
-            case UP,W -> {
+            case UP, W -> {
                 currentOrientation = Orientation.N;
                 System.out.println("n");
             }
-            case DOWN,S -> {
+            case DOWN, S -> {
                 currentOrientation = Orientation.S;
                 System.out.println("s");
             }
-            case LEFT,A -> {
+            case LEFT, A -> {
                 currentOrientation = Orientation.W;
                 System.out.println("w");
             }
-            case RIGHT,D -> {
+            case RIGHT, D -> {
                 currentOrientation = Orientation.E;
                 System.out.println("e");
             }
@@ -223,21 +236,26 @@ public class PlayerPane extends Pane implements PlayerObserver  {
         }
     }
 
-    private void loadBothSea() {
+    private void loadBothSea(boolean isTimed) {
 
         Label mainPlayerlabel = new Label("Your Progress:");
         mainPlayerlabel.setFont(new Font(16));
-        mainPlayerlabel.relocate(offsetX, offsetY  + (numRow * GraphicalCell.SIZE) + 3*((double) OFFSET_BETWEEN_SEAS / 8));
+        mainPlayerlabel.relocate(offsetX, offsetY + (numRow * GraphicalCell.SIZE) + 3 * ((double) OFFSET_BETWEEN_SEAS / 8) - 20);
         getChildren().add(mainPlayerlabel);
-
 
         mainPlayerProgressBar = new ProgressBar();
         mainPlayerProgressBar.setProgress(0.0);
-        mainPlayerProgressBar.setPrefSize(numCol * GraphicalCell.SIZE- 9 * offsetX , (double) OFFSET_BETWEEN_SEAS/4);
-        mainPlayerProgressBar.relocate(8 *offsetX, offsetY  + (numRow * GraphicalCell.SIZE) + 3*((double) OFFSET_BETWEEN_SEAS / 8));
+        mainPlayerProgressBar.setPrefSize(numCol * GraphicalCell.SIZE - 9 * offsetX, (double) OFFSET_BETWEEN_SEAS / 4);
+        mainPlayerProgressBar.relocate(offsetX, offsetY + (numRow * GraphicalCell.SIZE) + 3 * ((double) OFFSET_BETWEEN_SEAS / 8) + 10);
         mainPlayerProgressBar.setVisible(true);
         getChildren().add(mainPlayerProgressBar);
 
+        if (isTimed) {
+            gameTimerBox = new VBox();
+            gameTimerBox.setStyle("-fx-background-color: gray;");
+            gameTimerBox.setPrefSize((numCol * GraphicalCell.SIZE - 9 * offsetX) - 2, (double) OFFSET_BETWEEN_SEAS - 2);
+            gameTimerBox.relocate(16 * offsetX, offsetY + (numRow * GraphicalCell.SIZE) + 3 * ((double) OFFSET_BETWEEN_SEAS / 8) - 23);
+        }
 
         for (int row = 0; row < numRow; row++) {
             Text text = new Text(String.valueOf(row + 1));
@@ -297,6 +315,9 @@ public class PlayerPane extends Pane implements PlayerObserver  {
         getChildren().add(scrollPane);
 
         getChildren().add(gameInfoBox);
+        if (isTimed) {
+            getChildren().add(gameTimerBox);
+        }
     }
 
 
@@ -316,13 +337,35 @@ public class PlayerPane extends Pane implements PlayerObserver  {
         }
     }
 
-    @Override
-    public void onRemainingShipsChanged(int remainingShips) {
-        System.out.println(mainPlayer.getPlayerId());
-        mainPlayerProgressBar.setProgress(1 - remainingShips/(double)ShipType.values().length);
+    private void updateTimer(int newTimerValue) {
+        Label titleLabel = new Label("Timer:");
+        titleLabel.setFont(new Font(28));
+        gameTimerBox.getChildren().clear();
+        gameTimerBox.getChildren().add(titleLabel);
+
+        Label timerLabel1 = new Label(String.valueOf(newTimerValue));
+        timerLabel1.setFont(Font.font(18));
+        timerLabel1.setMaxWidth(2 * offsetX + (GraphicalCell.SIZE * numCol));
+        timerLabel1.setPrefWidth(2 * offsetX + (GraphicalCell.SIZE * numCol));
+        timerLabel1.setWrapText(true);
+        gameTimerBox.getChildren().add(timerLabel1);
+
+
+        if (newTimerValue <= 0) {
+            mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).time_is_up());
+            otherPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).canPlay());
+            mainPlayer.resetTimer();
+            mainPlayer.setAmICurrentPlayer(false);
+
+            otherPlayer.startTimer();
+            otherPlayer.setAmICurrentPlayer(true);
+        }
 
     }
 
-
-
+    @Override
+    public void onRemainingShipsChanged(int remainingShips) {
+        System.out.println(mainPlayer.getPlayerId());
+        mainPlayerProgressBar.setProgress(1 - remainingShips / (double) ShipType.values().length);
+    }
 }

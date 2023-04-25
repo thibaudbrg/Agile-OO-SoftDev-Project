@@ -10,7 +10,8 @@ public class StringsEn {
     public static final String RULES_BUTTON = "Rules";
     public static final String EXIT_BUTTON = "Exit";
     public static final String DIFFICULTY_LABEL = "CHOOSE YOUR DIFFICULTY";
-    public static final String MULTIPLAYER_BUTTON = "Multiplayer";
+    public static final String MULTIPLAYER_BUTTON_TIMER = "Multi & Timer";
+    public static final String MULTIPLAYER_BUTTON_NO_TIMER = "Multi";
     public static final String EASY_BUTTON = "Easy Bot";
     public static final String HARD_BUTTON = "Hard Bot";
 
@@ -51,7 +52,7 @@ public class StringsEn {
 
     public static final String PLACEMENT_COLLISION =
             "The ship crashes or goes overboard! try again !";
-           // "The ship collides with another ship or a rock or is out of the board! Try again.";
+    // "The ship collides with another ship or a rock or is out of the board! Try again.";
 
 
     public static final String GOOD_PLACEMENT =
@@ -65,6 +66,9 @@ public class StringsEn {
             "You have placed your ships.";
     public static final String CAN_PLAY =
             "It's your turn.";
+
+    public static final String TIME_IS_UP =
+            "Time's Up! It's not your turn anymore...";
 
     public static final String You_HAVE_A_BOMB =
             "you have a Bomb";

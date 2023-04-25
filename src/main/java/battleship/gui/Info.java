@@ -75,6 +75,10 @@ public final class Info {
         return String.format(StringsEn.CAN_PLAY);
     }
 
+    public String time_is_up() {
+        return String.format(StringsEn.TIME_IS_UP);
+    }
+
     /**
      * Returns a String declaring that the player hit a ship
      *

@@ -22,7 +22,7 @@ public class GameTest {
 
     @Then("a RuntimeException is thrown when we play the game")
     public void a_runtime_exception_is_thrown_when_we_play_the_game() {
-        assertThrows(RuntimeException.class,()->Game.play(gameMode,numCol,numRow));
+        assertThrows(RuntimeException.class,()->Game.play(gameMode,numCol,numRow,false));
     }
 
     @Given("a correct GameMode")
