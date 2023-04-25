@@ -25,7 +25,10 @@ public class Game {
         GraphicalGame.initial(gameMode, players);
     }
 
-    private static List<Board> generateBoards(int numCol, int numRow) {
+    private static List<Board> generateBoards(int numCol, int numRow){
+        if (numCol<0 || numCol>20 || numRow<0 || numRow>20){
+            throw new RuntimeException("the dimensions are incorrect");
+        }
         List<Board> boards = new ArrayList<>();
 
         Board board1 = new Board(numRow, numCol,true);
@@ -54,6 +57,9 @@ public class Game {
                 player1 = new RealPlayer(ships1, board1, PlayerId.PLAYER_1);
                 player2 = new AIPlayer(ships2, board2, PlayerId.PLAYER_2,true);
                 break;
+            case default :
+                throw new RuntimeException("The gameMode is Incorrect");
+
 
         }
 

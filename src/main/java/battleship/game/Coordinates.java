@@ -19,11 +19,24 @@ public class Coordinates {
     }
 
 
-    @Override
+    /*@Override
     public String toString() {
         return "Coordinates{" +
                 "col=" + col +
                 ", row=" + row +
                 '}';
+    }
+*/
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Coordinates)) {
+            return false;
+        }
+
+        Coordinates other = (Coordinates) obj;
+        return this.col == other.col && this.row == other.row;
     }
 }

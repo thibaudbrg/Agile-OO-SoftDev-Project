@@ -46,7 +46,9 @@ public class PlayerPane extends Pane implements PlayerObserver  {
     Media bMusic = new Media(bombMusic.toURI().toString());
     MediaPlayer bombMediaPlayer = new MediaPlayer(bMusic);
 
-
+    File loseMusic = new File("src/main/resources/sounds/lose.mp3");
+    Media lMusic = new Media(loseMusic.toURI().toString());
+    MediaPlayer loseMediaPlayer = new MediaPlayer(lMusic);
 
 
     private enum GameProgression {
@@ -158,7 +160,15 @@ public class PlayerPane extends Pane implements PlayerObserver  {
                                     else {
                                         if (otherPlayerIsAi){
                                             ((AIPlayer) otherPlayer).handleShot(mainPlayer);
-                                            mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).canPlay());
+                                            if (mainPlayer.getNumberOfRemainingShips()==0){
+                                                mainPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).won());
+                                                loseMediaPlayer.setAutoPlay(true);
+                                                loseMediaPlayer.play();
+                                                mainPlayer.setAmICurrentPlayer(false);
+                                            }
+                                            else {
+                                                mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).canPlay());
+                                            }
 
                                         }
                                         else {

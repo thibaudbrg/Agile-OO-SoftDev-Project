@@ -4,5 +4,5 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources/features2", publish = true)
+@CucumberOptions(features = "src/test/resources/features", publish = true)
 public class CucumberTest {}

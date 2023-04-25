@@ -138,7 +138,6 @@ public class PlayerTest {
 
     @When("the player attempts to place a ship at {string}, {string} with an orientation of {string}")
     public void the_player_attempts_to_place_a_ship_at_with_an_orientation_of(String i1, String i2, String o) {
-        Ship ship = new Ship(new ArrayList<>(), ShipType.CARRIER);
         playerPlacesWorked = realPlayer.addShip(ShipType.CARRIER,new Coordinates(Integer.parseInt(i1), Integer.parseInt(i2)), Orientation.valueOf(o));
 
     }
@@ -157,4 +156,40 @@ public class PlayerTest {
     public void the_player_s_board_has_a_rock_at(String col, String row) {
        this.realPlayer.getBoard().getCell(new Coordinates(Integer.parseInt(col), Integer.parseInt(row))).setCellStatus(CellStatus.ROCK);
     }
+
+    @Given("the second Player has a Rock at {int} , {int}")
+    public void the_second_player_has_a_rock_at(Integer col, Integer row) {
+        realPlayer2.getBoard().getCell(new Coordinates(col,row)).setCellStatus(CellStatus.ROCK);
+    }
+
+    @When("the first player shoots at {int} , {int}")
+    public void the_first_player_shoots_at(Integer col, Integer row) {
+        realPlayer1.handleShot(new Coordinates(col,row),realPlayer2);
+    }
+
+    @Then("the second Player must have a bomb")
+    public void the_second_player_must_have_a_bomb() {
+        assertTrue(realPlayer2.getHasBomb());
+    }
+
+    @Given("the first player has a bomb")
+    public void the_first_player_has_a_bomb() {
+        realPlayer1.setHasBomb(true);
+    }
+
+    @Then("the neighboring cells of {int}, {int} have a status different from ocean")
+    public void the_neighboring_cells_of_have_a_status_different_from(Integer int1, Integer int2) {
+
+        List<Coordinates> neighbors = realPlayer2.neighbouringCoordinates(new Coordinates(int1, int2));
+        boolean different = true;
+        for (Coordinates coord: neighbors) {
+            if (realPlayer2.getBoard().getCell(coord).getCellStatus() == CellStatus.OCEAN){
+                different = false;
+                break;
+            }
+        }
+        assertTrue(different);
+
+    }
+
 }

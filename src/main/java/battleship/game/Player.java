@@ -14,7 +14,7 @@ public abstract class Player {
     private final PlayerId playerId;
     private final List<Ship> remainingShips;
     private final Board board;
-    private final Board memory;
+    //private final Board memory;
     private boolean amICurrentPlayer;
     private final GameInfo gameInfo;
     private final List<PlayerObserver> observers = new ArrayList<>();
@@ -22,11 +22,22 @@ public abstract class Player {
 
 
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+
+
     public Player(List<Ship> remainingShips, Board board, PlayerId playerId) {
         this.remainingShips = remainingShips;
         this.board = board;
         this.playerId = playerId;
-        this.memory = new Board(board.getNumRow(), board.getNumCol(),false);
+        //this.memory = new Board(board.getNumRow(), board.getNumCol(),false);
         this.gameInfo = new GameInfo(new Info(playerId).whoAmI());
         this.hasBomb = false;
     }
@@ -79,7 +90,7 @@ public abstract class Player {
         } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.OCEAN) {
             gameInfo.addInfo(new Info(playerId).miss());
             otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.MISSED);
-            memory.getCell(coords).setCellStatus(CellStatus.MISSED);
+           // memory.getCell(coords).setCellStatus(CellStatus.MISSED);
             return CellStatus.MISSED;
         } else if (otherRealPlayer.getBoard().getCell(coords).getCellStatus() == CellStatus.MISSED) {
             gameInfo.addInfo(new Info(playerId).alreadyMissed());
@@ -89,6 +100,7 @@ public abstract class Player {
             otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.ROCK_HIT);
             otherRealPlayer.getGameInfo().addInfo(new Info((otherRealPlayer.getPlayerId())).hasBomb());
             otherRealPlayer.setHasBomb(true);
+           // memory.getCell(coords).setCellStatus(CellStatus.MISSED);
             return CellStatus.ROCK_HIT;
         }
             else{
@@ -105,7 +117,7 @@ public abstract class Player {
                 }
             }
             notifyObservers(otherRealPlayer.getNumberOfRemainingShips());
-            memory.getCell(coords).setCellStatus(newStatus);
+           // memory.getCell(coords).setCellStatus(newStatus);
             return CellStatus.HIT;
         }
 
@@ -115,9 +127,9 @@ public abstract class Player {
         return playerId;
     }
 
-    public Board getMemory() {
+    /*public Board getMemory() {
         return memory;
-    }
+    }*/
 
     public boolean amICurrentPlayer() {
         return amICurrentPlayer;
