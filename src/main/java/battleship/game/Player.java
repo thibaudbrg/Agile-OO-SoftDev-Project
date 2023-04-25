@@ -134,7 +134,7 @@ public abstract class Player {
         Ship ship = new Ship(new ArrayList<>(), shipType);
 
 
-        if (board.getCell(new Coordinates(col, row)).getCellStatus() == CellStatus.SHIP) {
+        if (board.getCell(new Coordinates(col, row)).getCellStatus() == CellStatus.SHIP || board.getCell(new Coordinates(col, row)).getCellStatus() == CellStatus.ROCK ) {
             gameInfo.addInfo(new Info(playerId).placementCollision());
             return false;
         }
