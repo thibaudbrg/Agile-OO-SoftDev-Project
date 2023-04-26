@@ -15,7 +15,7 @@ public class Battleship extends Application{
     public void start(Stage primaryStage) throws Exception{
         try {
             String path = "src/main/resources/sounds/gamemusic.wav";
-            Media media = new Media(new File(path).toURI().toString());
+            Media media =  new Media(new File(path).toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(media);
             SceneManager manager = new SceneManager();
             mediaPlayer.setAutoPlay(true);
