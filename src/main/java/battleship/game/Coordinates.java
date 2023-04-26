@@ -19,14 +19,6 @@ public class Coordinates {
     }
 
 
-    /*@Override
-    public String toString() {
-        return "Coordinates{" +
-                "col=" + col +
-                ", row=" + row +
-                '}';
-    }
-*/
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

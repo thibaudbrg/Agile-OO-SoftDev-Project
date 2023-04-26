@@ -7,38 +7,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+    private final List<Board> boards;
+    private final List<Player> players;
+    private Player currentPlayer;
+    private boolean isTimed;
 
 
-    private Game() {
-    }
-
-    public static void play(GameMode gameMode, int numCol , int numRow,boolean isTimed) {
-
+    public Game(GameMode gameMode, int numCol, int numRow, boolean isTimed) {
 
         final List<Ship> shipsPlayer1 = new ArrayList<>();
         final List<Ship> shipsPlayer2 = new ArrayList<>();
-
-        List<Board> boards = generateBoards(numCol,numRow);
-
-        List<Player> players = generatePlayers(gameMode, shipsPlayer1, shipsPlayer2, boards);
-
-        GraphicalGame.initial(gameMode, players,isTimed);
+        this.isTimed = isTimed;
+        this.boards = generateBoards(numCol, numRow);
+        this.players = generatePlayers(gameMode, shipsPlayer1, shipsPlayer2, boards);
+        currentPlayer = players.get(0);
     }
 
-    private static List<Board> generateBoards(int numCol, int numRow){
-        if (numCol<0 || numCol>20 || numRow<0 || numRow>20){
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void switchPlayer() {
+        currentPlayer = (currentPlayer == players.get(0)) ? players.get(1) : players.get(0);
+    }
+
+
+    public void gameEnded() {
+        currentPlayer = null;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    private List<Board> generateBoards(int numCol, int numRow) {
+        if (numCol < 0 || numCol > 20 || numRow < 0 || numRow > 20) {
             throw new RuntimeException("the dimensions are incorrect");
         }
         List<Board> boards = new ArrayList<>();
 
-        Board board1 = new Board(numRow, numCol,true);
-        Board board2 = new Board(numRow, numCol,true);
+        Board board1 = new Board(numRow, numCol, true);
+        Board board2 = new Board(numRow, numCol, true);
         boards.add(board1);
         boards.add(board2);
         return boards;
     }
 
-    private static List<Player> generatePlayers(GameMode gameMode, List<Ship> ships1, List<Ship> ships2, List<Board> boards) {
+    private List<Player> generatePlayers(GameMode gameMode, List<Ship> ships1, List<Ship> ships2, List<Board> boards) {
         Player player1 = null;
         Player player2 = null;
         Board board1 = boards.get(0);
@@ -51,13 +66,17 @@ public class Game {
                 break;
             case EASY:
                 player1 = new RealPlayer(ships1, board1, PlayerId.PLAYER_1);
-                player2 = new AIPlayer(ships2, board2, PlayerId.PLAYER_2,false);
+                player2 = new AIPlayer(ships2, board2, PlayerId.PLAYER_2, false);
                 break;
-            case  HARD:
+            case HARD:
                 player1 = new RealPlayer(ships1, board1, PlayerId.PLAYER_1);
-                player2 = new AIPlayer(ships2, board2, PlayerId.PLAYER_2,true);
+                player2 = new AIPlayer(ships2, board2, PlayerId.PLAYER_2, true);
                 break;
-            case default :
+<<<<<<< HEAD
+            case default:
+=======
+            default :
+>>>>>>> 56a6bfff55ed32aad0e67a0219ccead16d1bd33a
                 throw new RuntimeException("The gameMode is Incorrect");
 
 

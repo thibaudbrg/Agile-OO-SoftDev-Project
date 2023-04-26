@@ -17,24 +17,32 @@ public class StringsEn {
 
     // Window titles
     public static final String RULES = "\n" +
-            "You and your opponent sit facing each other and neighter can see the other's ocean grid.\n" +
-            "Place your fleet of 5 ships on the ocean grid.\n\n" +
-            "Rules for placing ships:\n" +
-            "Place each ship in any horizontal or vertical position but not diagonally.\n" +
-            "Don't place a ship so that any part of it overlaps letters, numbers, the edge of the grid\n" +
-            "or another ship.\n" +
-            "Don't change the position of any ships once the game has begun.\n\n" +
-            "You and your opponent will alternate turns, calling out one shot per turn to try to hit\n" +
+            "In this version of the Battleship game, there are some additional features\n " +
+            "and game modes that provide an exciting and challenging experience.\n" +
+            "\n" +
+            "Rocks: There are rocks randomly distributed across the boards. If a player\n" +
+            "clicks on a rock while attacking, the other player gains a \"bomb\" bonus for\n" +
+            "their next turn. As a result, when the player clicks to attack, instead of \n" +
+            "revealing just one cell, nine cells (a 3x3 square) are revealed. This provides\n" +
+            "a bonus for the other player, allowing them to uncover potential ship locations more quickly.\n" +
+            "\n" +
+            "Ship orientation: To place a ship on the board, first click on one of the arrow keys\n" +
+            "(left, right, down, or up) to set the orientation of the ship. Then, click on\n" +
+            "the desired cell to place the ship with the chosen orientation.\n" +
+            "\n" +
+            "There are four game modes in this version:\n" +
+            "Multiplayer: This is a classic two-player mode where players take turns attacking\n" +
             "each other's ships.\n" +
-            "On your turn, pick a target hole and call out its location by letter and number.\n\n" +
-            " ---> It's a hit!!\n" +
-            "      If you call out a shot location occupied by a ship on your opponent's ocean grid,\n" +
-            "      your shot is a hit!\n" +
-            " ---> It's a miss...\n" +
-            "      If you call out a shot location not occupied by a ship on your opponent's ocean grid,\n" +
-            "      its a miss.\n\n" +
-            "Once all the holes in any one ship are hit, the ship will sink. The owner of that ship\n" +
-            "must announce which ship was sunk.\n\n";
+            "Blitz Multiplayer: This mode is similar to the regular multiplayer mode, but each player\n" +
+            "has only 5 seconds to make a move. If a player doesn't make a move within the allotted time,\n" +
+            "their turn is skipped, and the other player gets to play.\n" +
+            "Easy Bot: In this solo mode, the player competes against an AI opponent with an easy\n" +
+            "difficulty level.\n" +
+            "Hard Bot: This solo mode is similar to the Easy Bot mode, but the AI opponent has a higher\n" +
+            "difficulty level, making it more challenging to defeat.\n" +
+            "\n" +
+            "These additional features and game modes enhance the gameplay, making it more engaging\n" +
+            "and strategic for both new and experienced players!!";
 
 
     // Prompts

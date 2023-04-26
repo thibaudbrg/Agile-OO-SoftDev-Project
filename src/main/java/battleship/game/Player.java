@@ -2,7 +2,6 @@ package battleship.game;
 
 import battleship.gui.GameInfo;
 import battleship.gui.Info;
-import battleship.gui.PlayerObserver;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -20,13 +19,12 @@ public abstract class Player {
     private final PlayerId playerId;
     private final List<Ship> remainingShips;
     private final Board board;
-    private boolean amICurrentPlayer;
     private final GameInfo gameInfo;
 
     private final IntegerProperty timer;
     private final Timeline timerTimeline;
 
-    private final List<PlayerObserver> observers = new ArrayList<>();
+    private final List<PlayerListener> observers = new ArrayList<>();
     private boolean hasBomb;
 
 
@@ -63,16 +61,16 @@ public abstract class Player {
     }
 
 
-    public void addObserver(PlayerObserver observer) {
+    public void addObserver(PlayerListener observer) {
         observers.add(observer);
     }
 
-    public void removeObserver(PlayerObserver observer) {
+    public void removeObserver(PlayerListener observer) {
         observers.remove(observer);
     }
 
     private void notifyObservers(int remainingShips) {
-        for (PlayerObserver observer : observers) {
+        for (PlayerListener observer : observers) {
             observer.onRemainingShipsChanged(remainingShips);
         }
     }
@@ -143,14 +141,6 @@ public abstract class Player {
 
     public PlayerId getPlayerId() {
         return playerId;
-    }
-
-    public boolean amICurrentPlayer() {
-        return amICurrentPlayer;
-    }
-
-    public void setAmICurrentPlayer(boolean amICurrentPlayer) {
-        this.amICurrentPlayer = amICurrentPlayer;
     }
 
     public boolean addShip(ShipType shipType, Coordinates coordinates, Orientation orientation) {

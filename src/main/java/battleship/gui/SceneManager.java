@@ -1,6 +1,6 @@
 package battleship.gui;
 
-import battleship.game.Game;
+import battleship.controller.GameCreationListener;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -24,21 +24,24 @@ public class SceneManager {
     private static final int MENU_BUTTON_START_X = 100;
     private static final int MENU_BUTTON_START_Y = 325;
 
+    private final GameCreationListener gameCreationListener;
+
     private final AnchorPane mainPane;
     private final Scene mainScene;
     private final Stage mainStage;
+    private final List<BattleShipButton> menuButtons;
 
     private BattleShipSubScene rulesSubScene;
     private BattleShipSubScene difficultySubScene;
     private BattleShipSubScene sceneToHide;
-
-    List<BattleShipButton> menuButtons;
-
-    ComboBox<Integer> rowComboBox;
-    ComboBox<Integer> colComboBox;
+    private ComboBox<Integer> rowComboBox;
+    private ComboBox<Integer> colComboBox;
 
 
-    public SceneManager() {
+
+
+    public SceneManager(GameCreationListener listener) {
+        this.gameCreationListener = listener;
         menuButtons = new ArrayList<>();
         mainPane = new AnchorPane();
         mainScene = new Scene(mainPane, WIDTH, HEIGHT);
@@ -64,7 +67,7 @@ public class SceneManager {
         help.setFont(new Font("Verdana", 40));
         help.setLayoutX(60);
         help.setLayoutY(10);
-        help.setPrefSize(400, 20);
+        help.setPrefSize(200, 15);
         rulesSubScene.getPane().getChildren().add(help);
 
         GridPane rulesGrid = new GridPane();
@@ -76,7 +79,8 @@ public class SceneManager {
         rulesGrid.setVgap(20);
 
         Label rulesLabel = new Label(StringsEn.RULES);
-        rulesLabel.setFont(new Font("Verdana", 12));
+        rulesLabel.setFont(new Font("Verdana", 11));
+        rulesLabel.setTextFill(Color.WHITE);
         rulesGrid.add(rulesLabel, 0, 0);
 
         // Fade in animation
@@ -210,7 +214,8 @@ public class SceneManager {
         multiButton.setOnAction(event -> {
             int numRows = rowComboBox.getValue();
             int numCols = colComboBox.getValue();
-            Game.play(GameMode.MULTIPLAYER, numCols, numRows, isTimed);
+            gameCreationListener.onGameCreate(GameMode.MULTIPLAYER, numCols, numRows, isTimed);
+
         });
         return multiButton;
     }
@@ -223,7 +228,7 @@ public class SceneManager {
         easyModeButton.setOnAction(event -> {
             int numRows = rowComboBox.getValue();
             int numCols = colComboBox.getValue();
-            Game.play(GameMode.EASY, numRows, numCols, false);
+            gameCreationListener.onGameCreate(GameMode.EASY, numCols, numRows, false);
         });
         return easyModeButton;
     }
@@ -235,7 +240,7 @@ public class SceneManager {
         HardModeButton.setOnAction(event -> {
             int numRows = rowComboBox.getValue();
             int numCols = colComboBox.getValue();
-            Game.play(GameMode.HARD, numRows, numCols, false);
+            gameCreationListener.onGameCreate(GameMode.HARD, numCols, numRows, false);
         });
         return HardModeButton;
     }

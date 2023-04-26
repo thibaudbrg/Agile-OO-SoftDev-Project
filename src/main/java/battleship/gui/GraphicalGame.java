@@ -9,10 +9,10 @@ import java.util.List;
 
 public class GraphicalGame {
 
-    private GraphicalGame() {
-    }
+    private PlayerPane playerPane1;
+    private PlayerPane playerPane2;
 
-    public static void initial(GameMode gameMode, List<Player> players,boolean isTimed) {
+    public GraphicalGame(GameMode gameMode, List<Player> players, boolean isTimed) {
         Player player1 = players.get(0);
         Player player2 = players.get(1);
 
@@ -20,8 +20,8 @@ public class GraphicalGame {
             case MULTIPLAYER -> {
                 Stage stage1 = new Stage();
                 Stage stage2 = new Stage();
-                PlayerPane playerPane1 = new PlayerPane(player1, player2,isTimed);
-                PlayerPane playerPane2 = new PlayerPane(player2, player1,isTimed);
+                playerPane1 = new PlayerPane(player1, player2, isTimed);
+                playerPane2 = new PlayerPane(player2, player1, isTimed);
                 BorderPane container1 = new BorderPane();
                 BorderPane container2 = new BorderPane();
 
@@ -48,9 +48,10 @@ public class GraphicalGame {
             }
             case EASY, HARD -> {
                 Stage stage = new Stage();
-                PlayerPane playerPane = new PlayerPane(player1, player2,false);
+                playerPane1 = new PlayerPane(player1, player2, false);
+                playerPane2 = null;
                 BorderPane container = new BorderPane();
-                container.setCenter(playerPane);
+                container.setCenter(playerPane1);
 
                 Scene scene = new Scene(container);
                 stage.setScene(scene);
@@ -60,5 +61,13 @@ public class GraphicalGame {
                 stage.show();
             }
         }
+    }
+
+    public PlayerPane getPlayerPane1() {
+        return playerPane1;
+    }
+
+    public PlayerPane getPlayerPane2() {
+        return playerPane2;
     }
 }

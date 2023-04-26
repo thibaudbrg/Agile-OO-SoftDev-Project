@@ -3,6 +3,7 @@ package battleship.gui;
 import java.util.Objects;
 
 import battleship.game.Cell;
+import battleship.game.CellListener;
 import battleship.game.Coordinates;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -12,7 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 
-public class GraphicalCell extends Canvas implements CellObserver {
+public class GraphicalCell extends Canvas implements CellListener {
 
     public static final int SIZE = 30;
     private final int id;
@@ -38,6 +39,8 @@ public class GraphicalCell extends Canvas implements CellObserver {
         this.mouseOver = mouseOver;
         redraw();
     }
+
+    public Cell getCell(){ return cell; }
 
     public Coordinates getCoordinates() {
         return cell.getCoords();
