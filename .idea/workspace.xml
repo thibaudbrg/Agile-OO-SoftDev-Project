@@ -5,26 +5,67 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="283dd0a8-a3a0-4bcf-bdd1-318dec492e16" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/GameTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/BattleShipSubScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/BattleShipSubScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/InfoLabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/InfoLabel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/StringsEn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/StringsEn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/GraphicalGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/GraphicalGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/features/Battleship.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/Game.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CucumberTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CucumberTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GameProgressionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GameProgressionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/features/GameProgression.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/GameProgression.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/battleship/controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/controller/GameController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/battleship/game/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/game/Game$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/battleship/game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/game/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/battleship/gui/BattleShipSubScene.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/gui/BattleShipSubScene.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/battleship/gui/InfoLabel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/gui/InfoLabel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/battleship/gui/GraphicalGame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/gui/GraphicalGame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/battleship/gui/GraphicalGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/gui/GraphicalGame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/battleship/gui/SceneManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/gui/SceneManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/battleship/gui/StringsEn.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/gui/StringsEn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/classpath.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/features/Battleship.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/CucumberTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/CucumberTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/GameProgressionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/GameProgressionTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/GameTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/GameTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/classpath.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/features/GameProgression.feature" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/features/GameProgression.feature" afterDir="false" />
+    </list>
+    <list id="3b820bf1-66e9-4d3e-ab49-d79bb124d598" name="Changes by onsriahi" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/Game.java" afterDir="false" />
+    </list>
+    <list id="617b5763-4347-4b8f-bf45-7f2126c62b20" name="Changes by sahbiabderrazak" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/GraphicalGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/GraphicalGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/SceneManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/battleship/game/Game.java">
+      <ranges>
+        <range start1="9" end1="9" start2="9" end2="10" changelist="617b5763-4347-4b8f-bf45-7f2126c62b20" />
+        <range start1="15" end1="17" start2="16" end2="17" changelist="617b5763-4347-4b8f-bf45-7f2126c62b20" />
+        <range start1="24" end1="24" start2="24" end2="31" changelist="617b5763-4347-4b8f-bf45-7f2126c62b20" />
+        <range start1="52" end1="54" start2="59" end2="60" changelist="3b820bf1-66e9-4d3e-ab49-d79bb124d598" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/battleship/gui/GraphicalGame.java">
+      <ranges>
+        <range start1="10" end1="11" start2="10" end2="11" changelist="617b5763-4347-4b8f-bf45-7f2126c62b20" />
+        <range start1="14" end1="15" start2="14" end2="18" changelist="617b5763-4347-4b8f-bf45-7f2126c62b20" />
+        <range start1="64" end1="64" start2="67" end2="75" changelist="283dd0a8-a3a0-4bcf-bdd1-318dec492e16" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -44,27 +85,68 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;MVC-done&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/sahbiabderrazak/Desktop/tout/DTU/agile OO software dev/Agile-OO-SoftDev-Project&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.44827586&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "MVC-done",
+    "last_opened_file_path": "/Users/ghaliabennani/Desktop/BA6/software dev/Agile-OO-SoftDev-Project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.44827586",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Application.Battleship">
+}]]></component>
+  <component name="RunManager" selected="JUnit.CucumberTest">
     <configuration name="Battleship" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="battleship.Battleship" />
       <module name="Agile-OO-SoftDev-Project" />
-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/javafx-sdk-19.0.2.1/lib --add-modules javafx.media,javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-19.0.2.1/lib --add-modules javafx.media,javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="battleship.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Feature: GameProgression" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="5" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/resources/features/GameProgression.feature" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="Agile-OO-SoftDev-Project" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter" />
+      <option name="SUGGESTED_NAME" value="Feature: GameProgression" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Feature: Orientation" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="5" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/resources/features/Orientation.feature" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="Agile-OO-SoftDev-Project" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter" />
+      <option name="SUGGESTED_NAME" value="Feature: Orientation" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -80,14 +162,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CucumberTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Agile-OO-SoftDev-Project" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CucumberTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Battleship" />
+      <item itemvalue="Cucumber Java.Feature: GameProgression" />
+      <item itemvalue="Cucumber Java.Feature: Orientation" />
       <item itemvalue="JUnit.All in Agile-OO-SoftDev-Project" />
+      <item itemvalue="JUnit.CucumberTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Battleship" />
         <item itemvalue="JUnit.All in Agile-OO-SoftDev-Project" />
+        <item itemvalue="Application.Battleship" />
+        <item itemvalue="JUnit.CucumberTest" />
+        <item itemvalue="Cucumber Java.Feature: Orientation" />
+        <item itemvalue="Cucumber Java.Feature: GameProgression" />
       </list>
     </recent_temporary>
   </component>
@@ -100,16 +197,27 @@
       <option name="presentableId" value="Default" />
       <updated>1682511171214</updated>
       <workItem from="1682511172505" duration="2006000" />
+      <workItem from="1682586240694" duration="7651000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NoClassDefFoundError" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$CucumberTest.ic" NAME="CucumberTest Coverage Results" MODIFIED="1682525356451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$Battleship.ic" NAME="Battleship Coverage Results" MODIFIED="1682511620276" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>battleship.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$CucumberTest.ic" NAME="CucumberTest Coverage Results" MODIFIED="1682597138673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

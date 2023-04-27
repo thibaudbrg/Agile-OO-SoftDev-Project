@@ -7,20 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+    private static Game instance = null;
     private final List<Board> boards;
     private final List<Player> players;
     private Player currentPlayer;
     private boolean isTimed;
 
 
-    public Game(GameMode gameMode, int numCol, int numRow, boolean isTimed) {
-
+    private Game(GameMode gameMode, int numCol, int numRow, boolean isTimed){
         final List<Ship> shipsPlayer1 = new ArrayList<>();
         final List<Ship> shipsPlayer2 = new ArrayList<>();
         this.isTimed = isTimed;
         this.boards = generateBoards(numCol, numRow);
         this.players = generatePlayers(gameMode, shipsPlayer1, shipsPlayer2, boards);
         currentPlayer = players.get(0);
+    }
+
+    public static Game getInstance(GameMode gameMode, int numCol, int numRow, boolean isTimed) {
+        if (instance == null) {
+            instance = new Game(gameMode, numCol, numRow, isTimed);
+        }
+        return instance;
     }
 
     public Player getCurrentPlayer() {
@@ -50,8 +57,7 @@ public class Game {
         Board board2 = new Board(numRow, numCol, true);
         boards.add(board1);
         boards.add(board2);
-        return boards;
-    }
+        return boards;}
 
     private List<Player> generatePlayers(GameMode gameMode, List<Ship> ships1, List<Ship> ships2, List<Board> boards) {
         Player player1 = null;

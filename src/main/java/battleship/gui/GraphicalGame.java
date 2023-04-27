@@ -8,11 +8,14 @@ import javafx.stage.Stage;
 import java.util.List;
 
 public class GraphicalGame {
-
+    private static GraphicalGame instance = null;
     private PlayerPane playerPane1;
     private PlayerPane playerPane2;
 
-    public GraphicalGame(GameMode gameMode, List<Player> players, boolean isTimed) {
+
+
+
+    private GraphicalGame(GameMode gameMode, List<Player> players, boolean isTimed) {
         Player player1 = players.get(0);
         Player player2 = players.get(1);
 
@@ -61,6 +64,14 @@ public class GraphicalGame {
                 stage.show();
             }
         }
+    }
+
+    public static GraphicalGame getInstance(GameMode gameMode, List<Player> players, boolean isTimed){
+        if (instance == null) {
+            instance = new GraphicalGame(gameMode, players, isTimed);
+        }
+        return instance;
+
     }
 
     public PlayerPane getPlayerPane1() {
