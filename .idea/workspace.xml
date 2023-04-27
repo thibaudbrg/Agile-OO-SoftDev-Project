@@ -5,18 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="283dd0a8-a3a0-4bcf-bdd1-318dec492e16" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/battleship/controller/SoundEffect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/GraphicalGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/GraphicalGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/features/Battleship.feature" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/GameProgressionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GameProgressionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/features/GameProgression.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/GameProgression.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/controller/SoundManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/controller/SoundManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/PlayerPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/PlayerPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/SceneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/battleship/controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/controller/GameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/battleship/controller/SoundManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/controller/SoundManager$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/battleship/controller/SoundManager$SoundEffect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/battleship/controller/SoundManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/controller/SoundManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/battleship/gui/PlayerPane.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/gui/PlayerPane.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/battleship/gui/SceneManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/gui/SceneManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/battleship/gui/StringsEn.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/gui/StringsEn.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,6 +58,8 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;MVC-done&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/sahbiabderrazak/Desktop/tout/DTU/agile OO software dev/Agile-OO-SoftDev-Project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
@@ -53,7 +67,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.CucumberTest">
+  <component name="RunManager" selected="Application.Battleship">
     <configuration name="Battleship" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="battleship.Battleship" />
       <module name="Agile-OO-SoftDev-Project" />
@@ -92,8 +106,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CucumberTest" />
         <item itemvalue="Application.Battleship" />
+        <item itemvalue="JUnit.CucumberTest" />
         <item itemvalue="JUnit.All in Agile-OO-SoftDev-Project" />
       </list>
     </recent_temporary>
@@ -107,6 +121,8 @@
       <option name="presentableId" value="Default" />
       <updated>1682511171214</updated>
       <workItem from="1682511172505" duration="2006000" />
+      <workItem from="1682600289438" duration="771000" />
+      <workItem from="1682608279401" duration="1732000" />
     </task>
     <servers />
   </component>

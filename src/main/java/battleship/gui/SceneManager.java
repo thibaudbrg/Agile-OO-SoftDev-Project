@@ -23,9 +23,7 @@ public class SceneManager {
     private static final int WIDTH = 1024;
     private static final int MENU_BUTTON_START_X = 100;
     private static final int MENU_BUTTON_START_Y = 325;
-
     private final GameCreationListener gameCreationListener;
-
     private final AnchorPane mainPane;
     private final Scene mainScene;
     private final Stage mainStage;

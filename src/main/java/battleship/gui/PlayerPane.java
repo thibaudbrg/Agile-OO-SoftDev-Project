@@ -42,7 +42,6 @@ public class PlayerPane extends Pane implements PlayerListener {
         setMaxSize(numCol * GraphicalCell.SIZE + 2 * offsetX, 2 * (numRow * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
         setPrefSize(numCol * GraphicalCell.SIZE + 2 * offsetX, 2 * (numRow * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);
         setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-
         loadBothSea(isTimed);
     }
 
@@ -168,7 +167,6 @@ public class PlayerPane extends Pane implements PlayerListener {
 
     @Override
     public void onRemainingShipsChanged(int remainingShips) {
-        System.out.println("yes "+ remainingShips);
         mainPlayerProgressBar.setProgress(1 - remainingShips / (double) ShipType.values().length);
     }
 }

@@ -31,10 +31,6 @@ public class SoundManager {
     private static final MediaPlayer loseMediaPlayer = new MediaPlayer(lMusic);
 
 
-    public enum SoundEffect {
-        WIN, SHIP, MISS, HIT, BOMB, LOSE
-    }
-
     public static void play(SoundEffect effect) {
         switch (effect) {
             case WIN -> {

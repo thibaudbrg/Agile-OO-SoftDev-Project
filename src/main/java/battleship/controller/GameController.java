@@ -55,10 +55,10 @@ public class GameController {
 
 
     private void mouseReleased(MouseEvent mouseEvent) {
-        SoundManager.stop(SoundManager.SoundEffect.SHIP);
-        SoundManager.stop(SoundManager.SoundEffect.WIN);
-        SoundManager.stop(SoundManager.SoundEffect.MISS);
-        SoundManager.stop(SoundManager.SoundEffect.HIT);
+        SoundManager.stop(SoundEffect.SHIP);
+        SoundManager.stop(SoundEffect.WIN);
+        SoundManager.stop(SoundEffect.MISS);
+        SoundManager.stop(SoundEffect.HIT);
     }
 
     private void keyPressed(KeyEvent keyEvent) {
@@ -81,7 +81,7 @@ public class GameController {
                     case SHIP_PLACEMENT_PLAYER_1:
                         if (gCell.isMine()) { // TODO condition about nonNull orientation
                             if (currentOrientation != null && mainPlayer.addShip(ShipType.values()[shipPlacedCounter], gCell.getCoordinates(), currentOrientation)) {
-                                SoundManager.play(SoundManager.SoundEffect.SHIP);
+                                SoundManager.play(SoundEffect.SHIP);
 
                                 ++shipPlacedCounter;
 
@@ -110,7 +110,7 @@ public class GameController {
                     case SHIP_PLACEMENT_PLAYER_2:
                         if (gCell.isMine()) { // TODO condition about nonNull orientation
                             if (currentOrientation != null && game.getCurrentPlayer().addShip(ShipType.values()[shipPlacedCounter % 5], gCell.getCoordinates(), currentOrientation)) {
-                                SoundManager.play(SoundManager.SoundEffect.SHIP);
+                                SoundManager.play(SoundEffect.SHIP);
 
                                 ++shipPlacedCounter;
                             }
@@ -131,18 +131,18 @@ public class GameController {
                             boolean hasBomb = mainPlayer.getHasBomb();
                             CellStatus newStatus = mainPlayer.handleShot(gCell.getCoordinates(), otherPlayer);
                             if (newStatus == CellStatus.HIT && hasBomb) {
-                                SoundManager.play(SoundManager.SoundEffect.BOMB);
+                                SoundManager.play(SoundEffect.BOMB);
                             } else if (newStatus == CellStatus.HIT || newStatus == CellStatus.ROCK_HIT) {
-                                SoundManager.play(SoundManager.SoundEffect.HIT);
+                                SoundManager.play(SoundEffect.HIT);
 
                             } else {
-                                SoundManager.play(SoundManager.SoundEffect.MISS);
+                                SoundManager.play(SoundEffect.MISS);
 
                             }
 
                             if (newStatus != CellStatus.ALREADY_HIT && newStatus != CellStatus.ALREADY_MISSED) {
                                 if (otherPlayer.getNumberOfRemainingShips() == 0) {
-                                    SoundManager.play(SoundManager.SoundEffect.WIN);
+                                    SoundManager.play(SoundEffect.WIN);
 
 
                                     mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).won());
@@ -158,7 +158,7 @@ public class GameController {
                                     ((AIPlayer) otherPlayer).handleShot(mainPlayer);
                                     if (mainPlayer.getNumberOfRemainingShips() == 0) {
                                         mainPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).won());
-                                        SoundManager.play(SoundManager.SoundEffect.LOSE);
+                                        SoundManager.play(SoundEffect.LOSE);
 
                                         game.gameEnded();
                                     } else {
