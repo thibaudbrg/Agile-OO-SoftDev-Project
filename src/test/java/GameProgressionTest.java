@@ -12,6 +12,9 @@ public class GameProgressionTest {
     private GameProgression progression;
     private int numberOfShips;
 
+    private int playerId;
+    private boolean allShipsplaced;
+
     @Given("the GameProgression enum")
     public void the_gameProgression_enum() {
         // No action required, as the enum is already defined.
@@ -43,5 +46,22 @@ public class GameProgressionTest {
     @Then("It should be {string}")
     public void it_should_be(String string) {
         assertEquals(string,progression.name());
+    }
+
+    @And("the player {int}")
+    public void thePlayerId(Integer int1) {
+        playerId = int1;
+
+    }
+
+    @When("we check if all its ships are placed")
+    public void weCheckIfAllItsShipsArePlaced() {
+        allShipsplaced = GameProgression.allShipsPlacedForPlayer(numberOfShips,playerId);
+    }
+
+
+    @Then("It should be the boolean {string}")
+    public void itShouldBeTheBoolean(String arg0) {
+        assertEquals(Boolean.toString(allShipsplaced), arg0);
     }
 }

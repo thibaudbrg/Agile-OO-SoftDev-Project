@@ -65,6 +65,7 @@ public class SceneManager {
 
         InfoLabel help = new InfoLabel(StringsEn.RULES_BUTTON);
         help.setFont(new Font("Verdana", 40));
+        help.setTextFill(Color.WHITE);
         help.setLayoutX(60);
         help.setLayoutY(10);
         help.setPrefSize(200, 15);
@@ -93,8 +94,8 @@ public class SceneManager {
     private void createDifficultySubScene() {
         difficultySubScene = new BattleShipSubScene();
         mainPane.getChildren().add(difficultySubScene);
-
         InfoLabel chooseDifficultyLabel = new InfoLabel(StringsEn.DIFFICULTY_LABEL);
+        chooseDifficultyLabel.setTextFill(Color.WHITE);
         chooseDifficultyLabel.getStyleClass().add("title-label");
         difficultySubScene.getPane().getChildren().add(chooseDifficultyLabel);
         chooseDifficultyLabel.setFont(new Font("Verdana", 40));
@@ -111,21 +112,23 @@ public class SceneManager {
         grid.setVgap(20);
 
         Label rowLabel = new Label("Rows:");
+        rowLabel.setTextFill(Color.WHITE);
         rowLabel.getStyleClass().add("grid-label");
         grid.add(rowLabel, 0, 2);
 
         Label colLabel = new Label("Columns:");
+        colLabel.setTextFill(Color.WHITE);
         colLabel.getStyleClass().add("grid-label");
         grid.add(colLabel, 0, 3);
 
         rowComboBox = new ComboBox<>();
-        rowComboBox.getItems().addAll(6, 7, 8, 9, 10, 11, 12, 13);
+        rowComboBox.getItems().addAll(6, 7, 8, 9, 10, 11, 12);
         rowComboBox.setValue(10);
         rowComboBox.getStyleClass().add("grid-combo-box");
         grid.add(rowComboBox, 1, 2);
 
         colComboBox = new ComboBox<>();
-        colComboBox.getItems().addAll(6, 7, 8, 9, 10, 11, 12, 13);
+        colComboBox.getItems().addAll(6, 7, 8, 9, 10, 11, 12);
         colComboBox.setValue(10);
         colComboBox.getStyleClass().add("grid-combo-box");
         grid.add(colComboBox, 1, 3);

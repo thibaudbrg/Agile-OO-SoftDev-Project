@@ -6,17 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="283dd0a8-a3a0-4bcf-bdd1-318dec492e16" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/BattleShipSubScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/BattleShipSubScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/InfoLabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/InfoLabel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/StringsEn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/StringsEn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/battleship/game/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/game/Game$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/battleship/game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/game/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/battleship/gui/BattleShipSubScene.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/gui/BattleShipSubScene.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/battleship/gui/InfoLabel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/gui/InfoLabel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/GraphicalGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/GraphicalGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/features/Battleship.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GameProgressionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GameProgressionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/features/GameProgression.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/GameProgression.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/battleship/gui/SceneManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/gui/SceneManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/battleship/gui/StringsEn.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/gui/StringsEn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/classpath.index" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,17 +46,18 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;MVC-done&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/sahbiabderrazak/Desktop/tout/DTU/agile OO software dev/Agile-OO-SoftDev-Project&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.44827586&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Battleship">
+  <component name="RunManager" selected="JUnit.CucumberTest">
     <configuration name="Battleship" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="battleship.Battleship" />
       <module name="Agile-OO-SoftDev-Project" />
-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/javafx-sdk-19.0.2.1/lib --add-modules javafx.media,javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/../javafx-sdk-19.0.2.1/lib --add-modules javafx.media,javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="battleship.*" />
@@ -80,12 +76,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CucumberTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Agile-OO-SoftDev-Project" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CucumberTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Battleship" />
+      <item itemvalue="JUnit.CucumberTest" />
       <item itemvalue="JUnit.All in Agile-OO-SoftDev-Project" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CucumberTest" />
         <item itemvalue="Application.Battleship" />
         <item itemvalue="JUnit.All in Agile-OO-SoftDev-Project" />
       </list>
@@ -107,9 +114,9 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$CucumberTest.ic" NAME="CucumberTest Coverage Results" MODIFIED="1682525356451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$Battleship.ic" NAME="Battleship Coverage Results" MODIFIED="1682511620276" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>battleship.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$CucumberTest.ic" NAME="CucumberTest Coverage Results" MODIFIED="1682525356451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

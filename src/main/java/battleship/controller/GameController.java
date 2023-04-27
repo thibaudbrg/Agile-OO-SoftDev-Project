@@ -20,8 +20,8 @@ public class GameController {
     private final boolean isTimed;
 
     public GameController(GameMode gameMode, int numCol, int numRow, boolean isTimed) {
-        game = new Game(gameMode, numCol, numRow, isTimed);
-        graphicalGame = new GraphicalGame(gameMode, game.getPlayers(), isTimed);
+        game = Game.getInstance(gameMode, numCol, numRow, isTimed);
+        graphicalGame = GraphicalGame.getInstance(gameMode, game.getPlayers(), isTimed);
 
         this.isTimed = isTimed;
 

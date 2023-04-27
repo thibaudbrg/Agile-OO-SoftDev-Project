@@ -17,3 +17,21 @@ Feature: GameProgression
       | 10   | PLAYING_GAME             |
 
 
+  Scenario Outline: Check that all ships are placed for a given player
+    Given <numb> placed ships
+    And the player <id>
+    When we check if all its ships are placed
+    Then It should be the boolean "<boolean>"
+
+    Examples:
+      | numb | id  | boolean |
+      | 10   | 2   | true    |
+      | 3    | 1   | false   |
+      | 8    | 1   | false   |
+      | 5    | 1   | true    |
+      | 3    | 2   | false   |
+      | 12   | 2   | false   |
+
+
+
+
