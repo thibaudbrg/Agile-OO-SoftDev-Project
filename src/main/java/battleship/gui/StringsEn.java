@@ -16,30 +16,26 @@ public class StringsEn {
     public static final String HARD_BUTTON = "Hard Bot";
 
     // Window titles
-    public static final String RULES = "\n" +
-            "In this version of the Battleship game, there are some additional features\n " +
-            "and game modes that provide an exciting and challenging experience.\n" +
+    public static final String RULES = "\n\n" +
+            "In this version of the Battleship game, there are some additional features and game modes\n" +
+            "that provide an exciting and challenging experience.\n" +
             "\n" +
-            "Rocks: There are rocks randomly distributed across the boards. If a player\n" +
-            "clicks on a rock while attacking, the other player gains a \"bomb\" bonus for\n" +
-            "their next turn. As a result, when the player clicks to attack, instead of \n" +
-            "revealing just one cell, nine cells (a 3x3 square) are revealed. This provides\n" +
-            "a bonus for the other player, allowing them to uncover potential ship locations more quickly.\n" +
+            "Rocks: randomly distributed across the boards. If a player clicks on a rock while attacking,\n" +
+            "the other player gains a \"bomb\" bonus for their next turn. As a result, when the player\n" +
+            "clicks to attack, instead of revealing just one cell, nine cells (a 3x3 square) are revealed.\n" +
+            "This allows the other player to uncover potential ship locations more quickly.\n" +
             "\n" +
-            "Ship orientation: To place a ship on the board, first click on one of the arrow keys\n" +
-            "(left, right, down, or up) to set the orientation of the ship. Then, click on\n" +
-            "the desired cell to place the ship with the chosen orientation.\n" +
+            "Ship placement: first click on one of the arrow keys (left, right, down, or up) to set the\n" +
+            "orientation of the ship. Then, click on the desired cell to place the ship with the chosen orientation.\n" +
             "\n" +
             "There are four game modes in this version:\n" +
-            "Multiplayer: This is a classic two-player mode where players take turns attacking\n" +
-            "each other's ships.\n" +
-            "Blitz Multiplayer: This mode is similar to the regular multiplayer mode, but each player\n" +
-            "has only 5 seconds to make a move. If a player doesn't make a move within the allotted time,\n" +
-            "their turn is skipped, and the other player gets to play.\n" +
-            "Easy Bot: In this solo mode, the player competes against an AI opponent with an easy\n" +
-            "difficulty level.\n" +
-            "Hard Bot: This solo mode is similar to the Easy Bot mode, but the AI opponent has a higher\n" +
-            "difficulty level, making it more challenging to defeat.\n" +
+            "Multiplayer: a classic two-player mode where players take turns attacking each other's ships.\n" +
+            "Blitz Multiplayer: similar to the regular multiplayer mode, but each player has only 5 seconds\n" +
+            "to make a move. If a player doesn't make a move within the allotted time, their turn is skipped,\n" +
+            "and the other player gets to play.\n" +
+            "Easy Bot: a solo mode against an AI opponent with an easy difficulty level.\n" +
+            "Hard Bot: similar to the Easy Bot mode, but the AI opponent has a higher difficulty level,\n" +
+            "making it more challenging to defeat.\n" +
             "\n" +
             "These additional features and game modes enhance the gameplay, making it more engaging\n" +
             "and strategic for both new and experienced players!!";

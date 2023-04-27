@@ -72,11 +72,7 @@ public class Game {
                 player1 = new RealPlayer(ships1, board1, PlayerId.PLAYER_1);
                 player2 = new AIPlayer(ships2, board2, PlayerId.PLAYER_2, true);
                 break;
-<<<<<<< HEAD
-            case default:
-=======
             default :
->>>>>>> 56a6bfff55ed32aad0e67a0219ccead16d1bd33a
                 throw new RuntimeException("The gameMode is Incorrect");
 
 

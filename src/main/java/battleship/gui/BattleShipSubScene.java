@@ -7,7 +7,7 @@ import javafx.util.Duration;
 
 public class BattleShipSubScene extends SubScene {
 
-    private final static String BACKGROUND = "-fx-background-radius: 20; -fx-background-color: rgba(255, 255, 255, 0.5);";
+    private final static String BACKGROUND = "-fx-background-radius: 20; -fx-background-color: rgba(255, 255, 255, 0.2);";
 
     private boolean isHidden = true;
 
