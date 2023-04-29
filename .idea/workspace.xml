@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="283dd0a8-a3a0-4bcf-bdd1-318dec492e16" name="Changes" comment="" />
+    <list default="true" id="283dd0a8-a3a0-4bcf-bdd1-318dec492e16" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,25 +38,33 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/sahbiabderrazak/Desktop/tout/DTU/agile OO software dev/Agile-OO-SoftDev-Project",
+    "last_opened_file_path": "/Users/sahbiabderrazak/Desktop/Agile-OO-SoftDev-Project",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.44827586",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Battleship">
+  <component name="RunManager" selected="JUnit.All in Agile-OO-SoftDev-Project">
     <configuration name="Battleship" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="battleship.Battleship" />
       <module name="Agile-OO-SoftDev-Project" />
-      <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/../javafx-sdk-19.0.2.1/lib --add-modules javafx.controls,javafx.media" />
+      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/javafx-sdk-19.0.2.1/lib --add-modules javafx.media,javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="battleship.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in Agile-OO-SoftDev-Project" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Agile-OO-SoftDev-Project" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -70,10 +80,12 @@
     </configuration>
     <list>
       <item itemvalue="Application.Battleship" />
+      <item itemvalue="JUnit.All in Agile-OO-SoftDev-Project" />
       <item itemvalue="JUnit.CucumberTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in Agile-OO-SoftDev-Project" />
         <item itemvalue="Application.Battleship" />
         <item itemvalue="JUnit.CucumberTest" />
       </list>
@@ -82,7 +94,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="89724ba8-719e-4e17-b53d-47a8a7933d45" name="Changes" comment="" />
+      <changelist id="283dd0a8-a3a0-4bcf-bdd1-318dec492e16" name="Changes" comment="" />
       <created>1680612327633</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -92,6 +104,9 @@
       <workItem from="1681574502100" duration="8000" />
       <workItem from="1681574526069" duration="33000" />
       <workItem from="1681574644446" duration="250000" />
+      <workItem from="1682778330309" duration="11000" />
+      <workItem from="1682778381402" duration="19000" />
+      <workItem from="1682778610599" duration="116000" />
     </task>
     <servers />
   </component>
@@ -99,9 +114,10 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$Battleship.ic" NAME="Battleship Coverage Results" MODIFIED="1682523875612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$java_in_Agile_OO_SoftDev_Project.ic" NAME="java in Agile-OO-SoftDev-Project Coverage Results" MODIFIED="1682581522391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$CucumberTest.ic" NAME="CucumberTest Coverage Results" MODIFIED="1682600705765" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$Battleship.ic" NAME="Battleship Coverage Results" MODIFIED="1682581472257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>battleship.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$CucumberTest.ic" NAME="CucumberTest Coverage Results" MODIFIED="1682525356451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
