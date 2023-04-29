@@ -6,23 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="283dd0a8-a3a0-4bcf-bdd1-318dec492e16" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/Battleship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/Battleship.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/battleship/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/controller/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/AIPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/AIPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/Orientation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/Orientation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/PlayerId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/PlayerId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/ShipType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/ShipType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/BattleShipButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/BattleShipButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/GraphicalCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/GraphicalCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/Info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/InfoLabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/InfoLabel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/PlayerPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/PlayerPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/SceneManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/StringsEn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/StringsEn.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,25 +42,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "FinalVersion",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "/Users/sahbiabderrazak/Desktop/tout/DTU/agile OO software dev/Agile-OO-SoftDev-Project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.44827586",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;FinalVersion&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/sahbiabderrazak/Desktop/tout/DTU/agile OO software dev/Agile-OO-SoftDev-Project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.44827586&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.Battleship">
     <configuration name="Battleship" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="battleship.Battleship" />
@@ -132,6 +117,7 @@
       <workItem from="1682511172505" duration="2006000" />
       <workItem from="1682600289438" duration="771000" />
       <workItem from="1682608279401" duration="1732000" />
+      <workItem from="1682756016555" duration="646000" />
     </task>
     <servers />
   </component>

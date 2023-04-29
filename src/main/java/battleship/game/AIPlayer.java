@@ -41,20 +41,20 @@ public class AIPlayer extends Player {
         }
     }
 
-    //@Override
-    public CellStatus handleShot(Player otherRealPlayer) { // TODO Problème de conception il manque le override
 
-        CellStatus newCellstatus;
-        Coordinates newCord;
+    @Override
+    public CellStatus handleShot(Coordinates coords, Player otherRealPlayer) {
+        CellStatus newCellStatus = super.handleShot(coords, otherRealPlayer);
+        memory.getCell(coords).setCellStatus(newCellStatus);
+        return newCellStatus;
+    }
+
+    public Coordinates getAICoordinates() {
         if (!isHard) {
-            newCord = randomAI();
+            return randomAI();
         } else {
-            newCord = basicAI();
+            return basicAI();
         }
-        newCellstatus = handleShot(newCord, otherRealPlayer);
-        assert newCord != null;
-        memory.getCell(newCord).setCellStatus(newCellstatus);
-        return newCellstatus;
     }
 
     private Coordinates randomAI() {

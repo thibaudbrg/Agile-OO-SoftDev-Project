@@ -154,7 +154,8 @@ public class GameController {
                                     game.gameEnded();
 
                                 } else if (otherPlayerIsAi) {
-                                    ((AIPlayer) otherPlayer).handleShot(mainPlayer);
+                                    Coordinates aiCoords = ((AIPlayer) otherPlayer).getAICoordinates();
+                                    otherPlayer.handleShot(aiCoords, mainPlayer);
                                     if (mainPlayer.getNumberOfRemainingShips() == 0) {
                                         mainPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).won());
                                         SoundManager.play(SoundEffect.LOSE);
