@@ -42,13 +42,13 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "SDKs",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.44827586",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.All in Agile-OO-SoftDev-Project">
+  <component name="RunManager" selected="Application.Battleship">
     <configuration name="Battleship" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="battleship.Battleship" />
       <module name="Agile-OO-SoftDev-Project" />
@@ -87,8 +87,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in Agile-OO-SoftDev-Project" />
         <item itemvalue="Application.Battleship" />
+        <item itemvalue="JUnit.All in Agile-OO-SoftDev-Project" />
         <item itemvalue="JUnit.CucumberTest" />
       </list>
     </recent_temporary>
@@ -108,7 +108,7 @@
       <workItem from="1681574644446" duration="250000" />
       <workItem from="1682778330309" duration="11000" />
       <workItem from="1682778381402" duration="19000" />
-      <workItem from="1682778610599" duration="1403000" />
+      <workItem from="1682778610599" duration="1703000" />
     </task>
     <servers />
   </component>
