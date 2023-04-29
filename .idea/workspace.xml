@@ -1,15 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Agile-OO-SoftDev-Project:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="283dd0a8-a3a0-4bcf-bdd1-318dec492e16" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/SceneManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/battleship/gui/SceneManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/battleship/gui/SceneManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/Fonts.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/Untitled.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/blue_panel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/buttonBlue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/cursor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/galaxy.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/game_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/grey_circle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/heart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/index.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/index1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/index1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/index2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/kenvector_future.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/life-gain.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/life-lost.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/menubg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/meteorBrown.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/meteorGrey.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/missile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/purple.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/retina.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/robotSFX.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/rocketButton.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/shipchooser/playerLife_blue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/shipchooser/playerLife_green.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/shipchooser/playerLife_orange.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/shipchooser/playerLife_red.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/shipchooser/ships/ship_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/shipchooser/ships/ship_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/shipchooser/ships/ship_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/shipchooser/ships/ship_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/space_runner.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/star_gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/stars.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/yellow_boxTick.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/yellow_button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/yellow_button06.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/yellow_button_pressed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/ImagesFromSpaceRunner/yellow_panel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/assets/background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/assets/battleship.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/assets/carrier.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/assets/credits.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/assets/cruiser.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/assets/destroyer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/assets/ocean-tile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/assets/submarine.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/Battleship.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/AIPlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/Board.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/Cell.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/CellStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/Constants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/Coordinates.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/Display$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/Display.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/Orientation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/PlayerId.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/RealPlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/Ship.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/game/ShipType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/BattleShipButton$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/BattleShipButton$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/BattleShipButton$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/BattleShipButton$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/BattleShipButton.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/BattleShipSubScene.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/ConfirmEndGame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/GameMode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/GraphicalGame$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/GraphicalGame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/IdGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/Info$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/Info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/InfoLabel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/SceneManager$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/SceneManager$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/SceneManager$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/SceneManager$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/SceneManager$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/SceneManager$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/SceneManager$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/SceneManager$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/SceneManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/StringsEn.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/widgets/Sea$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/widgets/Sea.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/widgets/Ship$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/widgets/Ship$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/widgets/Ship$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/widgets/Ship.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/widgets/Tile$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/widgets/Tile$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/battleship/gui/widgets/Tile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/features/Battleship.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/logo_white-removebg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BattleshipDevelopmentProcess/logo_white.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/test_and_cucumber/battleship/game/Cell.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/test_and_cucumber/battleship/game/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/BoardTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/CellStatusTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/CellTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/CucumberTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/OrientationTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/PlayerIdTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/PlayerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/ShipTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/ShipTypeTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/features/BoardCellShip.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/features/EndGame.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/features/InfoBoxDialog.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/features/Menu.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/features/Player.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/features/ShipPlacements.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/features/ShipShooting.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/features2/Board.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/features2/Cell.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/features2/CellStatus.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/features2/Orientation.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/features2/Player.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/features2/PlayerId.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/features2/Ship.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Agile-OO-SoftDev-Project/features2/ShipType.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/BoardTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/CellStatusTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/CellTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/CucumberTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/OrientationTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/PlayerIdTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/PlayerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/ShipTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/ShipTypeTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/features/BoardCellShip.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/features/EndGame.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/features/InfoBoxDialog.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/features/Menu.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/features/Player.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/features/ShipPlacements.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/features/ShipShooting.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/features2/Board.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/features2/Cell.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/features2/CellStatus.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/features2/Orientation.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/features2/Player.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/features2/PlayerId.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/features2/Ship.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/BattleshipDevelopmentProcess/features2/ShipType.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/test_and_cucumber/Battleship.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/test_and_cucumber/CucumberTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/test_and_cucumber/features/Battleship.feature" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +269,7 @@
       <workItem from="1682778330309" duration="11000" />
       <workItem from="1682778381402" duration="19000" />
       <workItem from="1682778610599" duration="2009000" />
-      <workItem from="1682781061931" duration="439000" />
+      <workItem from="1682781061931" duration="1030000" />
     </task>
     <servers />
   </component>
