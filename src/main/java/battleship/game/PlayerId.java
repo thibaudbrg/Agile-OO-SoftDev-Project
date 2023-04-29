@@ -11,11 +11,6 @@ public enum PlayerId {
     private final int playerNumber;
     private final String extendedName;
 
-    /**
-     * returns the next player
-     *
-     * @return the next player
-     */
     public PlayerId next() {
         return (this == PLAYER_1) ? PLAYER_2 : PLAYER_1;
     }

@@ -25,6 +25,8 @@ public abstract class Player {
     private final Timeline timerTimeline;
 
     private final List<PlayerListener> observers = new ArrayList<>();
+
+
     private boolean hasBomb;
 
 
@@ -41,10 +43,6 @@ public abstract class Player {
 
     public IntegerProperty timerProperty() {
         return timer;
-    }
-
-    private void decrementTimer() {
-        timer.set(timer.get() - 1);
     }
 
     public void startTimer() {
@@ -69,17 +67,10 @@ public abstract class Player {
         observers.remove(observer);
     }
 
-    private void notifyObservers(int remainingShips) {
-        for (PlayerListener observer : observers) {
-            observer.onRemainingShipsChanged(remainingShips);
-        }
-    }
-
 
     public List<Ship> getRemainingShips() {
         return remainingShips;
     }
-
 
     public Board getBoard() {
         return board;
@@ -94,7 +85,6 @@ public abstract class Player {
     }
 
     public CellStatus handleShot(Coordinates coords, Player otherRealPlayer) {
-        CellStatus newStatus = CellStatus.OCEAN;
         if (this.hasBomb) {
             this.setHasBomb(false);
             handleShot(coords, otherRealPlayer);
@@ -121,7 +111,6 @@ public abstract class Player {
             otherRealPlayer.setHasBomb(true);
             return CellStatus.ROCK_HIT;
         } else {
-            newStatus = CellStatus.HIT;
             gameInfo.addInfo(new Info(playerId).hit());
             otherRealPlayer.getBoard().getCell(coords).setCellStatus(CellStatus.HIT);
             Iterator<Ship> iterator = otherRealPlayer.remainingShips.iterator();
@@ -216,6 +205,17 @@ public abstract class Player {
             }
         }
         return neighbours;
+    }
+
+
+    private void decrementTimer() {
+        timer.set(timer.get() - 1);
+    }
+
+    private void notifyObservers(int remainingShips) {
+        for (PlayerListener observer : observers) {
+            observer.onRemainingShipsChanged(remainingShips);
+        }
     }
 
 }

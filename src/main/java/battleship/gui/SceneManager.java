@@ -52,6 +52,10 @@ public class SceneManager {
         createLogo();
     }
 
+    public Stage getMainStage() {
+        return mainStage;
+    }
+
     private void createSubScenes() {
         createRulesSubScene();
         createDifficultySubScene();
@@ -168,7 +172,6 @@ public class SceneManager {
         }
         subScene.moveSubScene();
 
-        // Fade in animation
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(2), subScene);
         fadeTransition.setFromValue(0);
         fadeTransition.setToValue(10);
@@ -255,10 +258,6 @@ public class SceneManager {
             Platform.exit();
         });
         return exitButton;
-    }
-
-    public Stage getMainStage() {
-        return mainStage;
     }
 
     private void createBackground() {

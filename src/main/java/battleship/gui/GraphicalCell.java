@@ -61,36 +61,29 @@ public class GraphicalCell extends Canvas implements CellListener {
         }
 
         switch (cell.getCellStatus()) {
-            case HIT:
-                gc.setFill(Color.RED.deriveColor(0, 1, 1, 0.5));
-                break;
-            case MISSED:
-                gc.setFill(Color.BLACK.deriveColor(0, 1, 1, 0.5));
-                break;
-            case SHIP:
+            case HIT -> gc.setFill(Color.RED.deriveColor(0, 1, 1, 0.5));
+            case MISSED -> gc.setFill(Color.BLACK.deriveColor(0, 1, 1, 0.5));
+            case SHIP -> {
                 if (isItMine) {
                     gc.setFill(Color.GRAY.deriveColor(0, 1, 1, 0.5));
                 } else {
-                    gc.setFill(Color.rgb(62,148,247,0.5));
+                    gc.setFill(Color.rgb(62, 148, 247, 0.5));
                 }
-                break;
-            case OCEAN:
-                gc.setFill(Color.rgb(62,148,247,0.5));
-                break;
-            case ROCK:
+            }
+            case OCEAN -> gc.setFill(Color.rgb(62, 148, 247, 0.5));
+            case ROCK -> {
                 if (isItMine) {
                     Image rockImage = new Image("rock.png");
                     ImagePattern pattern = new ImagePattern(rockImage);
                     gc.setFill(pattern);
+                } else {
+                    gc.setFill(Color.rgb(62, 148, 247, 0.5));
                 }
-                else {
-                    gc.setFill(Color.rgb(62,148,247,0.5));
-                }
-                break;
-            case ROCK_HIT:
+            }
+            case ROCK_HIT -> {
                 Image rockHitImage = new Image("rockHit.png");
                 gc.setFill(new ImagePattern(rockHitImage));
-                break;
+            }
         }
         gc.fillRect(0, 0, SIZE, SIZE);
 

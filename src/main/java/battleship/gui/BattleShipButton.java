@@ -20,9 +20,10 @@ public class BattleShipButton extends Button {
 
     Media bMusic = new Media(buttonMusic.toURI().toString());
     MediaPlayer buttonMediaPlayer = new MediaPlayer(bMusic);
+
     public BattleShipButton(String text) {
         setStyle(BUTTON_FREE_STYLE);
-        setPrefSize(1,1);
+        setPrefSize(1, 1);
         setBackground(getBackground());
         setText(text);
         setPrefWidth(190);
@@ -58,19 +59,23 @@ public class BattleShipButton extends Button {
                 buttonMediaPlayer.stop();
             }
         });
-        setOnMouseEntered(event -> {setEffect(new DropShadow(50, Color.YELLOW));
-                                    ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.1), this);
-                                    scaleTransition.setFromX(1);
-                                    scaleTransition.setFromY(1);
-                                    scaleTransition.setToX(1.25);
-                                    scaleTransition.setToY(1.25);
-                                    scaleTransition.play();});
-        setOnMouseExited(event -> {setEffect(null);
-                                   ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.1), this);
-                                   scaleTransition.setFromX(1.25);
-                                   scaleTransition.setFromY(1.25);
-                                   scaleTransition.setToX(1);
-                                   scaleTransition.setToY(1);
-                                   scaleTransition.play();});
+        setOnMouseEntered(event -> {
+            setEffect(new DropShadow(50, Color.YELLOW));
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.1), this);
+            scaleTransition.setFromX(1);
+            scaleTransition.setFromY(1);
+            scaleTransition.setToX(1.25);
+            scaleTransition.setToY(1.25);
+            scaleTransition.play();
+        });
+        setOnMouseExited(event -> {
+            setEffect(null);
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.1), this);
+            scaleTransition.setFromX(1.25);
+            scaleTransition.setFromY(1.25);
+            scaleTransition.setToX(1);
+            scaleTransition.setToY(1);
+            scaleTransition.play();
+        });
     }
 }

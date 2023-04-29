@@ -14,7 +14,6 @@ public class PlayerPane extends Pane implements PlayerListener {
 
     public static final int OFFSET_BETWEEN_SEAS = 70;
 
-
     private final int numRow;
     private final int numCol;
     private final int offsetX = GraphicalCell.SIZE / 2;
@@ -23,8 +22,6 @@ public class PlayerPane extends Pane implements PlayerListener {
 
     private final Player player;
     private final Player otherPlayer;
-
-    private final boolean isTimed;
 
     private VBox gameInfoBox;
     private VBox gameTimerBox;
@@ -35,7 +32,6 @@ public class PlayerPane extends Pane implements PlayerListener {
         this.otherPlayer = otherPlayer;
         numRow = player.getBoard().getNumRow();
         numCol = player.getBoard().getNumCol();
-        this.isTimed = isTimed;
         this.player.addObserver(this);
 
         setMinSize(numCol * GraphicalCell.SIZE + 2 * offsetX, 2 * (numRow * GraphicalCell.SIZE + offsetY) + OFFSET_BETWEEN_SEAS + infoSize);

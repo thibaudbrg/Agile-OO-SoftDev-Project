@@ -24,7 +24,7 @@ public class Battleship extends Application implements GameCreationListener {
     public void start(Stage primaryStage) throws Exception {
         try {
             String path = "src/main/resources/sounds/gamemusic.wav";
-            Media media =  new Media(new File(path).toURI().toString());
+            Media media = new Media(new File(path).toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(media);
             SceneManager manager = new SceneManager(this);
             mediaPlayer.setAutoPlay(true);
@@ -47,7 +47,6 @@ public class Battleship extends Application implements GameCreationListener {
     public static void main(String[] args) {
         launch(args);
     }
-
 
 
     public static boolean confirm() {

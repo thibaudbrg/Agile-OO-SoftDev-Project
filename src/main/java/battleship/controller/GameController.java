@@ -10,23 +10,25 @@ import javafx.scene.input.MouseEvent;
 
 
 public class GameController {
+    private final Game game;
+    private final GraphicalGame graphicalGame;
+    private final boolean isTimed;
+
+
     private Orientation currentOrientation = Orientation.N;
     private int shipPlacedCounter;
 
-    private final Game game;
-    private final GraphicalGame graphicalGame;
-    private final Player player1;
-    private final Player player2;
-    private final boolean isTimed;
+
+
 
     public GameController(GameMode gameMode, int numCol, int numRow, boolean isTimed) {
-        game = Game.getInstance(gameMode, numCol, numRow, isTimed);
-        graphicalGame = GraphicalGame.getInstance(gameMode, game.getPlayers(), isTimed);
-
         this.isTimed = isTimed;
 
-        player1 = game.getPlayers().get(0);
-        player2 = game.getPlayers().get(1);
+        game = Game.getInstance(gameMode, numCol, numRow);
+        graphicalGame = GraphicalGame.getInstance(gameMode, game.getPlayers(), isTimed);
+
+        Player player1 = game.getPlayers().get(0);
+        Player player2 = game.getPlayers().get(1);
 
         player1.getGameInfo().infoProperty().addListener((observable, oldValue, newValue) -> graphicalGame.getPlayerPane1().updateGameInfo(newValue));
 
@@ -44,7 +46,8 @@ public class GameController {
             graphicalGame.getPlayerPane2().setOnMouseReleased(this::mouseReleased);
 
             if (isTimed) {
-                timer();
+                setupTimerListener(player1, graphicalGame.getPlayerPane1(), player2);
+                setupTimerListener(player2, graphicalGame.getPlayerPane2(), player1);
             }
         }
 
@@ -74,55 +77,53 @@ public class GameController {
         Player mainPlayer = sourcePane.getPlayer();
         Player otherPlayer = (game.getPlayers().get(0) == mainPlayer) ? game.getPlayers().get(1) : game.getPlayers().get(0);
         boolean otherPlayerIsAi = otherPlayer instanceof AIPlayer;
+
+
         if (mainPlayer == game.getCurrentPlayer()) {
             sourcePane.requestFocus();
             if ((mouseEvent.getButton() == MouseButton.PRIMARY) && (mouseEvent.getTarget() instanceof GraphicalCell gCell)) {
+
                 switch (GameProgression.whichProgression(shipPlacedCounter)) {
                     case SHIP_PLACEMENT_PLAYER_1:
-                        if (gCell.isMine()) { // TODO condition about nonNull orientation
+                        if (gCell.isMine()) {
                             if (currentOrientation != null && mainPlayer.addShip(ShipType.values()[shipPlacedCounter], gCell.getCoordinates(), currentOrientation)) {
                                 SoundManager.play(SoundEffect.SHIP);
 
                                 ++shipPlacedCounter;
 
-                                if (GameProgression.allShipsPlacedForPlayer(shipPlacedCounter, 1)) { // TODO REFACTOR AND PRETTIER
-                                    mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).shipArePlaced());
+                                if (GameProgression.allShipsPlacedForPlayer(shipPlacedCounter, 1)) {
 
+                                    mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).shipArePlaced());
                                     otherPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).chooseShipsPlacements());
                                     otherPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).chooseFirstShipPlacement(ShipType.values()[0]));
-
                                     otherPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).canPlay());
+
                                     if (otherPlayerIsAi) {
                                         ((AIPlayer) otherPlayer).addShips();
                                         shipPlacedCounter = 2 * ShipType.values().length;
                                         mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).canPlay());
-
                                     } else {
                                         game.switchPlayer();
                                     }
                                 }
                             }
                         }
-
-
                         break;
 
                     case SHIP_PLACEMENT_PLAYER_2:
-                        if (gCell.isMine()) { // TODO condition about nonNull orientation
+                        if (gCell.isMine()) {
                             if (currentOrientation != null && game.getCurrentPlayer().addShip(ShipType.values()[shipPlacedCounter % 5], gCell.getCoordinates(), currentOrientation)) {
                                 SoundManager.play(SoundEffect.SHIP);
-
                                 ++shipPlacedCounter;
                             }
                         }
 
-                        if (GameProgression.allShipsPlacedForPlayer(shipPlacedCounter, 2)) { // TODO REFACTOR AND PRETTIER
-
+                        if (GameProgression.allShipsPlacedForPlayer(shipPlacedCounter, 2)) {
                             mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).shipArePlaced());
                             otherPlayer.getGameInfo().addInfo(new Info(otherPlayer.getPlayerId()).canPlay());
+
                             game.switchPlayer();
                         }
-
                         break;
 
 
@@ -130,20 +131,18 @@ public class GameController {
                         if (!gCell.isMine()) {
                             boolean hasBomb = mainPlayer.getHasBomb();
                             CellStatus newStatus = mainPlayer.handleShot(gCell.getCoordinates(), otherPlayer);
+
                             if (newStatus == CellStatus.HIT && hasBomb) {
                                 SoundManager.play(SoundEffect.BOMB);
                             } else if (newStatus == CellStatus.HIT || newStatus == CellStatus.ROCK_HIT) {
                                 SoundManager.play(SoundEffect.HIT);
-
                             } else {
                                 SoundManager.play(SoundEffect.MISS);
-
                             }
 
                             if (newStatus != CellStatus.ALREADY_HIT && newStatus != CellStatus.ALREADY_MISSED) {
                                 if (otherPlayer.getNumberOfRemainingShips() == 0) {
                                     SoundManager.play(SoundEffect.WIN);
-
 
                                     mainPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).won());
                                     otherPlayer.getGameInfo().addInfo(new Info(mainPlayer.getPlayerId()).won());
@@ -184,10 +183,6 @@ public class GameController {
         }
     }
 
-    private void timer() {
-        setupTimerListener(player1, graphicalGame.getPlayerPane1(), player2);
-        setupTimerListener(player2, graphicalGame.getPlayerPane2(), player1);
-    }
 
     private void setupTimerListener(Player currentPlayer, PlayerPane currentPane, Player otherPlayer) {
         currentPlayer.timerProperty().addListener((observable, oldValue, newValue) -> {

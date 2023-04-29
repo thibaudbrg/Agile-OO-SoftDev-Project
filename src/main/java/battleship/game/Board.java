@@ -2,14 +2,16 @@ package battleship.game;
 
 import java.util.Random;
 
-public class Board  {
+public class Board {
     private final int numRow;
     private final int numCol;
+    private final boolean withRock;
+
+
     private Cell[][] boardArray;
 
-    private final boolean withRock ;
 
-    public Board(int numRow, int numCol,boolean withRock) {
+    public Board(int numRow, int numCol, boolean withRock) {
         this.numCol = numCol;
         this.numRow = numRow;
         this.withRock = withRock;
@@ -39,7 +41,7 @@ public class Board  {
                 boardArray[row][col] = cell;
             }
         }
-        if (withRock){
+        if (withRock) {
             while (rockCount < 2) {
                 int randomRow = random.nextInt(numRow);
                 int randomCol = random.nextInt(numCol);

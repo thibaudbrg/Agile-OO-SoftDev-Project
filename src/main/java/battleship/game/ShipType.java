@@ -1,10 +1,5 @@
 package battleship.game;
 
-import javafx.scene.image.Image;
-
-import java.util.Objects;
-import java.util.Random;
-
 public enum ShipType {
     CARRIER(5,  "Carrier"),
     BATTLESHIP(4,  "Battleship"),

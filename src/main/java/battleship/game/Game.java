@@ -8,24 +8,22 @@ import java.util.List;
 
 public class Game {
     private static Game instance = null;
-    private final List<Board> boards;
     private final List<Player> players;
+
     private Player currentPlayer;
-    private boolean isTimed;
 
 
-    private Game(GameMode gameMode, int numCol, int numRow, boolean isTimed){
+    private Game(GameMode gameMode, int numCol, int numRow) {
         final List<Ship> shipsPlayer1 = new ArrayList<>();
         final List<Ship> shipsPlayer2 = new ArrayList<>();
-        this.isTimed = isTimed;
-        this.boards = generateBoards(numCol, numRow);
+        List<Board> boards = generateBoards(numCol, numRow);
         this.players = generatePlayers(gameMode, shipsPlayer1, shipsPlayer2, boards);
         currentPlayer = players.get(0);
     }
 
-    public static Game getInstance(GameMode gameMode, int numCol, int numRow, boolean isTimed) {
+    public static Game getInstance(GameMode gameMode, int numCol, int numRow) {
         if (instance == null) {
-            instance = new Game(gameMode, numCol, numRow, isTimed);
+            instance = new Game(gameMode, numCol, numRow);
         }
         return instance;
     }
@@ -57,31 +55,29 @@ public class Game {
         Board board2 = new Board(numRow, numCol, true);
         boards.add(board1);
         boards.add(board2);
-        return boards;}
+        return boards;
+    }
 
     private List<Player> generatePlayers(GameMode gameMode, List<Ship> ships1, List<Ship> ships2, List<Board> boards) {
-        Player player1 = null;
-        Player player2 = null;
+        Player player1;
+        Player player2;
         Board board1 = boards.get(0);
         Board board2 = boards.get(1);
 
         switch (gameMode) {
-            case MULTIPLAYER:
+            case MULTIPLAYER -> {
                 player1 = new RealPlayer(ships1, board1, PlayerId.PLAYER_1);
                 player2 = new RealPlayer(ships2, board2, PlayerId.PLAYER_2);
-                break;
-            case EASY:
+            }
+            case EASY -> {
                 player1 = new RealPlayer(ships1, board1, PlayerId.PLAYER_1);
                 player2 = new AIPlayer(ships2, board2, PlayerId.PLAYER_2, false);
-                break;
-            case HARD:
+            }
+            case HARD -> {
                 player1 = new RealPlayer(ships1, board1, PlayerId.PLAYER_1);
                 player2 = new AIPlayer(ships2, board2, PlayerId.PLAYER_2, true);
-                break;
-            default :
-                throw new RuntimeException("The gameMode is Incorrect");
-
-
+            }
+            default -> throw new RuntimeException("The gameMode is Incorrect");
         }
 
         List<Player> players = new ArrayList<>();

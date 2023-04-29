@@ -5,8 +5,9 @@ import java.util.List;
 
 public class Cell {
     private final Coordinates coords;
-    private CellStatus cellStatus;
     private final List<CellListener> observers = new ArrayList<>();
+
+    private CellStatus cellStatus;
 
     public Cell(Coordinates coords, CellStatus cellStatus) {
         this.coords = coords;
