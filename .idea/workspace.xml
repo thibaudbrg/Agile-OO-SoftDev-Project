@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="89724ba8-719e-4e17-b53d-47a8a7933d45" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Agile-OO-SoftDev-Project/out/production/Agile-OO-SoftDev-Project/.background.jpeg.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-OO-SoftDev-Project/out/production/Agile-OO-SoftDev-Project/battleship/gui/sounds/.background_music.wav.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-OO-SoftDev-Project/out/production/BattleshipDevelopmentProcess/.background.jpeg.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-OO-SoftDev-Project/src/main/java/battleship/gui/sounds/.background_music.wav.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agile-OO-SoftDev-Project/src/main/ressources/.background.jpeg.icloud" beforeDir="false" />
-    </list>
+    <list default="true" id="283dd0a8-a3a0-4bcf-bdd1-318dec492e16" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +16,17 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="2NxiqrxSd3Qa9FLUwxkmRIZxjgT" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -30,26 +37,47 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/Users/sahbiabderrazak/Desktop/tout/DTU/agile OO software dev/Agile-OO-SoftDev-Project",
+    "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.44827586",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
+  <component name="RunManager" selected="Application.Battleship">
+    <configuration name="Battleship" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="battleship.Battleship" />
       <module name="Agile-OO-SoftDev-Project" />
+      <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/../javafx-sdk-19.0.2.1/lib --add-modules javafx.controls,javafx.media" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="battleship.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+    <configuration name="CucumberTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Agile-OO-SoftDev-Project" />
-      <option name="filePath" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CucumberTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Battleship" />
+      <item itemvalue="JUnit.CucumberTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Battleship" />
+        <item itemvalue="JUnit.CucumberTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -69,5 +97,11 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$Battleship.ic" NAME="Battleship Coverage Results" MODIFIED="1682523875612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>battleship.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$CucumberTest.ic" NAME="CucumberTest Coverage Results" MODIFIED="1682525356451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
