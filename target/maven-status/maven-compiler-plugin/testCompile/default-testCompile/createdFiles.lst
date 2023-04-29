@@ -1,0 +1,13 @@
+OrientationTest.class
+BoardTest.class
+ShipTypeTest.class
+CellStatusTest.class
+CellTest.class
+ShipTest.class
+CoordinatesTest.class
+PlayerIdTest.class
+GameTest.class
+GameProgressionTest.class
+AiPlayerTest.class
+CucumberTest.class
+PlayerTest.class
