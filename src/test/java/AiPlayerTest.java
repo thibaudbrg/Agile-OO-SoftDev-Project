@@ -105,7 +105,8 @@ public class AiPlayerTest {
 
     @When("the easy AIPlayer shoots")
     public void the_easy_ai_player_shoots() {
-        aiPlayer1.handleShot(realPlayer2);
+        Coordinates aiCoords = ((AIPlayer) aiPlayer1).getAICoordinates();
+        aiPlayer1.handleShot(aiCoords,realPlayer2);
 
     }
 
@@ -187,7 +188,8 @@ public class AiPlayerTest {
 
     @When("the hard AIPlayer shoots")
     public void the_hard_ai_player_shoots() {
-        aiPlayer1.handleShot(realPlayer2);
+        Coordinates aiCoords = ((AIPlayer) aiPlayer1).getAICoordinates();
+        aiPlayer1.handleShot(aiCoords,realPlayer2);
     }
 
     @Given("the hard AIplayer has a ship at {string}, {string} with an orientation of {string} and a type {string}")

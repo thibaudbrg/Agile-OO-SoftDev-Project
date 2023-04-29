@@ -31,7 +31,7 @@ public class GameTest {
 
     @Then("a RuntimeException is thrown when we create the game")
     public void a_runtime_exception_is_thrown_when_we_create_the_game() {
-        assertThrows(RuntimeException.class, ()->  Game.getInstance(gameMode, numCol,numRow,false));
+        assertThrows(RuntimeException.class, ()->  Game.getInstance(gameMode, numCol,numRow));
 
     }
 
@@ -46,7 +46,7 @@ public class GameTest {
 
     @Then("no RuntimeException is thrown when we create the game")
     public void no_runtime_exception_is_thrown_when_we_create_the_game() {
-        assertDoesNotThrow(()-> Game.getInstance(gameMode, numCol, numRow, false));
+        assertDoesNotThrow(()-> Game.getInstance(gameMode, numCol, numRow));
 
     }
 

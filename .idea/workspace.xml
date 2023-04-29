@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="283dd0a8-a3a0-4bcf-bdd1-318dec492e16" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/AIPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/AIPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/AiPlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AiPlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GameTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/AiPlayerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/AiPlayerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/GameTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/GameTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,11 +63,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Battleship">
+  <component name="RunManager" selected="JUnit.CucumberTest">
     <configuration name="Battleship" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="battleship.Battleship" />
       <module name="Agile-OO-SoftDev-Project" />
-      <option name="VM_PARAMETERS" value="--module-path D:\thiba\Downloads\openjfx-19.0.2.1_windows-x64_bin-sdk\javafx-sdk-19.0.2.1\lib --add-modules javafx.media,javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/../javafx-sdk-19.0.2.1/lib --add-modules javafx.media,javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="battleship.*" />
@@ -100,8 +102,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Battleship" />
         <item itemvalue="JUnit.CucumberTest" />
+        <item itemvalue="Application.Battleship" />
         <item itemvalue="JUnit.All in Agile-OO-SoftDev-Project" />
       </list>
     </recent_temporary>
@@ -118,6 +120,7 @@
       <workItem from="1682600289438" duration="771000" />
       <workItem from="1682608279401" duration="1732000" />
       <workItem from="1682756016555" duration="646000" />
+      <workItem from="1682770894143" duration="1104000" />
     </task>
     <servers />
   </component>
