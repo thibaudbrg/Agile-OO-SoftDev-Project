@@ -84,7 +84,7 @@ public abstract class Player {
         return gameInfo;
     }
 
-    public CellStatus handleShot(Coordinates coords, Player otherRealPlayer) {
+    public CellStatus  handleShot(Coordinates coords, Player otherRealPlayer) {
         if (this.hasBomb) {
             this.setHasBomb(false);
             handleShot(coords, otherRealPlayer);

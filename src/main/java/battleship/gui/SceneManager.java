@@ -244,7 +244,6 @@ public class SceneManager {
         HardModeButton.setOnAction(event -> {
             int numRows = rowComboBox.getValue();
             int numCols = colComboBox.getValue();
-            System.out.println("to remove");
             gameCreationListener.onGameCreate(GameMode.HARD, numCols, numRows, false);
         });
         return HardModeButton;
