@@ -73,7 +73,7 @@ public class GraphicalCell extends Canvas implements CellListener {
             case OCEAN -> gc.setFill(Color.rgb(62, 148, 247, 0.5));
             case ROCK -> {
                 if (isItMine) {
-                    Image rockImage = new Image("rock.png");
+                    Image rockImage = new Image("assets/rock.png");
                     ImagePattern pattern = new ImagePattern(rockImage);
                     gc.setFill(pattern);
                 } else {
@@ -81,7 +81,7 @@ public class GraphicalCell extends Canvas implements CellListener {
                 }
             }
             case ROCK_HIT -> {
-                Image rockHitImage = new Image("rockHit.png");
+                Image rockHitImage = new Image("assets/rockHit.png");
                 gc.setFill(new ImagePattern(rockHitImage));
             }
         }

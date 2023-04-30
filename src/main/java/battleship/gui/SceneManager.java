@@ -267,7 +267,7 @@ public class SceneManager {
     }
 
     private void createLogo() {
-        Image logoImage = new Image("logo_white-removebg.png", 500, 185, false, false);
+        Image logoImage = new Image("assets/logo_white-removebg.png", 500, 185, false, false);
         ImageView logo = new ImageView(logoImage);
         mainPane.getChildren().add(logo);
         logo.setLayoutX(400);
