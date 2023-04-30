@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="92" failures="0" name="CucumberTest" time="1.449" errors="0" skipped="0">
+<testsuite tests="92" failures="0" name="CucumberTest" time="1.94" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2022.3.3"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -44,7 +44,7 @@
     <property name="java.class.path" value="/Users/sahbiabderrazak/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U/ch-0/223.8836.41/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3/boot/plexus-classworlds.license:/Users/sahbiabderrazak/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U/ch-0/223.8836.41/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3/boot/plexus-classworlds-2.6.0.jar"/>
     <property name="java.vm.specification.version" value="19"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version=2022.3.3 verify"/>
+    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version=2022.3.3 package"/>
     <property name="java.home" value="/Users/sahbiabderrazak/Library/Java/JavaVirtualMachines/openjdk-19.0.2/Contents/Home"/>
     <property name="apple.awt.application.name" value="Launcher"/>
     <property name="user.language" value="fr"/>
@@ -62,96 +62,96 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.stdout.encoding" value="UTF-8"/>
   </properties>
-  <testcase classname="AIPlayer functionality" name="easy AIPlayer has correct number of remaining ships #1" time="0.235"/>
-  <testcase classname="AIPlayer functionality" name="easy AIPlayer has correct number of remaining ships #2" time="0.036"/>
-  <testcase classname="AIPlayer functionality" name="easy AIPlayer has correct number of remaining ships #3" time="0.027"/>
-  <testcase classname="AIPlayer functionality" name="easy AIPlayer retrieves the board" time="0.022"/>
-  <testcase classname="AIPlayer functionality" name="easy AIPlayer handles a shot #1" time="0.025"/>
-  <testcase classname="AIPlayer functionality" name="easy AIPlayer handles a shot #2" time="0.02"/>
-  <testcase classname="AIPlayer functionality" name="easy AIPlayer handles a shot #3" time="0.018"/>
-  <testcase classname="AIPlayer functionality" name="easy AIPlayer handles a shot #4" time="0.015"/>
-  <testcase classname="AIPlayer functionality" name="easy AIPlayer does not sink a ship" time="0.022"/>
-  <testcase classname="AIPlayer functionality" name="easy AIPlayer has a ship on board #1" time="0.013"/>
-  <testcase classname="AIPlayer functionality" name="easy AIPlayer has a ship on board #2" time="0.013"/>
-  <testcase classname="AIPlayer functionality" name="easy AIPlayer has a ship on board #3" time="0.013"/>
-  <testcase classname="AIPlayer functionality" name="easy AIPlayer can place a ship" time="0.012"/>
-  <testcase classname="AIPlayer functionality" name="hard AIPlayer has correct number of remaining ships #1" time="0.013"/>
-  <testcase classname="AIPlayer functionality" name="hard AIPlayer has correct number of remaining ships #2" time="0.011"/>
-  <testcase classname="AIPlayer functionality" name="hard AIPlayer has correct number of remaining ships #3" time="0.013"/>
-  <testcase classname="AIPlayer functionality" name="hard AIPlayer retrieves the board" time="0.012"/>
-  <testcase classname="AIPlayer functionality" name="hard AIPlayer handles a shot #1" time="0.013"/>
-  <testcase classname="AIPlayer functionality" name="hard AIPlayer handles a shot #2" time="0.012"/>
-  <testcase classname="AIPlayer functionality" name="hard AIPlayer handles a shot #3" time="0.012"/>
-  <testcase classname="AIPlayer functionality" name="hard AIPlayer handles a shot #4" time="0.012"/>
-  <testcase classname="AIPlayer functionality" name="hard AIPlayer does not sink a ship" time="0.012"/>
-  <testcase classname="AIPlayer functionality" name="hard AIPlayer has a ship on board #1" time="0.014"/>
-  <testcase classname="AIPlayer functionality" name="hard AIPlayer has a ship on board #2" time="0.013"/>
-  <testcase classname="AIPlayer functionality" name="hard AIPlayer has a ship on board #3" time="0.012"/>
-  <testcase classname="AIPlayer functionality" name="hard AIPlayer can place a ship" time="0.011"/>
-  <testcase classname="Board" name="Get cell at specific location" time="0.015"/>
-  <testcase classname="Board" name="Get size of the board" time="0.014"/>
-  <testcase classname="Board" name="Fill board with correct number of cells" time="0.014"/>
-  <testcase classname="Board" name="Fill board with ocean cells" time="0.014"/>
-  <testcase classname="Board" name="Fill board with cells in correct positions" time="0.022"/>
-  <testcase classname="Cell" name="Create a cell with correct parameters" time="0.014"/>
+  <testcase classname="AIPlayer functionality" name="easy AIPlayer has correct number of remaining ships #1" time="0.38"/>
+  <testcase classname="AIPlayer functionality" name="easy AIPlayer has correct number of remaining ships #2" time="0.059"/>
+  <testcase classname="AIPlayer functionality" name="easy AIPlayer has correct number of remaining ships #3" time="0.032"/>
+  <testcase classname="AIPlayer functionality" name="easy AIPlayer retrieves the board" time="0.04"/>
+  <testcase classname="AIPlayer functionality" name="easy AIPlayer handles a shot #1" time="0.035"/>
+  <testcase classname="AIPlayer functionality" name="easy AIPlayer handles a shot #2" time="0.038"/>
+  <testcase classname="AIPlayer functionality" name="easy AIPlayer handles a shot #3" time="0.025"/>
+  <testcase classname="AIPlayer functionality" name="easy AIPlayer handles a shot #4" time="0.036"/>
+  <testcase classname="AIPlayer functionality" name="easy AIPlayer does not sink a ship" time="0.02"/>
+  <testcase classname="AIPlayer functionality" name="easy AIPlayer has a ship on board #1" time="0.022"/>
+  <testcase classname="AIPlayer functionality" name="easy AIPlayer has a ship on board #2" time="0.018"/>
+  <testcase classname="AIPlayer functionality" name="easy AIPlayer has a ship on board #3" time="0.02"/>
+  <testcase classname="AIPlayer functionality" name="easy AIPlayer can place a ship" time="0.017"/>
+  <testcase classname="AIPlayer functionality" name="hard AIPlayer has correct number of remaining ships #1" time="0.015"/>
+  <testcase classname="AIPlayer functionality" name="hard AIPlayer has correct number of remaining ships #2" time="0.019"/>
+  <testcase classname="AIPlayer functionality" name="hard AIPlayer has correct number of remaining ships #3" time="0.017"/>
+  <testcase classname="AIPlayer functionality" name="hard AIPlayer retrieves the board" time="0.016"/>
+  <testcase classname="AIPlayer functionality" name="hard AIPlayer handles a shot #1" time="0.021"/>
+  <testcase classname="AIPlayer functionality" name="hard AIPlayer handles a shot #2" time="0.017"/>
+  <testcase classname="AIPlayer functionality" name="hard AIPlayer handles a shot #3" time="0.016"/>
+  <testcase classname="AIPlayer functionality" name="hard AIPlayer handles a shot #4" time="0.019"/>
+  <testcase classname="AIPlayer functionality" name="hard AIPlayer does not sink a ship" time="0.015"/>
+  <testcase classname="AIPlayer functionality" name="hard AIPlayer has a ship on board #1" time="0.017"/>
+  <testcase classname="AIPlayer functionality" name="hard AIPlayer has a ship on board #2" time="0.019"/>
+  <testcase classname="AIPlayer functionality" name="hard AIPlayer has a ship on board #3" time="0.014"/>
+  <testcase classname="AIPlayer functionality" name="hard AIPlayer can place a ship" time="0.017"/>
+  <testcase classname="Board" name="Get cell at specific location" time="0.023"/>
+  <testcase classname="Board" name="Get size of the board" time="0.015"/>
+  <testcase classname="Board" name="Fill board with correct number of cells" time="0.017"/>
+  <testcase classname="Board" name="Fill board with ocean cells" time="0.029"/>
+  <testcase classname="Board" name="Fill board with cells in correct positions" time="0.015"/>
+  <testcase classname="Cell" name="Create a cell with correct parameters" time="0.018"/>
   <testcase classname="Cell" name="Change a cell&apos;s status" time="0.013"/>
-  <testcase classname="Cell" name="Get a cell&apos;s column and row value" time="0.017"/>
-  <testcase classname="Cell" name="Get a cell&apos;s status" time="0.012"/>
-  <testcase classname="Cell status" name="Check possible cell statuses" time="0.015"/>
-  <testcase classname="Coordinates" name="Creating coordinates" time="0.012"/>
-  <testcase classname="Coordinates" name="Comparing coordinates" time="0.013"/>
-  <testcase classname="Battleship Game" name="Generate players with incorrect mode" time="0.013"/>
-  <testcase classname="Battleship Game" name="Generate Game with correct mode and correct dimensions #1" time="0.014"/>
-  <testcase classname="Battleship Game" name="Generate Game with correct mode and correct dimensions #2" time="0.012"/>
-  <testcase classname="Battleship Game" name="Generate Game with correct mode and correct dimensions #3" time="0.011"/>
-  <testcase classname="GameProgression" name="Check possible GameProgression #1" time="0.011"/>
-  <testcase classname="GameProgression" name="Check possible GameProgression #2" time="0.012"/>
+  <testcase classname="Cell" name="Get a cell&apos;s column and row value" time="0.022"/>
+  <testcase classname="Cell" name="Get a cell&apos;s status" time="0.015"/>
+  <testcase classname="Cell status" name="Check possible cell statuses" time="0.013"/>
+  <testcase classname="Coordinates" name="Creating coordinates" time="0.014"/>
+  <testcase classname="Coordinates" name="Comparing coordinates" time="0.019"/>
+  <testcase classname="Battleship Game" name="Generate players with incorrect mode" time="0.015"/>
+  <testcase classname="Battleship Game" name="Generate Game with correct mode and correct dimensions #1" time="0.015"/>
+  <testcase classname="Battleship Game" name="Generate Game with correct mode and correct dimensions #2" time="0.015"/>
+  <testcase classname="Battleship Game" name="Generate Game with correct mode and correct dimensions #3" time="0.017"/>
+  <testcase classname="GameProgression" name="Check possible GameProgression #1" time="0.014"/>
+  <testcase classname="GameProgression" name="Check possible GameProgression #2" time="0.015"/>
   <testcase classname="GameProgression" name="Check possible GameProgression #3" time="0.013"/>
-  <testcase classname="GameProgression" name="Check possible GameProgression #4" time="0.011"/>
-  <testcase classname="GameProgression" name="Check that all ships are placed for a given player #1" time="0.012"/>
-  <testcase classname="GameProgression" name="Check that all ships are placed for a given player #2" time="0.011"/>
-  <testcase classname="GameProgression" name="Check that all ships are placed for a given player #3" time="0.01"/>
-  <testcase classname="GameProgression" name="Check that all ships are placed for a given player #4" time="0.01"/>
-  <testcase classname="GameProgression" name="Check that all ships are placed for a given player #5" time="0.011"/>
-  <testcase classname="GameProgression" name="Check that all ships are placed for a given player #6" time="0.016"/>
+  <testcase classname="GameProgression" name="Check possible GameProgression #4" time="0.013"/>
+  <testcase classname="GameProgression" name="Check that all ships are placed for a given player #1" time="0.014"/>
+  <testcase classname="GameProgression" name="Check that all ships are placed for a given player #2" time="0.015"/>
+  <testcase classname="GameProgression" name="Check that all ships are placed for a given player #3" time="0.012"/>
+  <testcase classname="GameProgression" name="Check that all ships are placed for a given player #4" time="0.012"/>
+  <testcase classname="GameProgression" name="Check that all ships are placed for a given player #5" time="0.014"/>
+  <testcase classname="GameProgression" name="Check that all ships are placed for a given player #6" time="0.018"/>
   <testcase classname="Orientation" name="Check possible orientations" time="0.014"/>
-  <testcase classname="Player functionality" name="Player has correct number of remaining ships #1" time="0.018"/>
-  <testcase classname="Player functionality" name="Player has correct number of remaining ships #2" time="0.015"/>
-  <testcase classname="Player functionality" name="Player has correct number of remaining ships #3" time="0.018"/>
-  <testcase classname="Player functionality" name="Player retrieves the board" time="0.014"/>
-  <testcase classname="Player functionality" name="Player handles a shot #1" time="0.013"/>
-  <testcase classname="Player functionality" name="Player handles a shot #2" time="0.013"/>
-  <testcase classname="Player functionality" name="Player handles a shot #3" time="0.012"/>
+  <testcase classname="Player functionality" name="Player has correct number of remaining ships #1" time="0.014"/>
+  <testcase classname="Player functionality" name="Player has correct number of remaining ships #2" time="0.021"/>
+  <testcase classname="Player functionality" name="Player has correct number of remaining ships #3" time="0.015"/>
+  <testcase classname="Player functionality" name="Player retrieves the board" time="0.013"/>
+  <testcase classname="Player functionality" name="Player handles a shot #1" time="0.015"/>
+  <testcase classname="Player functionality" name="Player handles a shot #2" time="0.016"/>
+  <testcase classname="Player functionality" name="Player handles a shot #3" time="0.013"/>
   <testcase classname="Player functionality" name="Player handles a shot #4" time="0.014"/>
-  <testcase classname="Player functionality" name="Player does not sink a ship" time="0.015"/>
-  <testcase classname="Player functionality" name="Player sinks a ship" time="0.011"/>
-  <testcase classname="Player functionality" name="Player has a ship on board #1" time="0.012"/>
-  <testcase classname="Player functionality" name="Player has a ship on board #2" time="0.012"/>
+  <testcase classname="Player functionality" name="Player does not sink a ship" time="0.018"/>
+  <testcase classname="Player functionality" name="Player sinks a ship" time="0.012"/>
+  <testcase classname="Player functionality" name="Player has a ship on board #1" time="0.014"/>
+  <testcase classname="Player functionality" name="Player has a ship on board #2" time="0.014"/>
   <testcase classname="Player functionality" name="Player has a ship on board #3" time="0.012"/>
-  <testcase classname="Player functionality" name="Player can place a ship" time="0.011"/>
+  <testcase classname="Player functionality" name="Player can place a ship" time="0.012"/>
   <testcase classname="Player functionality" name="Player cannot place overlapping ships" time="0.012"/>
-  <testcase classname="Player functionality" name="Player cannot place ships outside the board" time="0.012"/>
-  <testcase classname="Player functionality" name="Player cannot place ships hitting a Rock" time="0.012"/>
-  <testcase classname="Player functionality" name="Player gets a bomb" time="0.011"/>
-  <testcase classname="Player functionality" name="Player shoots a bomb" time="0.012"/>
+  <testcase classname="Player functionality" name="Player cannot place ships outside the board" time="0.016"/>
+  <testcase classname="Player functionality" name="Player cannot place ships hitting a Rock" time="0.014"/>
+  <testcase classname="Player functionality" name="Player gets a bomb" time="0.012"/>
+  <testcase classname="Player functionality" name="Player shoots a bomb" time="0.015"/>
   <testcase classname="PlayerId enum functionality" name="PlayerId has correct count" time="0.012"/>
   <testcase classname="PlayerId enum functionality" name="PlayerId has correct next player #1" time="0.012"/>
-  <testcase classname="PlayerId enum functionality" name="PlayerId has correct next player #2" time="0.01"/>
+  <testcase classname="PlayerId enum functionality" name="PlayerId has correct next player #2" time="0.017"/>
   <testcase classname="PlayerId enum functionality" name="PlayerId has all player IDs" time="0.012"/>
-  <testcase classname="Ship functionality" name="Ship has correct ship type #1" time="0.01"/>
-  <testcase classname="Ship functionality" name="Ship has correct ship type #2" time="0.011"/>
-  <testcase classname="Ship functionality" name="Ship has correct ship type #3" time="0.01"/>
-  <testcase classname="Ship functionality" name="Ship has correct ship type #4" time="0.012"/>
+  <testcase classname="Ship functionality" name="Ship has correct ship type #1" time="0.017"/>
+  <testcase classname="Ship functionality" name="Ship has correct ship type #2" time="0.02"/>
+  <testcase classname="Ship functionality" name="Ship has correct ship type #3" time="0.026"/>
+  <testcase classname="Ship functionality" name="Ship has correct ship type #4" time="0.014"/>
   <testcase classname="Ship functionality" name="Ship has correct ship type #5" time="0.014"/>
-  <testcase classname="Ship functionality" name="Ship has correct list of cells" time="0.009"/>
-  <testcase classname="Ship functionality" name="Ship has sunk or not sunk #1" time="0.011"/>
+  <testcase classname="Ship functionality" name="Ship has correct list of cells" time="0.015"/>
+  <testcase classname="Ship functionality" name="Ship has sunk or not sunk #1" time="0.012"/>
   <testcase classname="Ship functionality" name="Ship has sunk or not sunk #2" time="0.011"/>
-  <testcase classname="Ship functionality" name="Ship has sunk or not sunk #3" time="0.01"/>
-  <testcase classname="Ship functionality" name="Ship has sunk or not sunk #4" time="0.013"/>
-  <testcase classname="Ship functionality" name="Add a cell to the ship" time="0.009"/>
-  <testcase classname="ShipType enum functionality" name="ShipType has correct label #1" time="0.009"/>
-  <testcase classname="ShipType enum functionality" name="ShipType has correct label #2" time="0.009"/>
-  <testcase classname="ShipType enum functionality" name="ShipType has correct label #3" time="0.008"/>
-  <testcase classname="ShipType enum functionality" name="ShipType has correct label #4" time="0.009"/>
-  <testcase classname="ShipType enum functionality" name="ShipType has correct label #5" time="0.012"/>
+  <testcase classname="Ship functionality" name="Ship has sunk or not sunk #3" time="0.011"/>
+  <testcase classname="Ship functionality" name="Ship has sunk or not sunk #4" time="0.011"/>
+  <testcase classname="Ship functionality" name="Add a cell to the ship" time="0.011"/>
+  <testcase classname="ShipType enum functionality" name="ShipType has correct label #1" time="0.012"/>
+  <testcase classname="ShipType enum functionality" name="ShipType has correct label #2" time="0.015"/>
+  <testcase classname="ShipType enum functionality" name="ShipType has correct label #3" time="0.011"/>
+  <testcase classname="ShipType enum functionality" name="ShipType has correct label #4" time="0.012"/>
+  <testcase classname="ShipType enum functionality" name="ShipType has correct label #5" time="0.01"/>
 </testsuite>

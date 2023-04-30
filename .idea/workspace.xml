@@ -2,25 +2,25 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Agile-OO-SoftDev-Project:jar" />
+      <artifact name="Agile-OO-SoftDev-Project:jar2" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="283dd0a8-a3a0-4bcf-bdd1-318dec492e16" name="Changes" comment="">
+    <list default="true" id="283dd0a8-a3a0-4bcf-bdd1-318dec492e16" name="Changes" comment="button image + AI bug fixed&#10;Co-authored-by: onsriahi14 &lt;ons.riahi@epfl.ch&gt;">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Agile_OO_SoftDev_Project_jar2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/AIPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/AIPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/BattleShipButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/BattleShipButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ImagesFromSpaceRunner/kenvector_future.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ImagesFromSpaceRunner/life-gain.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ImagesFromSpaceRunner/life-lost.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ImagesFromSpaceRunner/robotSFX.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ImagesFromSpaceRunner/rocketButton.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ImagesFromSpaceRunner/yellow_button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Agile-OO-SoftDev-Project-2.8.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/Agile-OO-SoftDev-Project-2.8.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/CucumberTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/CucumberTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-CucumberTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-CucumberTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/classpath.index" beforeDir="false" />
     </list>
-    <list id="aa186b1f-ca0e-411d-aeeb-6af83367d19b" name="Changes by onsriahi" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,24 +47,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/sahbiabderrazak/Desktop/Agile-OO-SoftDev-Project&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.44827586&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/sahbiabderrazak/Desktop/Agile-OO-SoftDev-Project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.291954",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\thiba\Videos\Agile-OO-SoftDev-Project\src\main\resources\assets" />
@@ -144,10 +145,22 @@
       <workItem from="1682781061931" duration="1030000" />
       <workItem from="1682844148375" duration="1958000" />
     </task>
+    <task id="LOCAL-00001" summary="button image + AI bug fixed&#10;Co-authored-by: onsriahi14 &lt;ons.riahi@epfl.ch&gt;">
+      <created>1682849694398</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682849694398</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="button image + AI bug fixed&#10;Co-authored-by: onsriahi14 &lt;ons.riahi@epfl.ch&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="button image + AI bug fixed&#10;Co-authored-by: onsriahi14 &lt;ons.riahi@epfl.ch&gt;" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$java_in_Agile_OO_SoftDev_Project.ic" NAME="java in Agile-OO-SoftDev-Project Coverage Results" MODIFIED="1682581522391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
