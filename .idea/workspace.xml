@@ -11,54 +11,16 @@
   <component name="ChangeListManager">
     <list default="true" id="283dd0a8-a3a0-4bcf-bdd1-318dec492e16" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/GraphicalCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/GraphicalCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/SceneManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Fonts.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/Untitled.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/blue_panel.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/buttonBlue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/cursor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/galaxy.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/game_bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/grey_circle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/heart.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/index.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/index1.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/index1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/index2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/menubg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/meteorBrown.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/meteorGrey.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/missile.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/purple.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/retina.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/shipchooser/playerLife_blue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/shipchooser/playerLife_green.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/shipchooser/playerLife_orange.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/shipchooser/playerLife_red.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/shipchooser/ships/ship_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/shipchooser/ships/ship_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/shipchooser/ships/ship_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/shipchooser/ships/ship_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/space_runner.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/star_gold.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/stars.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/yellow_boxTick.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/yellow_button06.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/yellow_button_pressed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ImagesFromSpaceRunner/yellow_panel.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/battleship.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/carrier.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/credits.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/cruiser.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/destroyer.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/ocean-tile.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/submarine.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/logo_white-removebg.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/logo_white-removebg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/logo_white.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/logo_white.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/rock.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/rock.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/rockHit.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/rockHit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/game/AIPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/game/AIPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/battleship/gui/BattleShipButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/battleship/gui/BattleShipButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ImagesFromSpaceRunner/kenvector_future.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ImagesFromSpaceRunner/life-gain.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ImagesFromSpaceRunner/life-lost.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ImagesFromSpaceRunner/robotSFX.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ImagesFromSpaceRunner/rocketButton.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ImagesFromSpaceRunner/yellow_button.png" beforeDir="false" />
     </list>
+    <list id="aa186b1f-ca0e-411d-aeeb-6af83367d19b" name="Changes by onsriahi" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,24 +47,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/sahbiabderrazak/Desktop/Agile-OO-SoftDev-Project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.44827586",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/sahbiabderrazak/Desktop/Agile-OO-SoftDev-Project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.44827586&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\thiba\Videos\Agile-OO-SoftDev-Project\src\main\resources\assets" />
@@ -112,7 +74,7 @@
     <configuration name="Battleship" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="battleship.Battleship" />
       <module name="Agile-OO-SoftDev-Project" />
-      <option name="VM_PARAMETERS" value="--module-path $PROJECT_DIR$/../javafx-sdk-19.0.2.1/lib --add-modules javafx.media,javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/javafx-sdk-19.0.2.1/lib --add-modules javafx.media,javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="battleship.*" />
@@ -188,10 +150,10 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$java_in_Agile_OO_SoftDev_Project.ic" NAME="java in Agile-OO-SoftDev-Project Coverage Results" MODIFIED="1682581522391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$CucumberTest.ic" NAME="CucumberTest Coverage Results" MODIFIED="1682600705765" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$Battleship.ic" NAME="Battleship Coverage Results" MODIFIED="1682581472257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>battleship.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$java_in_Agile_OO_SoftDev_Project.ic" NAME="java in Agile-OO-SoftDev-Project Coverage Results" MODIFIED="1682845552217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/Agile_OO_SoftDev_Project$CucumberTest.ic" NAME="CucumberTest Coverage Results" MODIFIED="1682845467132" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

@@ -22,8 +22,8 @@ public class AIPlayer extends Player {
         do {
             int col, row;
             Orientation orientation;
-            col = rn.nextInt(getBoard().getNumRow());
-            row = rn.nextInt(getBoard().getNumCol());
+            row = rn.nextInt(getBoard().getNumRow());
+            col = rn.nextInt(getBoard().getNumCol());
             Orientation[] orientations = Orientation.values();
             orientation = orientations[rn.nextInt(orientations.length)];
             Coordinates coords = new Coordinates(col, row);

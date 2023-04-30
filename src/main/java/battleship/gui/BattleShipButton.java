@@ -13,8 +13,8 @@ import java.io.File;
 
 public class BattleShipButton extends Button {
 
-    private static final String BUTTON_PRESSED_STYLE = "-fx-background-color: transparent;-fx-background-image: url('../../../resources/assets/rocketButton.png');-fx-background-size: 100%;";
-    private static final String BUTTON_FREE_STYLE = "-fx-background-color: transparent;-fx-background-image: url('../../../resources/assets/rocketButton.png');-fx-background-size: 100%;";
+    private static final String BUTTON_PRESSED_STYLE = "-fx-background-color: transparent;-fx-background-image: url('assets/rocketButton.png');-fx-background-size: 100%;";
+    private static final String BUTTON_FREE_STYLE = "-fx-background-color: transparent;-fx-background-image: url('assets/rocketButton.png');-fx-background-size: 100%;";
 
     File buttonMusic = new File("src/main/resources/sounds/press_button.mp3");
 
